@@ -47,6 +47,21 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        trust: {
+          blue: "hsl(var(--trust-blue))",
+          "blue-light": "hsl(var(--trust-blue-light))",
+        },
+        civic: {
+          teal: "hsl(var(--civic-teal))",
+          "teal-light": "hsl(var(--civic-teal-light))",
+        },
+        neutral: {
+          50: "hsl(var(--neutral-50))",
+          100: "hsl(var(--neutral-100))",
+          200: "hsl(var(--neutral-200))",
+          700: "hsl(var(--neutral-700))",
+          900: "hsl(var(--neutral-900))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -62,6 +77,20 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+        card: "var(--shadow-card)",
+      },
+      backgroundImage: {
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-subtle": "var(--gradient-subtle)",
+      },
+      transitionProperty: {
+        base: "var(--transition-base)",
+        smooth: "var(--transition-smooth)",
       },
       keyframes: {
         "accordion-down": {
