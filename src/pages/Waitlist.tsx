@@ -30,15 +30,18 @@ export default function Waitlist() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <FileText className="h-5 w-5 text-primary-foreground" />
+      <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <div className="w-10 h-10 rounded-xl glass bg-gradient-glass flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+              <FileText className="h-5 w-5 text-primary" />
             </div>
             <span className="text-xl font-bold text-foreground">ClearPolicy</span>
           </Link>
-          <Button onClick={scrollToForm} variant="default">
+          <Button 
+            onClick={scrollToForm} 
+            className="glass border-primary/30 hover:bg-primary/10 hover:border-primary/40 transition-all duration-500"
+          >
             Join waitlist
           </Button>
         </div>
@@ -66,7 +69,7 @@ export default function Waitlist() {
               </p>
             </div>
             
-            <div className="bg-card border border-border rounded-2xl shadow-lg p-8 md:p-12">
+            <div className="glass rounded-3xl shadow-glass p-8 md:p-12 hover:shadow-glass-hover transition-all duration-500">
               <WaitlistForm />
             </div>
 

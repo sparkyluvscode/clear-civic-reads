@@ -37,15 +37,15 @@ export default function LaunchBenefits() {
             return (
               <div
                 key={index}
-                className="text-center"
+                className="text-center group"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-6">
-                  <Icon className="h-8 w-8 text-primary" />
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl glass bg-gradient-glass mb-6 group-hover:scale-110 transition-all duration-500 shadow-glass">
+                  <Icon className="h-10 w-10 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">
                   {benefit.title}
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground leading-relaxed">
                   {benefit.description}
                 </p>
               </div>

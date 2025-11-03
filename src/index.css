@@ -49,19 +49,29 @@ All colors MUST be HSL.
     --neutral-700: 215 20% 35%;
     --neutral-900: 215 25% 15%;
     
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(210 50% 35%) 0%, hsl(180 45% 45%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 30% 98%) 100%);
+    /* Gradients - Liquid Glass */
+    --gradient-hero: linear-gradient(135deg, hsl(210 50% 35% / 0.9) 0%, hsl(180 45% 45% / 0.85) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(210 30% 98% / 0.6) 0%, hsl(210 40% 96% / 0.8) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.1) 0%, hsl(0 0% 100% / 0.05) 100%);
+    --gradient-shimmer: linear-gradient(110deg, transparent 0%, hsl(0 0% 100% / 0.1) 50%, transparent 100%);
     
-    /* Shadows */
+    /* Shadows - Glass Depth */
     --shadow-sm: 0 1px 2px 0 hsl(210 30% 15% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(210 30% 15% / 0.1);
-    --shadow-lg: 0 10px 15px -3px hsl(210 30% 15% / 0.1);
-    --shadow-card: 0 2px 8px hsl(210 30% 15% / 0.08);
+    --shadow-md: 0 4px 12px -2px hsl(210 30% 15% / 0.08);
+    --shadow-lg: 0 20px 40px -12px hsl(210 30% 15% / 0.12);
+    --shadow-card: 0 8px 32px hsl(210 30% 15% / 0.06);
+    --shadow-glass: 0 8px 32px 0 hsl(210 30% 15% / 0.08), inset 0 1px 0 0 hsl(0 0% 100% / 0.05);
+    --shadow-glass-hover: 0 12px 48px 0 hsl(210 30% 15% / 0.12), inset 0 1px 0 0 hsl(0 0% 100% / 0.1);
     
-    /* Transitions */
+    /* Transitions - Apple-smooth */
     --transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Glass Properties */
+    --glass-bg: hsl(0 0% 100% / 0.7);
+    --glass-border: hsl(0 0% 100% / 0.2);
+    --glass-blur: 24px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -119,7 +129,13 @@ All colors MUST be HSL.
     --neutral-700: 210 20% 70%;
     --neutral-900: 210 30% 96%;
     
-    --shadow-card: 0 2px 8px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.15);
+    --shadow-glass: 0 8px 32px 0 hsl(0 0% 0% / 0.2), inset 0 1px 0 0 hsl(0 0% 100% / 0.05);
+    --shadow-glass-hover: 0 12px 48px 0 hsl(0 0% 0% / 0.25), inset 0 1px 0 0 hsl(0 0% 100% / 0.1);
+    
+    --glass-bg: hsl(215 25% 15% / 0.6);
+    --glass-border: hsl(0 0% 100% / 0.1);
+    --glass-blur: 24px;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -138,5 +154,65 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Smooth scrolling for glass aesthetic */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Glass morphism utilities */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .glass-hover {
+    transition: var(--transition-smooth);
+  }
+  
+  .glass-hover:hover {
+    box-shadow: var(--shadow-glass-hover);
+    transform: translateY(-2px);
+  }
+  
+  /* Shimmer effect */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-shimmer);
+    animation: shimmer 3s infinite;
+  }
+  
+  @keyframes shimmer {
+    0%, 100% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(200%);
+    }
+  }
+  
+  /* Smooth scale */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.01);
   }
 }

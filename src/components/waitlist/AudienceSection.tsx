@@ -51,15 +51,15 @@ export default function AudienceSection() {
             return (
               <div
                 key={index}
-                className="bg-card p-6 rounded-xl shadow-card border border-border hover:shadow-lg hover:-translate-y-1 transition-all"
+                className="glass p-6 rounded-2xl shadow-glass hover:shadow-glass-hover transition-all duration-500 hover-lift group"
               >
-                <div className={`w-14 h-14 rounded-xl ${audience.bgColor} flex items-center justify-center mb-4`}>
-                  <Icon className={`h-7 w-7 ${audience.color}`} />
+                <div className={`w-16 h-16 rounded-2xl glass bg-gradient-glass flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500`}>
+                  <Icon className={`h-8 w-8 ${audience.color}`} />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                   {audience.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {audience.description}
                 </p>
               </div>

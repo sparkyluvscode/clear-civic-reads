@@ -36,23 +36,23 @@ export default function TrustSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <div
                 key={index}
-                className="bg-card p-8 rounded-xl shadow-card border border-border hover:shadow-lg transition-shadow"
+                className="glass p-8 rounded-2xl shadow-glass hover:shadow-glass-hover transition-all duration-500 hover-lift group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-civic-teal-light flex items-center justify-center">
-                    <Icon className="h-6 w-6 text-accent" />
+                  <div className="flex-shrink-0 w-14 h-14 rounded-xl glass bg-gradient-glass flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                    <Icon className="h-7 w-7 text-accent" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
@@ -62,18 +62,18 @@ export default function TrustSection() {
           })}
         </div>
 
-        <div className="mt-12 p-8 bg-trust-blue-light rounded-xl border border-primary/20">
+        <div className="mt-12 glass p-8 rounded-2xl shadow-glass hover:shadow-glass-hover transition-all duration-500">
           <div className="flex items-start gap-4">
             <div className="flex-shrink-0">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Shield className="h-6 w-6 text-primary" />
+              <div className="w-14 h-14 rounded-xl glass bg-gradient-glass flex items-center justify-center">
+                <Shield className="h-7 w-7 text-primary" />
               </div>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Privacy first
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 We only use your information to provide early access updates and invite feedback. 
                 No resale, no third-party ads, no tracking beyond what's necessary to serve you better.
               </p>
