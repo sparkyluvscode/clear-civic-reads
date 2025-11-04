@@ -68,29 +68,25 @@ export default function WaitlistForm() {
     setIsSubmitting(true);
 
     try {
-      // Get client info for telemetry
-      const userAgent = navigator.userAgent;
-      const referer = document.referrer;
-
-      const { error } = await supabase
-        .from('waitlist_signups')
-        .insert({
-          email: formData.email.toLowerCase().trim(),
-          zip: formData.zip?.trim() || null,
+      // Call the secure edge function instead of direct database insert
+      const { data, error } = await supabase.functions.invoke('waitlist-signup', {
+        body: {
+          email: formData.email,
+          zip: formData.zip || null,
           role: formData.role || null,
-          use_case: formData.useCase?.trim() || null,
+          use_case: formData.useCase || null,
           source: "waitlist_landing_v1",
-          user_agent: userAgent,
-          referer: referer || null,
-          ip_hash: null, // IP hashing would need to be done server-side
-        });
+          user_agent: navigator.userAgent,
+          referer: document.referrer || null,
+        },
+      });
 
       if (error) {
-        // Handle duplicate email error
-        if (error.code === '23505') {
-          throw new Error("This email is already on the waitlist");
-        }
-        throw new Error(error.message);
+        throw new Error(error.message || 'Failed to submit signup');
+      }
+
+      if (!data?.success) {
+        throw new Error(data?.error || 'Failed to submit signup');
       }
 
       setIsSuccess(true);
