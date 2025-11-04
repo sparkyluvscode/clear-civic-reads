@@ -118,25 +118,17 @@ export default function WaitlistForm() {
 
   if (isSuccess) {
     return (
-      <div className="text-center space-y-6 py-8 animate-scale-in">
-        <div className="flex justify-center">
-          <div className="w-20 h-20 rounded-full glass bg-gradient-glass flex items-center justify-center animate-float">
-            <CheckCircle2 className="h-12 w-12 text-accent" />
-          </div>
+      <div className="text-center space-y-6 animate-fade-in">
+        <div className="w-20 h-20 mx-auto glass-strong rounded-full flex items-center justify-center shadow-glass">
+          <CheckCircle2 className="h-10 w-10 text-civic-teal drop-shadow" />
         </div>
-        <div className="space-y-3">
-          <h3 className="text-3xl font-bold text-foreground">
-            You're on the waitlist!
-          </h3>
-          <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
-            We'll email you when ClearPolicy launches in your area. In the meantime, help us
-            reach more people who need clear, cited policy information.
+        <div>
+          <h3 className="text-2xl font-bold text-foreground mb-2">You're on the list!</h3>
+          <p className="text-muted-foreground">
+            Check your email for confirmation. We'll notify you when ClearPolicy launches in your area.
           </p>
         </div>
-        <Button
-          onClick={handleCopyLink}
-          className="gap-2 glass border-primary/30 hover:bg-primary/10 transition-all duration-500"
-        >
+        <Button onClick={handleCopyLink} variant="glass" className="gap-2 text-foreground border-primary/30">
           {copied ? (
             <>
               <Check className="h-4 w-4" />
