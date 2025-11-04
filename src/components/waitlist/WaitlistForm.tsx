@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +13,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, CheckCircle2, Copy, Check } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function WaitlistForm() {
   const { toast } = useToast();
@@ -69,28 +68,36 @@ export default function WaitlistForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
+      // Get client info for telemetry
+      const userAgent = navigator.userAgent;
+      const referer = document.referrer;
+
+      const { error } = await supabase
+        .from('waitlist_signups')
+        .insert({
+          email: formData.email.toLowerCase().trim(),
+          zip: formData.zip?.trim() || null,
+          role: formData.role || null,
+          use_case: formData.useCase?.trim() || null,
           source: "waitlist_landing_v1",
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setIsSuccess(true);
-        toast({
-          title: "You're on the list!",
-          description: "We'll notify you when ClearPolicy launches in your area.",
+          user_agent: userAgent,
+          referer: referer || null,
+          ip_hash: null, // IP hashing would need to be done server-side
         });
-      } else {
-        throw new Error(data.error || "Something went wrong");
+
+      if (error) {
+        // Handle duplicate email error
+        if (error.code === '23505') {
+          throw new Error("This email is already on the waitlist");
+        }
+        throw new Error(error.message);
       }
+
+      setIsSuccess(true);
+      toast({
+        title: "You're on the list!",
+        description: "We'll notify you when ClearPolicy launches in your area.",
+      });
     } catch (error) {
       toast({
         title: "Submission failed",
