@@ -20,18 +20,21 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+    <section className="py-24 px-4 relative">
+      {/* Subtle background orb */}
+      <div className="absolute top-1/4 right-[5%] w-[400px] h-[400px] bg-gradient-orb-blue opacity-30 rounded-full blur-[120px] pointer-events-none" />
+      
+      <div className="max-w-6xl mx-auto relative">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5">
             How it works
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Three simple steps to understand any policy, backed by sources you can check.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
+            Three simple steps to understand any policy, backed by <span className="text-foreground font-bold">sources</span> you can check.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-10">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
@@ -40,21 +43,21 @@ export default function HowItWorks() {
                 className="relative"
               >
                 <div className="flex flex-col items-center text-center group">
-                  <div className="w-20 h-20 rounded-3xl glass bg-gradient-glass flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-500 shadow-glass">
-                    <Icon className="h-10 w-10 text-primary" />
+                  <div className="w-24 h-24 rounded-3xl glass-strong bg-gradient-glass-strong flex items-center justify-center mb-7 group-hover:scale-110 transition-all duration-500 shadow-glass-strong hover:shadow-glow-blue">
+                    <Icon className="h-11 w-11 text-primary drop-shadow-lg" />
                   </div>
-                  <div className="absolute top-10 left-[calc(50%+2.5rem)] w-[calc(100%-5rem)] h-0.5 bg-gradient-to-r from-primary/30 to-accent/30 hidden md:block"
+                  <div className="absolute top-12 left-[calc(50%+3rem)] w-[calc(100%-6rem)] h-[2px] bg-gradient-to-r from-primary/40 via-accent/35 to-primary/40 hidden md:block"
                     style={{ display: index === steps.length - 1 ? 'none' : undefined }}
                   />
-                  <div className="relative mb-4">
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full glass bg-gradient-glass text-primary text-sm font-bold shadow-md">
+                  <div className="relative mb-5">
+                    <span className="inline-flex items-center justify-center w-12 h-12 rounded-full glass-strong bg-gradient-glass-strong text-primary text-base font-black shadow-glass">
                       {index + 1}
                     </span>
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                  <h3 className="text-2xl font-bold text-foreground mb-4">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-base">
                     {step.description}
                   </p>
                 </div>

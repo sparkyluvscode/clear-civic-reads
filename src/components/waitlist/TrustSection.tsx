@@ -25,34 +25,41 @@ const features = [
 
 export default function TrustSection() {
   return (
-    <section className="py-20 px-4 bg-neutral-50">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Why trust ClearPolicy?
+    <section className="py-24 px-4 bg-gradient-subtle relative">
+      {/* Background droplets */}
+      <div className="absolute top-[10%] left-[15%] w-28 h-28 bg-white/[0.05] rounded-full blur-[38px] droplet-float" />
+      <div className="absolute bottom-[15%] right-[20%] w-32 h-32 bg-civic-teal/[0.04] rounded-full blur-[40px] droplet-float" style={{ animationDelay: '4s' }} />
+      
+      <div className="max-w-6xl mx-auto relative">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5">
+            Why <span className="relative inline-block">
+              <span className="relative z-10">trust</span>
+              <span className="absolute bottom-1 left-0 right-0 h-3 bg-primary/20 blur-sm -z-0"></span>
+            </span> ClearPolicy?
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Built for transparency, designed for clarity. Every feature reinforces trust.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
+            Built for <span className="text-foreground font-bold">transparency</span>, designed for <span className="text-foreground font-bold">clarity</span>. Every feature reinforces trust.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-7">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <div
                 key={index}
-                className="glass p-8 rounded-2xl shadow-glass hover:shadow-glass-hover transition-all duration-500 hover-lift group"
+                className="glass-strong p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift group"
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-xl glass bg-gradient-glass flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                    <Icon className="h-7 w-7 text-accent" />
+                <div className="flex items-start gap-5">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-2xl glass-strong bg-gradient-glass-strong flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500">
+                    <Icon className="h-8 w-8 text-accent drop-shadow-lg" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                    <h3 className="text-xl font-bold text-foreground mb-3">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed text-base">
                       {feature.description}
                     </p>
                   </div>
@@ -62,18 +69,18 @@ export default function TrustSection() {
           })}
         </div>
 
-        <div className="mt-12 glass p-8 rounded-2xl shadow-glass hover:shadow-glass-hover transition-all duration-500">
-          <div className="flex items-start gap-4">
+        <div className="mt-8 glass-strong p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift shimmer">
+          <div className="flex items-start gap-5">
             <div className="flex-shrink-0">
-              <div className="w-14 h-14 rounded-xl glass bg-gradient-glass flex items-center justify-center">
-                <Shield className="h-7 w-7 text-primary" />
+              <div className="w-16 h-16 rounded-2xl glass-strong bg-gradient-glass-strong flex items-center justify-center shadow-glow-blue">
+                <Shield className="h-8 w-8 text-primary drop-shadow-lg" />
               </div>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
+              <h3 className="text-xl font-bold text-foreground mb-3">
                 Privacy first
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-base">
                 We only use your information to provide early access updates and invite feedback. 
                 No resale, no third-party ads, no tracking beyond what's necessary to serve you better.
               </p>

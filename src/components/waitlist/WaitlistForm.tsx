@@ -118,25 +118,25 @@ export default function WaitlistForm() {
 
   if (isSuccess) {
     return (
-      <div className="text-center space-y-6 animate-fade-in">
-        <div className="w-20 h-20 mx-auto glass-strong rounded-full flex items-center justify-center shadow-glass">
-          <CheckCircle2 className="h-10 w-10 text-civic-teal drop-shadow" />
+      <div className="text-center space-y-8 animate-fade-in">
+        <div className="w-24 h-24 mx-auto glass-strong rounded-full flex items-center justify-center shadow-glass-strong pulse-glow">
+          <CheckCircle2 className="h-12 w-12 text-civic-teal drop-shadow-lg" />
         </div>
         <div>
-          <h3 className="text-2xl font-bold text-foreground mb-2">You're on the list!</h3>
-          <p className="text-muted-foreground">
+          <h3 className="text-3xl font-black text-foreground mb-3">You're on the list!</h3>
+          <p className="text-muted-foreground text-lg font-medium">
             Check your email for confirmation. We'll notify you when ClearPolicy launches in your area.
           </p>
         </div>
-        <Button onClick={handleCopyLink} variant="glass" className="gap-2 text-foreground border-primary/30">
+        <Button onClick={handleCopyLink} variant="secondary" size="lg" className="gap-2 shadow-lg hover:shadow-xl">
           {copied ? (
             <>
-              <Check className="h-4 w-4" />
+              <Check className="h-5 w-5" />
               Copied!
             </>
           ) : (
             <>
-              <Copy className="h-4 w-4" />
+              <Copy className="h-5 w-5" />
               Copy waitlist link
             </>
           )}
@@ -146,9 +146,9 @@ export default function WaitlistForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-lg mx-auto">
-      <div className="space-y-2">
-        <Label htmlFor="email" className="text-sm font-medium">
+    <form onSubmit={handleSubmit} className="space-y-7 max-w-lg mx-auto">
+      <div className="space-y-3">
+        <Label htmlFor="email" className="text-base font-bold">
           Email address <span className="text-destructive">*</span>
         </Label>
         <Input
@@ -157,16 +157,16 @@ export default function WaitlistForm() {
           placeholder="you@example.com"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className={errors.email ? "border-destructive" : ""}
+          className={`h-12 text-base rounded-xl border-2 ${errors.email ? "border-destructive" : ""}`}
           required
         />
         {errors.email && (
-          <p className="text-sm text-destructive">{errors.email}</p>
+          <p className="text-sm text-destructive font-medium">{errors.email}</p>
         )}
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="zip" className="text-sm font-medium">
+      <div className="space-y-3">
+        <Label htmlFor="zip" className="text-base font-bold">
           ZIP code (helps us prioritize your area)
         </Label>
         <Input
@@ -175,20 +175,20 @@ export default function WaitlistForm() {
           placeholder="12345"
           value={formData.zip}
           onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-          className={errors.zip ? "border-destructive" : ""}
+          className={`h-12 text-base rounded-xl border-2 ${errors.zip ? "border-destructive" : ""}`}
           maxLength={10}
         />
         {errors.zip && (
-          <p className="text-sm text-destructive">{errors.zip}</p>
+          <p className="text-sm text-destructive font-medium">{errors.zip}</p>
         )}
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="role" className="text-sm font-medium">
+      <div className="space-y-3">
+        <Label htmlFor="role" className="text-base font-bold">
           I am a...
         </Label>
         <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })}>
-          <SelectTrigger id="role">
+          <SelectTrigger id="role" className="h-12 rounded-xl border-2">
             <SelectValue placeholder="Select your role" />
           </SelectTrigger>
           <SelectContent>
@@ -201,8 +201,8 @@ export default function WaitlistForm() {
         </Select>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="useCase" className="text-sm font-medium">
+      <div className="space-y-3">
+        <Label htmlFor="useCase" className="text-base font-bold">
           What would you use ClearPolicy for? (optional)
         </Label>
         <Textarea
@@ -210,10 +210,10 @@ export default function WaitlistForm() {
           placeholder="E.g., 'Understanding ballot measures before voting' or 'Research for articles'"
           value={formData.useCase}
           onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
-          className="min-h-[100px] resize-none"
+          className="min-h-[100px] resize-none rounded-xl border-2"
           maxLength={500}
         />
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-muted-foreground font-medium">
           {formData.useCase.length}/500 characters
         </p>
       </div>
@@ -241,23 +241,23 @@ export default function WaitlistForm() {
         </div>
       </div>
 
-      <div className="pt-2">
+      <div className="pt-3">
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full"
+          className="w-full h-14 text-lg font-bold shadow-xl hover:shadow-2xl"
           size="lg"
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
               Joining...
             </>
           ) : (
             "Join the waitlist"
           )}
         </Button>
-        <p className="text-xs text-center text-muted-foreground mt-3">
+        <p className="text-sm text-center text-muted-foreground mt-4 font-medium">
           No spam. Unsubscribe anytime. We only use your info for early access updates.
         </p>
       </div>

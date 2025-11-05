@@ -14,61 +14,83 @@ const benefits = [
 export default function Hero({ onJoinClick }: HeroProps) {
   return (
     <section className="relative overflow-hidden bg-gradient-hero px-4 py-20 md:py-32 min-h-[90vh] flex items-center">
-      {/* Animated background elements */}
+      {/* Liquid Glass Droplet Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-[10%] w-96 h-96 bg-white/8 rounded-full blur-[100px] animate-float" />
-        <div className="absolute bottom-1/4 right-[10%] w-[500px] h-[500px] bg-civic-teal/12 rounded-full blur-[120px] animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/8 rounded-full blur-[150px] animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA0IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30" />
+        {/* Large floating glass orbs */}
+        <div className="absolute top-[15%] left-[8%] w-[450px] h-[450px] bg-gradient-orb-blue rounded-full blur-[130px] orb-float" />
+        <div className="absolute bottom-[20%] right-[12%] w-[550px] h-[550px] bg-gradient-orb-teal rounded-full blur-[140px] orb-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-[45%] left-[45%] w-[600px] h-[600px] bg-gradient-orb-blue rounded-full blur-[160px] orb-float" style={{ animationDelay: '4s' }} />
+        
+        {/* Liquid droplets - small translucent spheres */}
+        <div className="absolute top-[12%] left-[25%] w-32 h-32 bg-white/[0.08] rounded-full blur-[40px] droplet-float" />
+        <div className="absolute top-[35%] right-[18%] w-24 h-24 bg-civic-teal/[0.06] rounded-full blur-[35px] droplet-float" style={{ animationDelay: '3s' }} />
+        <div className="absolute bottom-[15%] left-[35%] w-28 h-28 bg-white/[0.07] rounded-full blur-[38px] droplet-float" style={{ animationDelay: '5s' }} />
+        <div className="absolute top-[60%] left-[15%] w-20 h-20 bg-primary/[0.05] rounded-full blur-[32px] droplet-float" style={{ animationDelay: '7s' }} />
+        <div className="absolute top-[25%] right-[30%] w-36 h-36 bg-white/[0.09] rounded-full blur-[42px] droplet-float" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-[30%] right-[25%] w-26 h-26 bg-civic-teal/[0.06] rounded-full blur-[36px] droplet-float" style={{ animationDelay: '6s' }} />
+        
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-25" />
+        
+        {/* Top glow gradient */}
         <div className="absolute inset-0 bg-gradient-glow" />
       </div>
       
       <div className="relative max-w-5xl mx-auto text-center animate-fade-in">
-        <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-strong border-white/40 text-white text-sm font-medium mb-8 shimmer shadow-glass">
-          <span className="relative flex h-2 w-2">
+        <div className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full glass-strong border-white/45 text-white text-sm font-semibold mb-10 shimmer shadow-glass-strong hover-lift">
+          <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-white shadow-lg"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white shadow-glow-blue"></span>
           </span>
           Now accepting early access signups
         </div>
 
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight drop-shadow-2xl">
-          Policy clarity,<br />
-          <span className="bg-gradient-to-r from-white via-white/95 to-white/85 bg-clip-text text-transparent text-glow">
-            with sources you can check
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-7 leading-[1.08] tracking-tight drop-shadow-2xl">
+          Policy <span className="relative inline-block">
+            <span className="relative z-10">clarity</span>
+            <span className="absolute bottom-1 left-0 right-0 h-3 bg-white/20 blur-sm -z-0"></span>
+          </span>,<br />
+          <span className="bg-gradient-to-r from-white via-white/98 to-white/92 bg-clip-text text-transparent text-glow-strong">
+            with <span className="relative inline-block">
+              <span className="relative z-10">sources</span>
+              <span className="absolute bottom-1 left-0 right-0 h-3 bg-civic-teal/30 blur-sm -z-0"></span>
+            </span> you can <span className="relative inline-block">
+              <span className="relative z-10">check</span>
+              <span className="absolute bottom-1 left-0 right-0 h-3 bg-primary/30 blur-sm -z-0"></span>
+            </span>
           </span>
         </h1>
         
-        <p className="text-xl md:text-2xl text-white/95 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
-          Plain-English explanations of bills and ballot measures—backed by citations. 
+        <p className="text-xl md:text-2xl text-white/96 mb-11 max-w-3xl mx-auto leading-relaxed drop-shadow-lg font-medium">
+          Plain-English explanations of bills and ballot measures—backed by <span className="font-bold text-white">citations</span>. 
           Join the waitlist to get early access in your area.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <div className="flex flex-col sm:flex-row gap-5 justify-center mb-14">
           <Button
             onClick={onJoinClick}
             size="lg"
             variant="glass"
-            className="text-lg px-12 py-7 h-auto font-semibold transition-all duration-500 hover:scale-[1.02] shadow-xl"
+            className="text-lg px-14 py-8 h-auto font-bold transition-all duration-500 hover:scale-[1.03] shadow-2xl pulse-glow"
           >
             Join the waitlist
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <ArrowRight className="ml-2.5 h-6 w-6" />
           </Button>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-white/95 mb-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 text-white/97 mb-7">
           {benefits.map((benefit, index) => (
             <div 
               key={index} 
-              className="flex items-center gap-2.5 glass-strong border-white/30 rounded-full px-5 py-2.5 hover-lift shadow-glass"
+              className="flex items-center gap-3 glass-strong border-white/40 rounded-full px-6 py-3 hover-lift shadow-glass-strong"
             >
-              <CheckCircle2 className="h-5 w-5 flex-shrink-0 drop-shadow" />
-              <span className="text-sm font-medium drop-shadow">{benefit}</span>
+              <CheckCircle2 className="h-5 w-5 flex-shrink-0 drop-shadow-lg text-white" />
+              <span className="text-sm font-semibold drop-shadow-lg">{benefit}</span>
             </div>
           ))}
         </div>
 
-        <p className="text-sm text-white/80 mt-4 drop-shadow">
+        <p className="text-sm text-white/85 mt-5 drop-shadow font-medium">
           No spam. Unsubscribe anytime.
         </p>
       </div>
