@@ -81,15 +81,11 @@ export default function WaitlistForm() {
         },
       });
 
-      // When edge function returns non-2xx, error is set but data contains the response body
-      if (error) {
-        // Extract the actual error message from the response body
-        const errorMessage = (data as any)?.error || 'Failed to submit signup';
+      // Check for errors - when edge function returns non-2xx, both error and data are set
+      if (error || !data?.success) {
+        // The error message is in data.error even when error object is set
+        const errorMessage = (data as any)?.error || error?.message || 'Failed to submit signup';
         throw new Error(errorMessage);
-      }
-
-      if (!data?.success) {
-        throw new Error(data?.error || 'Failed to submit signup');
       }
 
       setIsSuccess(true);
