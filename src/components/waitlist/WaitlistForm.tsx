@@ -81,10 +81,10 @@ export default function WaitlistForm() {
         },
       });
 
-      // Handle both function invocation errors and application errors
+      // When edge function returns non-2xx, error is set but data contains the response body
       if (error) {
-        // Check if the error response has a custom message
-        const errorMessage = data?.error || error.message || 'Failed to submit signup';
+        // Extract the actual error message from the response body
+        const errorMessage = (data as any)?.error || 'Failed to submit signup';
         throw new Error(errorMessage);
       }
 
