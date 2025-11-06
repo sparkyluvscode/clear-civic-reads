@@ -81,8 +81,11 @@ export default function WaitlistForm() {
         },
       });
 
+      // Handle both function invocation errors and application errors
       if (error) {
-        throw new Error(error.message || 'Failed to submit signup');
+        // Check if the error response has a custom message
+        const errorMessage = data?.error || error.message || 'Failed to submit signup';
+        throw new Error(errorMessage);
       }
 
       if (!data?.success) {
@@ -92,12 +95,13 @@ export default function WaitlistForm() {
       setIsSuccess(true);
       toast({
         title: "You're on the list!",
-        description: "We'll notify you when ClearPolicy launches in your area.",
+        description: "Check your email for confirmation. We'll notify you when ClearPolicy launches.",
       });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Please try again later.";
       toast({
         title: "Submission failed",
-        description: error instanceof Error ? error.message : "Please try again later.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
