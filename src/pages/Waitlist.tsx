@@ -66,19 +66,25 @@ export default function Waitlist() {
           
           <div className="max-w-4xl mx-auto relative">
             <div className="text-center mb-14">
-              <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5">
-                Get <span className="relative inline-block">
+              <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5 tracking-tight">
+                Get <span className="relative inline-block group/word">
                   <span className="relative z-10">early</span>
-                  <span className="absolute bottom-1 left-0 right-0 h-3 bg-accent/25 blur-sm -z-0"></span>
+                  <span className="absolute bottom-0 left-0 right-0 h-1 bg-accent/30 blur-sm -z-0 group-hover/word:h-3 group-hover/word:bg-accent/40 transition-all duration-500"></span>
+                  <span className="absolute -bottom-0.5 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-accent to-transparent"></span>
                 </span> access
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium leading-relaxed">
                 Join the waitlist to be notified when ClearPolicy launches in your area. 
-                Your ZIP code helps us prioritize where to launch <span className="text-foreground font-bold">first</span>.
+                Your ZIP code helps us prioritize where to launch <span className="relative inline-block font-bold text-foreground group/word">
+                  <span className="relative z-10">first</span>
+                  <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover/word:opacity-100 transition-opacity duration-500"></span>
+                </span>.
               </p>
             </div>
             
-            <div className="glass-strong rounded-3xl shadow-glass-strong p-10 md:p-14 hover:shadow-glass-hover glass-hover transition-all duration-500 shimmer">
+            <div className="glass-strong rounded-3xl shadow-glass-strong p-10 md:p-14 hover:shadow-glass-hover glass-hover transition-all duration-500 shimmer border-2 border-white/10 hover:border-primary/30 relative overflow-hidden group">
+              {/* Glowing border effect */}
+              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ boxShadow: '0 0 60px hsl(var(--primary) / 0.15) inset' }} />
               <WaitlistForm />
             </div>
 
@@ -98,19 +104,30 @@ export default function Waitlist() {
         <section className="py-20 px-4 bg-gradient-subtle border-t border-border/50">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-9">
-              <div className="glass-strong p-8 rounded-3xl shadow-glass">
-                <h3 className="text-xl font-bold text-foreground mb-4">
-                  Data sources
+              <div className="glass-strong p-8 rounded-3xl shadow-glass border-2 border-white/10 hover:border-primary/30 hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                <h3 className="text-xl font-bold text-foreground mb-4 tracking-tight">
+                  Data <span className="relative inline-block">
+                    <span className="relative z-10">sources</span>
+                    <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                  </span>
                 </h3>
                 <p className="text-base text-muted-foreground leading-relaxed">
                   ClearPolicy pulls from public datasets including legislative records, 
                   official government documents, and authoritative policy databases. 
-                  Every claim links to its <span className="text-foreground font-semibold">source</span>.
+                  Every claim links to its <span className="relative inline-block font-semibold text-foreground group/word">
+                    <span className="relative z-10">source</span>
+                    <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover/word:opacity-100 transition-opacity duration-500"></span>
+                  </span>.
                 </p>
               </div>
-              <div className="glass-strong p-8 rounded-3xl shadow-glass">
-                <h3 className="text-xl font-bold text-foreground mb-4">
-                  Privacy commitment
+              <div className="glass-strong p-8 rounded-3xl shadow-glass border-2 border-white/10 hover:border-civic-teal/30 hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                <h3 className="text-xl font-bold text-foreground mb-4 tracking-tight">
+                  Privacy <span className="relative inline-block">
+                    <span className="relative z-10">commitment</span>
+                    <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-civic-teal to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                  </span>
                 </h3>
                 <p className="text-base text-muted-foreground leading-relaxed">
                   We only use your information to provide early access updates and 
@@ -122,24 +139,35 @@ export default function Waitlist() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-neutral-900 text-neutral-700 py-16 px-4 relative overflow-hidden">
-        {/* Subtle footer glow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
+      {/* Footer with Glass Edge Bar */}
+      <footer className="relative">
+        {/* Glass edge reflection bar - iOS dock style */}
+        <div className="h-1 glass-strong border-t-2 border-white/20 shadow-glass-strong relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
+        </div>
         
-        <div className="max-w-6xl mx-auto relative">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg">
-                <FileText className="h-6 w-6 text-primary-foreground drop-shadow" />
+        <div className="bg-neutral-900 text-neutral-700 py-16 px-4 relative overflow-hidden">
+          {/* Subtle footer glow */}
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
+          
+          <div className="max-w-6xl mx-auto relative">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+              <div className="flex items-center gap-3 group">
+                <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg group-hover:shadow-glow-blue transition-all duration-500 group-hover:scale-110">
+                  <FileText className="h-6 w-6 text-primary-foreground drop-shadow" />
+                </div>
+                <span className="text-xl font-black text-foreground tracking-tight">ClearPolicy</span>
               </div>
-              <span className="text-xl font-black text-foreground tracking-tight">ClearPolicy</span>
             </div>
-          </div>
-          <div className="mt-10 pt-10 border-t border-neutral-200/50 text-center">
-            <p className="text-sm font-medium">
-              © {new Date().getFullYear()} ClearPolicy. Making civic choices <span className="text-foreground font-bold">clear</span>, calm, and confident.
-            </p>
+            <div className="mt-10 pt-10 border-t-2 border-neutral-200/50 text-center relative">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+              <p className="text-sm font-medium">
+                © {new Date().getFullYear()} ClearPolicy. Making civic choices <span className="relative inline-block group/word">
+                  <span className="text-foreground font-bold relative z-10">clear</span>
+                  <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover/word:opacity-100 transition-opacity duration-500"></span>
+                </span>, calm, and confident.
+              </p>
+            </div>
           </div>
         </div>
       </footer>

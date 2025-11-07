@@ -9,13 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:bg-primary/95 hover:scale-[1.02] active:scale-[0.98]",
+        default: "bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:bg-primary/95 hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group",
         destructive: "bg-destructive text-destructive-foreground shadow-lg hover:shadow-xl hover:bg-destructive/95 hover:scale-[1.02]",
-        outline: "border-2 border-input bg-background hover:bg-accent hover:text-accent-foreground hover:border-accent",
+        outline: "border-2 border-input bg-background hover:bg-accent hover:text-accent-foreground hover:border-primary/50 shadow-sm hover:shadow-md",
         secondary: "bg-secondary text-secondary-foreground shadow-md hover:shadow-lg hover:bg-secondary/90 hover:scale-[1.02]",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        glass: "glass border-white/35 text-white shadow-glass hover:bg-white/25 hover:border-white/50 hover:shadow-glass-hover hover:scale-[1.02] active:scale-[0.98] backdrop-blur-glass btn-glow",
+        glass: "glass-strong text-white border-white/45 hover:border-white/70 shadow-glass-strong hover:shadow-glass-hover hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-500 relative overflow-hidden shimmer group",
+        premium: "bg-gradient-to-br from-primary via-primary to-accent text-white border-2 border-white/30 shadow-glow-blue hover:shadow-glow-teal hover:scale-[1.05] hover:-translate-y-1 transition-all duration-500 relative overflow-hidden group font-bold",
       },
       size: {
         default: "h-11 px-6 py-2.5",

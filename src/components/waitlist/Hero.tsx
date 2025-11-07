@@ -46,17 +46,20 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </div>
 
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-7 leading-[1.08] tracking-tight drop-shadow-2xl">
-          Policy <span className="relative inline-block">
+          Policy <span className="relative inline-block group/word">
             <span className="relative z-10">clarity</span>
-            <span className="absolute bottom-1 left-0 right-0 h-3 bg-white/20 blur-sm -z-0"></span>
+            <span className="absolute bottom-0 left-0 right-0 h-1 bg-white/30 blur-md -z-0 group-hover/word:h-4 group-hover/word:bg-white/40 transition-all duration-700"></span>
+            <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-white to-transparent"></span>
           </span>,<br />
           <span className="bg-gradient-to-r from-white via-white/98 to-white/92 bg-clip-text text-transparent text-glow-strong">
-            with <span className="relative inline-block">
+            with <span className="relative inline-block group/word">
               <span className="relative z-10">sources</span>
-              <span className="absolute bottom-1 left-0 right-0 h-3 bg-civic-teal/30 blur-sm -z-0"></span>
-            </span> you can <span className="relative inline-block">
+              <span className="absolute bottom-0 left-0 right-0 h-1 bg-civic-teal/40 blur-md -z-0 group-hover/word:h-4 group-hover/word:bg-civic-teal/50 transition-all duration-700"></span>
+              <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-civic-teal to-transparent"></span>
+            </span> you can <span className="relative inline-block group/word">
               <span className="relative z-10">check</span>
-              <span className="absolute bottom-1 left-0 right-0 h-3 bg-primary/30 blur-sm -z-0"></span>
+              <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary/40 blur-md -z-0 group-hover/word:h-4 group-hover/word:bg-primary/50 transition-all duration-700"></span>
+              <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent"></span>
             </span>
           </span>
         </h1>
@@ -67,14 +70,18 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-5 justify-center mb-14">
-          <Button
+        <Button
             onClick={onJoinClick}
             size="lg"
-            variant="glass"
-            className="text-lg px-14 py-8 h-auto font-bold transition-all duration-500 hover:scale-[1.03] shadow-2xl pulse-glow"
+            variant="premium"
+            className="text-lg px-14 py-8 h-auto font-bold shadow-2xl"
           >
-            Join the waitlist
-            <ArrowRight className="ml-2.5 h-6 w-6" />
+            <span className="relative z-10 flex items-center gap-2.5">
+              Join the waitlist
+              <ArrowRight className="h-6 w-6" />
+            </span>
+            {/* Inner glow effect */}
+            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-500" />
           </Button>
         </div>
 
