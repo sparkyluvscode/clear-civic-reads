@@ -30,11 +30,26 @@ export default function Waitlist() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 glass-strong border-b border-white/15 shadow-glass-strong backdrop-blur-glass-strong">
+      <header 
+        className="fixed top-0 left-0 right-0 z-50 border-b shadow-glass-strong"
+        style={{ 
+          background: 'hsla(0, 0%, 100%, 0.92)',
+          backdropFilter: 'blur(48px) saturate(200%)',
+          borderBottomColor: 'hsla(210, 60%, 85%, 0.5)'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl glass-strong bg-gradient-glass-strong flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-glass-strong">
-              <FileText className="h-6 w-6 text-primary drop-shadow-lg" />
+            <div className="w-11 h-11 rounded-xl glass-strong flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-glass-strong relative overflow-hidden"
+              style={{ 
+                background: 'hsla(0, 0%, 100%, 0.92)',
+                backdropFilter: 'blur(48px) saturate(200%)',
+                border: '2px solid hsla(210, 60%, 85%, 0.5)'
+              }}
+            >
+              <FileText className="h-6 w-6 text-primary drop-shadow-lg relative z-10" />
+              {/* Inner highlight */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
             </div>
             <span className="text-xl font-black text-foreground tracking-tight">ClearPolicy</span>
           </Link>
@@ -60,9 +75,10 @@ export default function Waitlist() {
 
         {/* Form section */}
         <section id="waitlist-form" className="py-24 px-4 scroll-mt-20 relative">
-          {/* Background droplets */}
-          <div className="absolute top-[15%] left-[8%] w-32 h-32 bg-white/[0.06] rounded-full blur-[40px] droplet-float" />
-          <div className="absolute bottom-[20%] right-[10%] w-28 h-28 bg-civic-teal/[0.05] rounded-full blur-[38px] droplet-float" style={{ animationDelay: '5s' }} />
+          {/* Background droplets - Enhanced */}
+          <div className="droplet top-[15%] left-[8%] w-32 h-32 blur-[40px] droplet-float" />
+          <div className="droplet bottom-[20%] right-[10%] w-28 h-28 blur-[38px] droplet-float-slow" style={{ animationDelay: '5s' }} />
+          <div className="droplet top-[45%] right-[25%] w-24 h-24 blur-[36px] droplet-float" style={{ animationDelay: '3s' }} />
           
           <div className="max-w-4xl mx-auto relative">
             <div className="text-center mb-14">
@@ -82,10 +98,21 @@ export default function Waitlist() {
               </p>
             </div>
             
-            <div className="glass-strong rounded-3xl shadow-glass-strong p-10 md:p-14 hover:shadow-glass-hover glass-hover transition-all duration-500 shimmer border-2 border-white/10 hover:border-primary/30 relative overflow-hidden group">
+            <div 
+              className="rounded-3xl shadow-glass-strong p-10 md:p-14 hover:shadow-glass-hover glass-hover transition-all duration-500 shimmer relative overflow-hidden group"
+              style={{ 
+                background: 'hsla(0, 0%, 100%, 0.92)',
+                backdropFilter: 'blur(48px) saturate(200%)',
+                border: '2px solid hsla(210, 60%, 85%, 0.5)'
+              }}
+            >
               {/* Glowing border effect */}
               <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ boxShadow: '0 0 60px hsl(var(--primary) / 0.15) inset' }} />
-              <WaitlistForm />
+              {/* Inner highlight */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
+              <div className="relative z-10">
+                <WaitlistForm />
+              </div>
             </div>
 
             <div className="mt-10 text-center">
@@ -104,8 +131,18 @@ export default function Waitlist() {
         <section className="py-20 px-4 bg-gradient-subtle border-t border-border/50">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-9">
-              <div className="glass-strong p-8 rounded-3xl shadow-glass border-2 border-white/10 hover:border-primary/30 hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+              <div 
+                className="p-8 rounded-3xl shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden"
+                style={{ 
+                  background: 'hsla(0, 0%, 100%, 0.92)',
+                  backdropFilter: 'blur(48px) saturate(200%)',
+                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                }}
+              >
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                {/* Inner highlight */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
+                <div className="relative z-10">
                 <h3 className="text-xl font-bold text-foreground mb-4 tracking-tight">
                   Data <span className="relative inline-block">
                     <span className="relative z-10">sources</span>
@@ -121,8 +158,19 @@ export default function Waitlist() {
                   </span>.
                 </p>
               </div>
-              <div className="glass-strong p-8 rounded-3xl shadow-glass border-2 border-white/10 hover:border-civic-teal/30 hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+            </div>
+              <div 
+                className="p-8 rounded-3xl shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden"
+                style={{ 
+                  background: 'hsla(0, 0%, 100%, 0.92)',
+                  backdropFilter: 'blur(48px) saturate(200%)',
+                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                }}
+              >
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                {/* Inner highlight */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
+                <div className="relative z-10">
                 <h3 className="text-xl font-bold text-foreground mb-4 tracking-tight">
                   Privacy <span className="relative inline-block">
                     <span className="relative z-10">commitment</span>
@@ -135,15 +183,24 @@ export default function Waitlist() {
                 </p>
               </div>
             </div>
+            </div>
           </div>
         </section>
       </main>
 
       {/* Footer with Glass Edge Bar */}
       <footer className="relative">
-        {/* Glass edge reflection bar - iOS dock style */}
-        <div className="h-1 glass-strong border-t-2 border-white/20 shadow-glass-strong relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
+        {/* Glass edge reflection bar - iOS dock style with enhanced shimmer */}
+        <div 
+          className="h-1 border-t-2 shadow-glass-strong relative overflow-hidden"
+          style={{ 
+            background: 'hsla(0, 0%, 100%, 0.95)',
+            backdropFilter: 'blur(48px) saturate(200%)',
+            borderColor: 'hsla(180, 55%, 80%, 0.6)'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-civic-teal/10 to-primary/10" />
         </div>
         
         <div className="bg-neutral-900 text-neutral-700 py-16 px-4 relative overflow-hidden">

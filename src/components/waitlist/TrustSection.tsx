@@ -26,9 +26,10 @@ const features = [
 export default function TrustSection() {
   return (
     <section className="py-24 px-4 bg-gradient-subtle relative">
-      {/* Background droplets */}
-      <div className="absolute top-[10%] left-[15%] w-28 h-28 bg-white/[0.05] rounded-full blur-[38px] droplet-float" />
-      <div className="absolute bottom-[15%] right-[20%] w-32 h-32 bg-civic-teal/[0.04] rounded-full blur-[40px] droplet-float" style={{ animationDelay: '4s' }} />
+      {/* Background droplets - Enhanced variety */}
+      <div className="droplet top-[10%] left-[15%] w-28 h-28 blur-[38px] droplet-float" />
+      <div className="droplet bottom-[15%] right-[20%] w-32 h-32 blur-[40px] droplet-float-slow" style={{ animationDelay: '4s' }} />
+      <div className="droplet top-[50%] left-[8%] w-24 h-24 blur-[36px] droplet-float" style={{ animationDelay: '2s' }} />
       
       <div className="max-w-6xl mx-auto relative">
         <div className="text-center mb-20">
@@ -49,13 +50,29 @@ export default function TrustSection() {
             return (
               <div
                 key={index}
-                className="glass-strong p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift group"
+                className="p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift group relative overflow-hidden"
+                style={{ 
+                  background: 'hsla(0, 0%, 100%, 0.92)',
+                  backdropFilter: 'blur(48px) saturate(200%)',
+                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                }}
               >
+                {/* Inner highlight */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
                 <div className="flex items-start gap-5">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-2xl glass-strong bg-gradient-glass-strong flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500">
-                    <Icon className="h-8 w-8 text-accent drop-shadow-lg" />
-                  </div>
-                  <div>
+                  <div 
+                    className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500 relative overflow-hidden"
+                    style={{ 
+                      background: 'hsla(0, 0%, 100%, 0.92)',
+                      backdropFilter: 'blur(48px) saturate(200%)',
+                      border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                    }}
+                  >
+                    <Icon className="h-8 w-8 text-accent drop-shadow-lg relative z-10" />
+                    {/* Inner highlight */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
+                </div>
+                <div className="relative z-10">
                     <h3 className="text-xl font-bold text-foreground mb-3">
                       {feature.title}
                     </h3>
@@ -69,11 +86,29 @@ export default function TrustSection() {
           })}
         </div>
 
-        <div className="mt-8 glass-strong p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift shimmer">
-          <div className="flex items-start gap-5">
+        <div 
+          className="mt-8 p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift shimmer relative overflow-hidden"
+          style={{ 
+            background: 'hsla(0, 0%, 100%, 0.92)',
+            backdropFilter: 'blur(48px) saturate(200%)',
+            border: '2px solid hsla(210, 60%, 85%, 0.5)'
+          }}
+        >
+          {/* Inner highlight */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
+          <div className="flex items-start gap-5 relative z-10">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 rounded-2xl glass-strong bg-gradient-glass-strong flex items-center justify-center shadow-glow-blue">
-                <Shield className="h-8 w-8 text-primary drop-shadow-lg" />
+              <div 
+                className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-glow-blue relative overflow-hidden"
+                style={{ 
+                  background: 'hsla(0, 0%, 100%, 0.92)',
+                  backdropFilter: 'blur(48px) saturate(200%)',
+                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                }}
+              >
+                <Shield className="h-8 w-8 text-primary drop-shadow-lg relative z-10" />
+                {/* Inner highlight */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
               </div>
             </div>
             <div>

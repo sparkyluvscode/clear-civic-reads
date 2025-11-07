@@ -35,7 +35,8 @@ export default function AudienceSection() {
   return (
     <section className="py-24 px-4 bg-gradient-subtle relative">
       {/* Subtle droplet accents */}
-      <div className="absolute top-[20%] right-[12%] w-24 h-24 bg-primary/[0.04] rounded-full blur-[35px] droplet-float" style={{ animationDelay: '2s' }} />
+      <div className="droplet top-[20%] right-[12%] w-24 h-24 blur-[35px] droplet-float-slow" style={{ animationDelay: '2s' }} />
+      <div className="droplet bottom-[25%] left-[10%] w-30 h-30 blur-[42px] droplet-float" style={{ animationDelay: '5s' }} />
       
       <div className="max-w-6xl mx-auto relative">
         <div className="text-center mb-20">
@@ -54,10 +55,27 @@ export default function AudienceSection() {
             return (
               <div
                 key={index}
-                className="glass-strong p-7 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift group"
+                className="p-7 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift group relative overflow-hidden"
+                style={{ 
+                  background: 'hsla(0, 0%, 100%, 0.92)',
+                  backdropFilter: 'blur(48px) saturate(200%)',
+                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                }}
               >
-                <div className={`w-18 h-18 rounded-2xl glass-strong bg-gradient-glass-strong flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500`}>
-                  <Icon className={`h-9 w-9 ${audience.color} drop-shadow-lg`} />
+                {/* Inner highlight */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
+                <div className="relative z-10">
+                <div 
+                  className="w-18 h-18 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500 relative overflow-hidden"
+                  style={{ 
+                    background: 'hsla(0, 0%, 100%, 0.92)',
+                    backdropFilter: 'blur(48px) saturate(200%)',
+                    border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                  }}
+                >
+                  <Icon className={`h-9 w-9 ${audience.color} drop-shadow-lg relative z-10`} />
+                  {/* Inner highlight */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">
                   {audience.title}
@@ -66,6 +84,7 @@ export default function AudienceSection() {
                   {audience.description}
                 </p>
               </div>
+            </div>
             );
           })}
         </div>

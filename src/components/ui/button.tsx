@@ -15,8 +15,8 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-md hover:shadow-lg hover:bg-secondary/90 hover:scale-[1.02]",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        glass: "glass-strong text-white border-white/45 hover:border-white/70 shadow-glass-strong hover:shadow-glass-hover hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-500 relative overflow-hidden shimmer group",
-        premium: "bg-gradient-to-br from-primary via-primary to-accent text-white border-2 border-white/30 shadow-glow-blue hover:shadow-glow-teal hover:scale-[1.05] hover:-translate-y-1 transition-all duration-500 relative overflow-hidden group font-bold",
+        glass: "text-white border-2 shadow-glass-strong hover:shadow-glass-hover hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-500 relative overflow-hidden shimmer group" + " [background:hsla(0,0%,100%,0.92)] [backdrop-filter:blur(48px)_saturate(200%)] [border-color:hsla(210,60%,85%,0.5)] hover:[border-color:hsla(180,55%,80%,0.6)]",
+        premium: "text-white border-2 shadow-2xl hover:shadow-glow-blue hover:scale-[1.05] hover:-translate-y-1 transition-all duration-500 relative overflow-hidden group font-bold" + " [background:hsla(0,0%,100%,0.95)] [backdrop-filter:blur(48px)_saturate(200%)] [border-color:hsla(180,55%,80%,0.6)] hover:[border-color:hsla(210,60%,85%,0.7)]",
       },
       size: {
         default: "h-11 px-6 py-2.5",

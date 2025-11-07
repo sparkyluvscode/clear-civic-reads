@@ -43,15 +43,33 @@ export default function HowItWorks() {
                 className="relative"
               >
                 <div className="flex flex-col items-center text-center group">
-                  <div className="w-24 h-24 rounded-3xl glass-strong bg-gradient-glass-strong flex items-center justify-center mb-7 group-hover:scale-110 transition-all duration-500 shadow-glass-strong hover:shadow-glow-blue">
-                    <Icon className="h-11 w-11 text-primary drop-shadow-lg" />
+                  <div 
+                    className="w-24 h-24 rounded-3xl flex items-center justify-center mb-7 group-hover:scale-110 transition-all duration-500 shadow-glass-strong hover:shadow-glow-blue relative overflow-hidden"
+                    style={{ 
+                      background: 'hsla(0, 0%, 100%, 0.92)',
+                      backdropFilter: 'blur(48px) saturate(200%)',
+                      border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                    }}
+                  >
+                    <Icon className="h-11 w-11 text-primary drop-shadow-lg relative z-10" />
+                    {/* Inner highlight */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
                   </div>
                   <div className="absolute top-12 left-[calc(50%+3rem)] w-[calc(100%-6rem)] h-[2px] bg-gradient-to-r from-primary/40 via-accent/35 to-primary/40 hidden md:block"
                     style={{ display: index === steps.length - 1 ? 'none' : undefined }}
                   />
                   <div className="relative mb-5">
-                    <span className="inline-flex items-center justify-center w-12 h-12 rounded-full glass-strong bg-gradient-glass-strong text-primary text-base font-black shadow-glass">
-                      {index + 1}
+                    <span 
+                      className="inline-flex items-center justify-center w-12 h-12 rounded-full text-primary text-base font-black shadow-glass relative overflow-hidden"
+                      style={{ 
+                        background: 'hsla(0, 0%, 100%, 0.92)',
+                        backdropFilter: 'blur(48px) saturate(200%)',
+                        border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                      }}
+                    >
+                      <span className="relative z-10">{index + 1}</span>
+                      {/* Inner highlight */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
                     </span>
                   </div>
                   <h3 className="text-2xl font-bold text-foreground mb-4">

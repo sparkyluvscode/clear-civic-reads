@@ -42,8 +42,17 @@ export default function LaunchBenefits() {
                 key={index}
                 className="text-center group"
               >
-                <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl glass-strong bg-gradient-glass-strong mb-8 group-hover:scale-115 group-hover:shadow-glow-blue transition-all duration-500 shadow-glass-strong hover-lift">
-                  <Icon className="h-12 w-12 text-primary drop-shadow-lg" />
+                <div 
+                  className="inline-flex items-center justify-center w-24 h-24 rounded-3xl mb-8 group-hover:scale-110 group-hover:shadow-glow-blue transition-all duration-500 shadow-glass-strong hover-lift relative overflow-hidden"
+                  style={{ 
+                    background: 'hsla(0, 0%, 100%, 0.92)',
+                    backdropFilter: 'blur(48px) saturate(200%)',
+                    border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                  }}
+                >
+                  <Icon className="h-12 w-12 text-primary drop-shadow-lg relative z-10" />
+                  {/* Inner highlight */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">
                   {benefit.title}
