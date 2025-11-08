@@ -50,27 +50,29 @@ export default function TrustSection() {
             return (
               <div
                 key={index}
-                className="p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift group relative overflow-hidden"
+                className="p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover card-hover-lift shimmer-hover group relative overflow-hidden"
                 style={{ 
-                  background: 'hsla(0, 0%, 100%, 0.92)',
+                  background: 'hsla(0, 0%, 100%, 0.95)',
                   backdropFilter: 'blur(48px) saturate(200%)',
-                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                  border: '2px solid hsla(210, 60%, 85%, 0.6)',
+                  boxShadow: 'var(--shadow-glass-strong)'
                 }}
               >
-                {/* Inner highlight */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
+                {/* Inner highlight - enhanced */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent pointer-events-none" />
                 <div className="flex items-start gap-5">
                   <div 
-                    className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500 relative overflow-hidden"
+                    className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500 shimmer-hover relative overflow-hidden"
                     style={{ 
-                      background: 'hsla(0, 0%, 100%, 0.92)',
+                      background: 'hsla(0, 0%, 100%, 0.95)',
                       backdropFilter: 'blur(48px) saturate(200%)',
-                      border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                      border: '2px solid hsla(210, 60%, 85%, 0.7)',
+                      boxShadow: 'var(--shadow-glass-strong)'
                     }}
                   >
                     <Icon className="h-8 w-8 text-accent drop-shadow-lg relative z-10" />
-                    {/* Inner highlight */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
+                    {/* Inner highlight - enhanced */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
                 </div>
                 <div className="relative z-10">
                     <h3 className="text-xl font-bold text-foreground mb-3">
@@ -87,28 +89,30 @@ export default function TrustSection() {
         </div>
 
         <div 
-          className="mt-8 p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift shimmer relative overflow-hidden"
+          className="mt-8 p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover card-hover-lift shimmer-hover relative overflow-hidden"
           style={{ 
-            background: 'hsla(0, 0%, 100%, 0.92)',
+            background: 'hsla(0, 0%, 100%, 0.95)',
             backdropFilter: 'blur(48px) saturate(200%)',
-            border: '2px solid hsla(210, 60%, 85%, 0.5)'
+            border: '2px solid hsla(210, 60%, 85%, 0.6)',
+            boxShadow: 'var(--shadow-glass-strong)'
           }}
         >
-          {/* Inner highlight */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
+          {/* Inner highlight - enhanced */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent pointer-events-none" />
           <div className="flex items-start gap-5 relative z-10">
             <div className="flex-shrink-0">
               <div 
-                className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-glow-blue relative overflow-hidden"
+                className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-glow-blue shimmer-hover relative overflow-hidden"
                 style={{ 
-                  background: 'hsla(0, 0%, 100%, 0.92)',
+                  background: 'hsla(0, 0%, 100%, 0.95)',
                   backdropFilter: 'blur(48px) saturate(200%)',
-                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                  border: '2px solid hsla(210, 60%, 85%, 0.7)',
+                  boxShadow: 'var(--shadow-glass-strong)'
                 }}
               >
                 <Shield className="h-8 w-8 text-primary drop-shadow-lg relative z-10" />
-                {/* Inner highlight */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
+                {/* Inner highlight - enhanced */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
               </div>
             </div>
             <div>

@@ -157,11 +157,15 @@ export default function WaitlistForm() {
           placeholder="your.email@example.com"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className={`h-12 text-base rounded-xl border-2 ${errors.email ? "border-destructive" : ""}`}
+          className={`h-12 text-base rounded-xl border-2 input-glass ${errors.email ? "border-destructive" : ""}`}
+          aria-label="Email address"
+          aria-required="true"
+          aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "email-error" : undefined}
           required
         />
         {errors.email && (
-          <p className="text-sm text-destructive font-medium">{errors.email}</p>
+          <p id="email-error" className="text-sm text-destructive font-medium" role="alert">{errors.email}</p>
         )}
       </div>
 
@@ -175,11 +179,14 @@ export default function WaitlistForm() {
           placeholder="12345"
           value={formData.zip}
           onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-          className={`h-12 text-base rounded-xl border-2 ${errors.zip ? "border-destructive" : ""}`}
+          className={`h-12 text-base rounded-xl border-2 input-glass ${errors.zip ? "border-destructive" : ""}`}
+          aria-label="ZIP code"
+          aria-invalid={!!errors.zip}
+          aria-describedby={errors.zip ? "zip-error" : undefined}
           maxLength={10}
         />
         {errors.zip && (
-          <p className="text-sm text-destructive font-medium">{errors.zip}</p>
+          <p id="zip-error" className="text-sm text-destructive font-medium" role="alert">{errors.zip}</p>
         )}
       </div>
 
@@ -188,7 +195,7 @@ export default function WaitlistForm() {
           I am a...
         </Label>
         <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })}>
-          <SelectTrigger id="role" className="h-12 rounded-xl border-2">
+          <SelectTrigger id="role" className="h-12 rounded-xl border-2 input-glass" aria-label="Select your role">
             <SelectValue placeholder="Select your role" />
           </SelectTrigger>
           <SelectContent>
@@ -210,7 +217,8 @@ export default function WaitlistForm() {
           placeholder="E.g., 'Understanding ballot measures before voting' or 'Research for articles'"
           value={formData.useCase}
           onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
-          className="min-h-[100px] resize-none rounded-xl border-2"
+          className="min-h-[100px] resize-none rounded-xl border-2 input-glass"
+          aria-label="What would you use ClearPolicy for"
           maxLength={500}
         />
         <p className="text-xs text-muted-foreground font-medium">
@@ -245,8 +253,9 @@ export default function WaitlistForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full h-14 text-lg font-bold shadow-xl hover:shadow-2xl"
+          className="w-full h-14 text-lg font-bold shadow-xl hover:shadow-2xl shimmer-fast"
           size="lg"
+          aria-label="Join the waitlist"
         >
           {isSubmitting ? (
             <>
