@@ -218,7 +218,7 @@ export default function Waitlist() {
             </div>
             <div className="mt-10 pt-10 border-t-2 border-neutral-200/50 text-center relative">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-              <p className="text-sm font-medium">
+              <p className="text-sm text-foreground font-bold">
                 © {new Date().getFullYear()} ClearPolicy. Making civic choices <span className="relative inline-block group/word">
                   <span className="text-foreground font-bold relative z-10">clear</span>
                   <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover/word:opacity-100 transition-opacity duration-500"></span>

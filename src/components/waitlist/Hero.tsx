@@ -95,13 +95,13 @@ export default function Hero({ onJoinClick }: HeroProps) {
               key={index} 
               className="flex items-center gap-3 glass-strong rounded-full px-7 py-4 hover-lift shadow-glass-strong relative overflow-hidden group"
               style={{ 
-                background: 'hsla(0, 0%, 100%, 0.92)',
+                background: 'hsla(0, 0%, 100%, 0.95)',
                 backdropFilter: 'blur(48px) saturate(200%)',
-                border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                border: '2px solid hsla(210, 60%, 85%, 0.6)'
               }}
             >
-              <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-white drop-shadow-lg relative z-10" />
-              <span className="text-sm font-bold text-white drop-shadow-lg relative z-10">{benefit}</span>
+              <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-primary drop-shadow-lg relative z-10" />
+              <span className="text-sm font-bold text-foreground relative z-10" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.5)' }}>{benefit}</span>
               {/* Inner highlight */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-60" />
               {/* Shimmer on hover */}

@@ -154,7 +154,7 @@ export default function WaitlistForm() {
         <Input
           id="email"
           type="email"
-          placeholder="you@example.com"
+          placeholder="your.email@example.com"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className={`h-12 text-base rounded-xl border-2 ${errors.email ? "border-destructive" : ""}`}
