@@ -16,20 +16,20 @@ export default function Hero({ onJoinClick }: HeroProps) {
     <section className="relative overflow-hidden bg-gradient-hero px-4 py-20 md:py-32 min-h-[90vh] flex items-center">
       {/* Liquid Glass Droplet Background */}
       <div className="absolute inset-0">
-        {/* Large floating glass orbs */}
-        <div className="absolute top-[15%] left-[8%] w-[450px] h-[450px] bg-gradient-orb-blue rounded-full blur-[130px] orb-float" />
-        <div className="absolute bottom-[20%] right-[12%] w-[550px] h-[550px] bg-gradient-orb-teal rounded-full blur-[140px] orb-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-[45%] left-[45%] w-[600px] h-[600px] bg-gradient-orb-blue rounded-full blur-[160px] orb-float" style={{ animationDelay: '4s' }} />
+        {/* Large floating silver/ice translucent orbs */}
+        <div className="absolute top-[15%] left-[8%] w-[450px] h-[450px] opacity-50" style={{ background: 'radial-gradient(circle, hsl(0 0% 95% / 0.4) 0%, hsl(210 100% 92% / 0.25) 35%, transparent 70%)', filter: 'blur(110px)', animation: 'orb-float 10s ease-in-out infinite' }} />
+        <div className="absolute bottom-[20%] right-[12%] w-[550px] h-[550px] opacity-45" style={{ background: 'radial-gradient(circle, hsl(0 0% 92% / 0.35) 0%, hsl(210 100% 88% / 0.2) 40%, transparent 75%)', filter: 'blur(120px)', animation: 'orb-float 12s ease-in-out infinite', animationDelay: '3s' }} />
+        <div className="absolute top-[45%] left-[45%] w-[600px] h-[600px] opacity-40" style={{ background: 'radial-gradient(circle, hsl(0 0% 98% / 0.3) 0%, hsl(210 100% 90% / 0.18) 45%, transparent 80%)', filter: 'blur(130px)', animation: 'orb-float 14s ease-in-out infinite', animationDelay: '6s' }} />
         
-        {/* Premium glass raindrops - Enhanced liquid effects */}
-        <div className="glass-raindrop top-[15%] right-[15%] w-20 h-20 droplet-float" style={{ animationDelay: '0s' }} />
-        <div className="glass-raindrop top-[35%] left-[10%] w-16 h-16 droplet-float-medium" style={{ animationDelay: '2s' }} />
-        <div className="glass-raindrop bottom-[30%] right-[8%] w-24 h-24 droplet-float-slow" style={{ animationDelay: '5s' }} />
-        <div className="glass-raindrop top-[55%] right-[25%] w-14 h-14 droplet-float" style={{ animationDelay: '3s' }} />
-        <div className="glass-raindrop bottom-[45%] left-[18%] w-18 h-18 droplet-float-medium" style={{ animationDelay: '7s' }} />
-        <div className="glass-raindrop top-[70%] left-[5%] w-20 h-20 droplet-float-slow" style={{ animationDelay: '4s' }} />
-        <div className="glass-raindrop bottom-[20%] left-[30%] w-16 h-16 droplet-float" style={{ animationDelay: '1s' }} />
-        <div className="glass-raindrop top-[40%] right-[5%] w-22 h-22 droplet-float-medium" style={{ animationDelay: '6s' }} />
+        {/* Premium translucent silver glass bubbles */}
+        <div className="glass-raindrop droplet-float-slow" style={{ width: '140px', height: '140px', top: '12%', left: '10%', animationDelay: '0s', opacity: 0.65 }} />
+        <div className="glass-raindrop droplet-float-medium" style={{ width: '95px', height: '95px', top: '22%', right: '15%', animationDelay: '2s', opacity: 0.6 }} />
+        <div className="glass-raindrop droplet-float" style={{ width: '115px', height: '115px', top: '42%', left: '6%', animationDelay: '4s', opacity: 0.55 }} />
+        <div className="glass-raindrop droplet-float-slow" style={{ width: '105px', height: '105px', top: '58%', right: '10%', animationDelay: '1s', opacity: 0.62 }} />
+        <div className="glass-raindrop droplet-float-medium" style={{ width: '80px', height: '80px', top: '32%', right: '8%', animationDelay: '3s', opacity: 0.58 }} />
+        <div className="glass-raindrop droplet-float" style={{ width: '125px', height: '125px', top: '68%', left: '72%', animationDelay: '5s', opacity: 0.6 }} />
+        <div className="glass-raindrop droplet-float-slow" style={{ width: '70px', height: '70px', top: '48%', right: '22%', animationDelay: '2.5s', opacity: 0.56 }} />
+        <div className="glass-raindrop droplet-float-medium" style={{ width: '100px', height: '100px', top: '78%', left: '18%', animationDelay: '4.5s', opacity: 0.59 }} />
         
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-25" />
@@ -80,9 +80,11 @@ export default function Hero({ onJoinClick }: HeroProps) {
         <div 
           className="max-w-3xl mx-auto mb-10 p-7 rounded-3xl shadow-glass-strong hover:shadow-glass-hover card-hover-lift shimmer-hover relative overflow-hidden group"
           style={{ 
-            background: 'hsla(0, 0%, 100%, 0.95)',
-            backdropFilter: 'blur(48px) saturate(200%)',
-            border: '2px solid hsla(210, 60%, 85%, 0.6)'
+            background: 'hsla(0, 0%, 98%, 0.5)',
+            backdropFilter: 'blur(56px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(56px) saturate(180%)',
+            border: '2px solid hsla(0, 0%, 100%, 0.5)',
+            boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 100%, 0.6), 0 12px 40px hsla(220, 15%, 10%, 0.15), 0 0 0 1px hsla(210, 100%, 90%, 0.3)',
           }}
         >
           {/* Glowing border on hover */}
@@ -93,10 +95,11 @@ export default function Hero({ onJoinClick }: HeroProps) {
             <div 
               className="flex items-center gap-3 p-5 rounded-2xl input-glass group/input"
               style={{
-                background: 'hsla(0, 0%, 100%, 0.92)',
-                backdropFilter: 'blur(32px) saturate(180%)',
-                border: '2px solid hsl(210 60% 85% / 0.6)',
-                boxShadow: 'inset 0 1px 0 0 hsl(0 0% 100% / 0.25), 0 2px 8px hsl(210 30% 15% / 0.08)'
+                background: 'hsla(0, 0%, 98%, 0.55)',
+                backdropFilter: 'blur(56px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(56px) saturate(180%)',
+                border: '2px solid hsla(0, 0%, 100%, 0.5)',
+                boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 100%, 0.6), 0 6px 20px hsla(220, 15%, 10%, 0.12), 0 0 0 1px hsla(210, 100%, 88%, 0.35)',
               }}
             >
               <Search className="h-5 w-5 text-primary flex-shrink-0 drop-shadow-sm" />
@@ -137,14 +140,15 @@ export default function Hero({ onJoinClick }: HeroProps) {
               key={index} 
               className="flex items-center gap-3 glass-strong rounded-full px-7 py-4 hover-lift shadow-glass-strong shimmer-hover relative overflow-hidden group"
               style={{ 
-                background: 'hsla(0, 0%, 100%, 0.95)',
-                backdropFilter: 'blur(48px) saturate(200%)',
-                border: '2px solid hsla(210, 60%, 85%, 0.7)',
-                boxShadow: 'var(--shadow-glass-strong)'
+                background: 'hsla(0, 0%, 98%, 0.55)',
+                backdropFilter: 'blur(56px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(56px) saturate(180%)',
+                border: '2px solid hsla(0, 0%, 100%, 0.5)',
+                boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 100%, 0.6), 0 6px 20px hsla(220, 15%, 10%, 0.12), 0 0 0 1px hsla(210, 100%, 88%, 0.35)',
               }}
             >
-              <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-primary drop-shadow-lg relative z-10" />
-              <span className="text-sm font-black text-foreground relative z-10" style={{ textShadow: '0 1px 3px rgba(255,255,255,0.6)' }}>{benefit}</span>
+              <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-foreground drop-shadow-lg relative z-10" />
+              <span className="text-sm font-black text-foreground relative z-10" style={{ textShadow: '0 1px 3px hsla(0, 0%, 0%, 0.2)' }}>{benefit}</span>
               {/* Inner highlight - enhanced */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-70" />
               {/* Pulse glow on hover */}

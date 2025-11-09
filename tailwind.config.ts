@@ -55,6 +55,17 @@ export default {
           teal: "hsl(var(--civic-teal))",
           "teal-light": "hsl(var(--civic-teal-light))",
         },
+        silver: {
+          DEFAULT: "hsl(var(--silver))",
+          light: "hsl(var(--silver-light))",
+          dark: "hsl(var(--silver-dark))",
+        },
+        "glass-silver": "hsl(var(--glass-silver))",
+        "ice-blue": {
+          DEFAULT: "hsl(var(--ice-blue))",
+          light: "hsl(var(--ice-blue-light))",
+        },
+        "deep-blue": "hsl(var(--deep-blue))",
         neutral: {
           50: "hsl(var(--neutral-50))",
           100: "hsl(var(--neutral-100))",
@@ -90,6 +101,8 @@ export default {
         "glass-strong": "var(--shadow-glass-strong)",
         "glow-blue": "var(--shadow-glow-blue)",
         "glow-teal": "var(--shadow-glow-teal)",
+        "glow-silver": "var(--shadow-glow-silver)",
+        "glow-ice": "var(--shadow-glow-ice)",
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
@@ -100,6 +113,8 @@ export default {
         "gradient-glow": "var(--gradient-glow)",
         "gradient-orb-blue": "var(--gradient-orb-blue)",
         "gradient-orb-teal": "var(--gradient-orb-teal)",
+        "gradient-orb-silver": "var(--gradient-orb-silver)",
+        "gradient-orb-ice": "var(--gradient-orb-ice)",
       },
       backdropBlur: {
         xs: "2px",
