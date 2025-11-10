@@ -7,6 +7,10 @@ import LaunchBenefits from "@/components/waitlist/LaunchBenefits";
 import AudienceSection from "@/components/waitlist/AudienceSection";
 import FAQSection from "@/components/waitlist/FAQSection";
 import WaitlistForm from "@/components/waitlist/WaitlistForm";
+import InteractiveDemo from "@/components/waitlist/InteractiveDemo";
+import SocialProof from "@/components/waitlist/SocialProof";
+import ComparisonTable from "@/components/waitlist/ComparisonTable";
+import LaunchTimeline from "@/components/waitlist/LaunchTimeline";
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
 
@@ -28,36 +32,45 @@ export default function Waitlist() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
+      {/* Floating orbs background */}
+      <div className="floating-orbs">
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
+        <div className="orb orb-3" />
+      </div>
+      
+      {/* SVG Filter for liquid glass distortion */}
+      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+        <defs>
+          <filter id="liquid-glass-distortion" x="-50%" y="-50%" width="200%" height="200%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="3" seed="5" result="turbulence" />
+            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacement" />
+            <feGaussianBlur in="displacement" stdDeviation="0.5" result="blur" />
+          </filter>
+        </defs>
+      </svg>
+      
       {/* Header */}
       <header 
-        className="fixed top-0 left-0 right-0 z-50 border-b shadow-glass-strong"
+        className="fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong"
         style={{ 
-          background: 'hsla(0, 0%, 100%, 0.92)',
-          backdropFilter: 'blur(48px) saturate(200%)',
-          borderBottomColor: 'hsla(210, 60%, 85%, 0.5)'
+          filter: 'url(#liquid-glass-distortion) brightness(1.05)',
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl glass-strong flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-glass-strong relative overflow-hidden"
-              style={{ 
-                background: 'hsla(0, 0%, 100%, 0.92)',
-                backdropFilter: 'blur(48px) saturate(200%)',
-                border: '2px solid hsla(210, 60%, 85%, 0.5)'
-              }}
-            >
-              <FileText className="h-6 w-6 text-primary drop-shadow-lg relative z-10" />
-              {/* Inner highlight */}
+            <div className="w-11 h-11 rounded-xl liquid-glass flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-glass-strong relative overflow-hidden">
+              <FileText className="h-6 w-6 text-ice-blue drop-shadow-lg relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
             </div>
-            <span className="text-xl font-black text-foreground tracking-tight">ClearPolicy</span>
+            <span className="text-xl font-black text-white tracking-tight">ClearPolicy</span>
           </Link>
           <Button 
             onClick={scrollToForm} 
-            variant="default"
+            variant="premium"
             size="default"
-            className="shadow-xl hover:shadow-2xl"
+            className="shadow-xl hover:shadow-2xl shimmer-fast"
           >
             Join waitlist
           </Button>
@@ -65,51 +78,33 @@ export default function Waitlist() {
       </header>
 
       {/* Main content */}
-      <main className="pt-16">
+      <main className="pt-16 relative z-10">
         <Hero onJoinClick={scrollToForm} />
+        <InteractiveDemo />
+        <SocialProof />
+        <ComparisonTable />
         <HowItWorks />
-        <TrustSection />
         <LaunchBenefits />
+        <LaunchTimeline />
+        <TrustSection />
         <AudienceSection />
         <FAQSection />
 
         {/* Form section */}
         <section id="waitlist-form" className="py-24 px-4 scroll-mt-20 relative">
-          {/* Background droplets - Enhanced */}
-          <div className="droplet top-[15%] left-[8%] w-32 h-32 blur-[40px] droplet-float" />
-          <div className="droplet bottom-[20%] right-[10%] w-28 h-28 blur-[38px] droplet-float-slow" style={{ animationDelay: '5s' }} />
-          <div className="droplet top-[45%] right-[25%] w-24 h-24 blur-[36px] droplet-float" style={{ animationDelay: '3s' }} />
-          
           <div className="max-w-4xl mx-auto relative">
             <div className="text-center mb-14">
-              <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5 tracking-tight">
-                Get <span className="relative inline-block group/word">
-                  <span className="relative z-10">early</span>
-                  <span className="absolute bottom-0 left-0 right-0 h-1 bg-accent/30 blur-sm -z-0 group-hover/word:h-3 group-hover/word:bg-accent/40 transition-all duration-500"></span>
-                  <span className="absolute -bottom-0.5 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-accent to-transparent"></span>
-                </span> access
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight text-glow-hero">
+                Get Early Access — Launching Soon in Your Area
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium leading-relaxed">
+              <p className="text-xl text-light max-w-2xl mx-auto font-medium leading-relaxed">
                 Join the waitlist to be notified when ClearPolicy launches in your area. 
-                Your ZIP code helps us prioritize where to launch <span className="relative inline-block font-bold text-foreground group/word">
-                  <span className="relative z-10">first</span>
-                  <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover/word:opacity-100 transition-opacity duration-500"></span>
-                </span>.
+                Your ZIP code helps us prioritize where to launch <span className="font-bold text-white">first</span>.
               </p>
             </div>
             
-            <div 
-              className="rounded-3xl shadow-glass-strong p-10 md:p-14 hover:shadow-glass-hover glass-hover transition-all duration-500 shimmer relative overflow-hidden group"
-              style={{ 
-                background: 'hsla(0, 0%, 100%, 0.92)',
-                backdropFilter: 'blur(48px) saturate(200%)',
-                border: '2px solid hsla(210, 60%, 85%, 0.5)'
-              }}
-            >
-              {/* Glowing border effect */}
-              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ boxShadow: '0 0 60px hsl(var(--primary) / 0.15) inset' }} />
-              {/* Inner highlight */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
+            <div className="liquid-glass-strong rounded-3xl shadow-glass-strong p-10 md:p-14 hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
               <div className="relative z-10">
                 <WaitlistForm />
               </div>
