@@ -32,14 +32,7 @@ export default function Waitlist() {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Floating orbs background */}
-      <div className="floating-orbs">
-        <div className="orb orb-1" />
-        <div className="orb orb-2" />
-        <div className="orb orb-3" />
-      </div>
-      
+    <div className="min-h-screen relative">
       {/* SVG Filter for liquid glass distortion */}
       <svg style={{ position: 'absolute', width: 0, height: 0 }}>
         <defs>
@@ -53,24 +46,32 @@ export default function Waitlist() {
       
       {/* Header */}
       <header 
-        className="fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong"
+        className="fixed top-0 left-0 right-0 z-50 border-b"
         style={{ 
-          filter: 'url(#liquid-glass-distortion) brightness(1.05)',
+          background: 'rgba(255, 255, 255, 0.08)',
+          backdropFilter: 'blur(24px) saturate(180%)',
+          borderColor: 'rgba(255, 255, 255, 0.12)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl liquid-glass flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-glass-strong relative overflow-hidden">
-              <FileText className="h-6 w-6 text-ice-blue drop-shadow-lg relative z-10" />
-              <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
+            <div 
+              className="w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 relative overflow-hidden"
+              style={{
+                background: 'rgba(59, 130, 246, 0.15)',
+                backdropFilter: 'blur(16px)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+                boxShadow: '0 8px 24px rgba(59, 130, 246, 0.2)'
+              }}
+            >
+              <FileText className="h-6 w-6 text-white drop-shadow-lg relative z-10" />
             </div>
-            <span className="text-xl font-black text-white tracking-tight">ClearPolicy</span>
+            <span className="text-xl font-bold text-white tracking-tight">ClearPolicy</span>
           </Link>
           <Button 
             onClick={scrollToForm} 
-            variant="premium"
-            size="default"
-            className="shadow-xl hover:shadow-2xl shimmer-fast"
+            className="liquid-glass-button font-semibold px-6 py-2.5 rounded-xl"
           >
             Join waitlist
           </Button>
@@ -78,7 +79,7 @@ export default function Waitlist() {
       </header>
 
       {/* Main content */}
-      <main className="pt-16 relative z-10">
+      <main className="pt-16 relative z-10" style={{ isolation: 'isolate' }}>
         <Hero onJoinClick={scrollToForm} />
         <InteractiveDemo />
         <SocialProof />
@@ -91,29 +92,34 @@ export default function Waitlist() {
         <FAQSection />
 
         {/* Form section */}
-        <section id="waitlist-form" className="py-24 px-4 scroll-mt-20 relative">
+        <section id="waitlist-form" className="py-32 px-4 scroll-mt-20 relative">
           <div className="max-w-4xl mx-auto relative">
-            <div className="text-center mb-14">
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight text-glow-hero">
+            <div className="text-center mb-16">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight" style={{ lineHeight: 1.1, letterSpacing: '-0.02em', textShadow: '0 2px 24px rgba(0, 0, 0, 0.5)' }}>
                 Get Early Access — Launching Soon in Your Area
               </h2>
-              <p className="text-xl text-light max-w-2xl mx-auto font-medium leading-relaxed">
+              <p className="text-xl max-w-2xl mx-auto font-normal leading-relaxed" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
                 Join the waitlist to be notified when ClearPolicy launches in your area. 
-                Your ZIP code helps us prioritize where to launch <span className="font-bold text-white">first</span>.
+                Your ZIP code helps us prioritize where to launch <span className="font-semibold text-white">first</span>.
               </p>
             </div>
             
-            <div className="liquid-glass-strong rounded-3xl shadow-glass-strong p-10 md:p-14 hover:shadow-glass-hover transition-all duration-500 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
-              <div className="relative z-10">
-                <WaitlistForm />
-              </div>
+            <div 
+              className="rounded-2xl p-12 md:p-16 relative overflow-hidden"
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(32px) saturate(180%)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12)'
+              }}
+            >
+              <WaitlistForm />
             </div>
 
-            <div className="mt-10 text-center">
-              <p className="text-base text-muted-foreground font-medium">
+            <div className="mt-12 text-center">
+              <p className="text-base font-medium" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
                 Have questions?{" "}
-                <a href="#faq" className="text-primary hover:underline font-bold">
+                <a href="#faq" className="hover:underline font-semibold" style={{ color: 'rgba(59, 130, 246, 1)' }}>
                   Check our FAQ
                 </a>
                 .
@@ -123,61 +129,44 @@ export default function Waitlist() {
         </section>
 
         {/* Data sources and privacy */}
-        <section className="py-20 px-4 bg-gradient-subtle border-t border-border/50">
+        <section className="py-32 px-4 border-t" style={{ borderColor: 'rgba(255, 255, 255, 0.08)' }}>
           <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-9">
+            <div className="grid md:grid-cols-2 gap-8">
               <div 
-                className="p-8 rounded-3xl shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden"
+                className="p-8 rounded-2xl transition-all duration-500 group relative overflow-hidden"
                 style={{ 
-                  background: 'hsla(0, 0%, 100%, 0.92)',
-                  backdropFilter: 'blur(48px) saturate(200%)',
-                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  backdropFilter: 'blur(24px) saturate(180%)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
                 }}
               >
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-                {/* Inner highlight */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
-                <div className="relative z-10">
-                <h3 className="text-xl font-bold text-foreground mb-4 tracking-tight">
-                  Data <span className="relative inline-block">
-                    <span className="relative z-10">sources</span>
-                    <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                  </span>
+                <h3 className="text-xl font-bold text-white mb-4 tracking-tight">
+                  Data sources
                 </h3>
-                <p className="text-base text-muted-foreground leading-relaxed">
+                <p className="text-base leading-relaxed" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
                   ClearPolicy pulls from public datasets including legislative records, 
                   official government documents, and authoritative policy databases. 
-                  Every claim links to its <span className="relative inline-block font-semibold text-foreground group/word">
-                    <span className="relative z-10">source</span>
-                    <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover/word:opacity-100 transition-opacity duration-500"></span>
-                  </span>.
+                  Every claim links to its <span className="font-semibold text-white">source</span>.
                 </p>
               </div>
-            </div>
               <div 
-                className="p-8 rounded-3xl shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden"
+                className="p-8 rounded-2xl transition-all duration-500 group relative overflow-hidden"
                 style={{ 
-                  background: 'hsla(0, 0%, 100%, 0.92)',
-                  backdropFilter: 'blur(48px) saturate(200%)',
-                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  backdropFilter: 'blur(24px) saturate(180%)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
                 }}
               >
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-                {/* Inner highlight */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
-                <div className="relative z-10">
-                <h3 className="text-xl font-bold text-foreground mb-4 tracking-tight">
-                  Privacy <span className="relative inline-block">
-                    <span className="relative z-10">commitment</span>
-                    <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-civic-teal to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                  </span>
+                <h3 className="text-xl font-bold text-white mb-4 tracking-tight">
+                  Privacy commitment
                 </h3>
-                <p className="text-base text-muted-foreground leading-relaxed">
+                <p className="text-base leading-relaxed" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
                   We only use your information to provide early access updates and 
                   product feedback invitations. No resale, no third-party ads.
                 </p>
               </div>
-            </div>
             </div>
           </div>
         </section>

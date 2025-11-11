@@ -13,97 +13,90 @@ const benefits = [
 
 export default function Hero({ onJoinClick }: HeroProps) {
   return (
-    <section className="relative overflow-hidden px-4 py-20 md:py-32 min-h-[90vh] flex items-center">
-      {/* Liquid Glass Droplet Background */}
-      <div className="absolute inset-0">
-        {/* Large floating silver/ice translucent orbs */}
-        <div className="absolute top-[15%] left-[8%] w-[450px] h-[450px] opacity-50" style={{ background: 'radial-gradient(circle, rgba(147, 197, 253, 0.4), rgba(203, 213, 225, 0.25), transparent)', filter: 'blur(110px)', animation: 'orb-float 10s ease-in-out infinite' }} />
-        <div className="absolute bottom-[20%] right-[12%] w-[550px] h-[550px] opacity-45" style={{ background: 'radial-gradient(circle, rgba(203, 213, 225, 0.35), rgba(148, 163, 184, 0.2), transparent)', filter: 'blur(120px)', animation: 'orb-float 12s ease-in-out infinite', animationDelay: '3s' }} />
-        <div className="absolute top-[45%] left-[45%] w-[600px] h-[600px] opacity-40" style={{ background: 'radial-gradient(circle, rgba(241, 245, 249, 0.3), rgba(147, 197, 253, 0.18), transparent)', filter: 'blur(130px)', animation: 'orb-float 14s ease-in-out infinite', animationDelay: '6s' }} />
-        
-        {/* Premium translucent silver glass bubbles */}
-        <div className="glass-raindrop droplet-float-slow" style={{ width: '140px', height: '140px', top: '12%', left: '10%', animationDelay: '0s', opacity: 0.65 }} />
-        <div className="glass-raindrop droplet-float-medium" style={{ width: '95px', height: '95px', top: '22%', right: '15%', animationDelay: '2s', opacity: 0.6 }} />
-        <div className="glass-raindrop droplet-float" style={{ width: '115px', height: '115px', top: '42%', left: '6%', animationDelay: '4s', opacity: 0.55 }} />
-        <div className="glass-raindrop droplet-float-slow" style={{ width: '105px', height: '105px', top: '58%', right: '10%', animationDelay: '1s', opacity: 0.62 }} />
-        <div className="glass-raindrop droplet-float-medium" style={{ width: '80px', height: '80px', top: '32%', right: '8%', animationDelay: '3s', opacity: 0.58 }} />
-        <div className="glass-raindrop droplet-float" style={{ width: '125px', height: '125px', top: '68%', left: '72%', animationDelay: '5s', opacity: 0.6 }} />
-        <div className="glass-raindrop droplet-float-slow" style={{ width: '70px', height: '70px', top: '48%', right: '22%', animationDelay: '2.5s', opacity: 0.56 }} />
-        <div className="glass-raindrop droplet-float-medium" style={{ width: '100px', height: '100px', top: '78%', left: '18%', animationDelay: '4.5s', opacity: 0.59 }} />
-      </div>
+    <section className="relative overflow-hidden px-4 py-32 md:py-40 min-h-[90vh] flex items-center">
+      {/* Clean dark gradient background - no large blobs */}
       
-      <div className="relative max-w-5xl mx-auto text-center animate-fade-in">
-        <div className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-white text-sm font-semibold mb-10 shimmer shadow-glass-strong hover-lift">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white shadow-glow-ice"></span>
-          </span>
-          Now accepting early access signups
-        </div>
-
+      <div className="max-w-6xl mx-auto text-center px-4 relative z-10">
+        {/* Main headline */}
         <h1 
-          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-7 leading-[1.08] tracking-tight relative z-20"
+          className="text-6xl md:text-7xl lg:text-[72px] font-bold text-white mb-8 tracking-tight"
           style={{ 
-            textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(147, 197, 253, 0.4)'
+            lineHeight: 1.1, 
+            letterSpacing: '-0.02em',
+            textShadow: '0 2px 24px rgba(0, 0, 0, 0.5)'
           }}
         >
-          Policy clarity, with sources you can check
+          Plain-English, cited explanations
+          <br />
+          of ballot measures
         </h1>
-        
-        <p className="text-xl text-white mb-11 max-w-3xl mx-auto leading-relaxed font-medium relative z-20" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3)' }}>
-          Plain-English explanations of bills and ballot measures—backed by <span className="font-bold">citations</span>. 
-          Join the waitlist to get early access in your area.
+
+        {/* Subheadline */}
+        <p 
+          className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto font-normal leading-relaxed"
+          style={{ 
+            color: 'rgba(255, 255, 255, 0.8)',
+            lineHeight: 1.6
+          }}
+        >
+          Understand bills and ballot measures in minutes — with{" "}
+          <span className="font-semibold text-white">
+            sources you can verify
+          </span>
+          .
         </p>
 
-        {/* Search box teaser with liquid glass */}
-        <div className="mb-12 max-w-2xl mx-auto">
+        {/* Search box teaser */}
+        <div className="max-w-2xl mx-auto mb-16">
           <div 
-            className="liquid-glass-strong rounded-2xl p-2 shadow-glass-hover relative overflow-hidden group"
-            style={{ 
-              filter: 'url(#liquid-glass-distortion) brightness(1.1)',
+            className="rounded-2xl p-5 flex items-center gap-4 group cursor-pointer relative overflow-hidden transition-all duration-300"
+            onClick={onJoinClick}
+            style={{
+              background: 'rgba(255, 255, 255, 0.08)',
+              backdropFilter: 'blur(24px) saturate(180%)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              height: '56px',
+              maxHeight: '56px'
             }}
           >
-            <div className="flex items-center gap-3 px-4">
-              <Search className="h-6 w-6 text-white opacity-70" />
-              <span className="flex-1 py-4 text-gray-400 text-lg">
-                Search for a ballot measure or policy...
-              </span>
-            </div>
+            <Search className="h-5 w-5 relative z-10 group-hover:scale-110 transition-transform duration-500" style={{ color: 'rgba(59, 130, 246, 1)' }} />
+            <span className="text-base font-normal relative z-10 transition-colors duration-500" style={{ color: 'rgba(255, 255, 255, 0.4)' }}>
+              Search for any policy or ballot measure...
+            </span>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-5 justify-center mb-14">
-          <Button
-            onClick={onJoinClick}
-            size="lg"
-            variant="premium"
-            className="text-lg px-14 py-8 h-auto font-bold shadow-2xl shimmer-fast"
-            aria-label="Join the waitlist for early access"
-          >
-            <span className="relative z-10 flex items-center gap-2.5">
-              Get Early Access — Launching Soon
-              <ArrowRight className="h-6 w-6" />
-            </span>
-          </Button>
-        </div>
+        {/* CTA Button */}
+        <Button
+          onClick={onJoinClick}
+          size="lg"
+          className="liquid-glass-button text-lg px-10 py-6 rounded-xl font-semibold mb-16 hover:scale-105 transition-transform duration-300 relative"
+        >
+          Join the waitlist
+        </Button>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 text-white mb-7">
+        {/* Benefit cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {benefits.map((benefit, index) => (
-            <div 
-              key={index} 
-              className="flex items-center gap-3 liquid-glass-strong rounded-full px-7 py-4 hover-lift shadow-glass-strong shimmer-hover relative overflow-hidden group"
+            <div
+              key={index}
+              className="rounded-2xl p-8 flex flex-col items-center gap-4 transition-all duration-300 group hover:scale-105 relative overflow-hidden"
+              style={{
+                background: 'rgba(255, 255, 255, 0.08)',
+                backdropFilter: 'blur(24px) saturate(180%)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                minHeight: '120px'
+              }}
             >
-              <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-ice-blue drop-shadow-lg relative z-10" />
-              <span className="text-sm font-black text-white relative z-10" style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.2)' }}>{benefit}</span>
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-70" />
-              <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ boxShadow: '0 0 20px rgba(147, 197, 253, 0.3) inset' }} />
+              <CheckCircle2 className="h-7 w-7 relative z-10 group-hover:scale-110 transition-transform duration-500" style={{ color: 'rgba(59, 130, 246, 1)' }} />
+              <span className="font-semibold text-white text-base relative z-10 text-center">
+                {benefit}
+              </span>
             </div>
           ))}
         </div>
-
-        <p className="text-sm text-white/90 mt-5 font-medium relative z-20" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
-          No spam. Unsubscribe anytime.
-        </p>
       </div>
     </section>
   );
