@@ -96,7 +96,7 @@ export default function LaunchTimeline() {
 
         <div className="mt-12 text-center">
           <p className="text-muted-light text-sm mb-4">
-            💡 Timeline subject to change based on development progress and demand
+            Timeline subject to change based on development progress and demand
           </p>
           <p className="text-light font-medium">
             <span className="text-white font-bold">Join the waitlist</span> to get notified when we launch in your area

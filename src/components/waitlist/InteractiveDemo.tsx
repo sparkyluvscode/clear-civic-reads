@@ -185,7 +185,7 @@ export default function InteractiveDemo() {
         {!showDemo && !isTyping && (
           <div className="text-center">
             <p className="text-muted-light text-sm">
-              👆 Start typing above to see a live preview
+              Start typing above to see a live preview
             </p>
           </div>
         )}
