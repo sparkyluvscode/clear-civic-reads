@@ -62,10 +62,7 @@ export default function ComparisonTable() {
                 <tr className="border-b border-white/10">
                   <th className="text-left p-6 text-white font-bold text-lg">Feature</th>
                   <th className="text-center p-6">
-                    <div className="inline-flex flex-col items-center gap-2">
-                      <div className="text-ice-blue font-black text-xl">ClearPolicy</div>
-                      <div className="text-xs text-muted-light">That's us! 👋</div>
-                    </div>
+                    <div className="text-ice-blue font-black text-xl">ClearPolicy</div>
                   </th>
                   <th className="text-center p-6">
                     <div className="text-light font-semibold">Official Ballot Language</div>

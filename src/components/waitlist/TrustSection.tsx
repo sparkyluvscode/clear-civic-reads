@@ -25,7 +25,7 @@ const features = [
 
 export default function TrustSection() {
   return (
-    <section className="py-24 px-4 bg-gradient-subtle relative">
+    <section className="py-24 px-4 relative">
       {/* Background droplets - Enhanced variety */}
       <div className="droplet top-[10%] left-[15%] w-28 h-28 blur-[38px] droplet-float" />
       <div className="droplet bottom-[15%] right-[20%] w-32 h-32 blur-[40px] droplet-float-slow" style={{ animationDelay: '4s' }} />
@@ -33,14 +33,14 @@ export default function TrustSection() {
       
       <div className="max-w-6xl mx-auto relative">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 text-glow-hero">
             Why <span className="relative inline-block">
               <span className="relative z-10">trust</span>
               <span className="absolute bottom-1 left-0 right-0 h-3 bg-primary/20 blur-sm -z-0"></span>
             </span> ClearPolicy?
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
-            Built for <span className="text-foreground font-bold">transparency</span>, designed for <span className="text-foreground font-bold">clarity</span>. Every feature reinforces trust.
+          <p className="text-xl text-light max-w-2xl mx-auto font-medium">
+            Built for <span className="text-white font-bold">transparency</span>, designed for <span className="text-white font-bold">clarity</span>. Every feature reinforces trust.
           </p>
         </div>
 
@@ -50,35 +50,23 @@ export default function TrustSection() {
             return (
               <div
                 key={index}
-                className="p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover card-hover-lift shimmer-hover group relative overflow-hidden"
-                style={{ 
-                  background: 'hsla(0, 0%, 100%, 0.95)',
-                  backdropFilter: 'blur(48px) saturate(200%)',
-                  border: '2px solid hsla(210, 60%, 85%, 0.6)',
-                  boxShadow: 'var(--shadow-glass-strong)'
-                }}
+                className="p-9 rounded-3xl liquid-glass-strong shadow-glass-strong hover:shadow-glass-hover card-hover-lift shimmer-hover group relative overflow-hidden"
               >
                 {/* Inner highlight - enhanced */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent pointer-events-none" />
                 <div className="flex items-start gap-5">
                   <div 
-                    className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500 shimmer-hover relative overflow-hidden"
-                    style={{ 
-                      background: 'hsla(0, 0%, 100%, 0.95)',
-                      backdropFilter: 'blur(48px) saturate(200%)',
-                      border: '2px solid hsla(210, 60%, 85%, 0.7)',
-                      boxShadow: 'var(--shadow-glass-strong)'
-                    }}
+                    className="flex-shrink-0 w-16 h-16 rounded-2xl liquid-glass flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500 shimmer-hover relative overflow-hidden"
                   >
-                    <Icon className="h-8 w-8 text-accent drop-shadow-lg relative z-10" />
+                    <Icon className="h-8 w-8 text-ice-blue drop-shadow-lg relative z-10" />
                     {/* Inner highlight - enhanced */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
                 </div>
                 <div className="relative z-10">
-                    <h3 className="text-xl font-bold text-foreground mb-3">
+                    <h3 className="text-xl font-bold text-white mb-3">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed text-base">
+                    <p className="text-light leading-relaxed text-base">
                       {feature.description}
                     </p>
                   </div>
@@ -89,37 +77,25 @@ export default function TrustSection() {
         </div>
 
         <div 
-          className="mt-8 p-9 rounded-3xl shadow-glass-strong hover:shadow-glass-hover card-hover-lift shimmer-hover relative overflow-hidden"
-          style={{ 
-            background: 'hsla(0, 0%, 100%, 0.95)',
-            backdropFilter: 'blur(48px) saturate(200%)',
-            border: '2px solid hsla(210, 60%, 85%, 0.6)',
-            boxShadow: 'var(--shadow-glass-strong)'
-          }}
+          className="mt-8 p-9 rounded-3xl liquid-glass-strong shadow-glass-strong hover:shadow-glass-hover card-hover-lift shimmer-hover relative overflow-hidden"
         >
           {/* Inner highlight - enhanced */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent pointer-events-none" />
           <div className="flex items-start gap-5 relative z-10">
             <div className="flex-shrink-0">
               <div 
-                className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-glow-blue shimmer-hover relative overflow-hidden"
-                style={{ 
-                  background: 'hsla(0, 0%, 100%, 0.95)',
-                  backdropFilter: 'blur(48px) saturate(200%)',
-                  border: '2px solid hsla(210, 60%, 85%, 0.7)',
-                  boxShadow: 'var(--shadow-glass-strong)'
-                }}
+                className="w-16 h-16 rounded-2xl liquid-glass flex items-center justify-center shadow-glow-blue shimmer-hover relative overflow-hidden"
               >
-                <Shield className="h-8 w-8 text-primary drop-shadow-lg relative z-10" />
+                <Shield className="h-8 w-8 text-ice-blue drop-shadow-lg relative z-10" />
                 {/* Inner highlight - enhanced */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
               </div>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-3">
+              <h3 className="text-xl font-bold text-white mb-3">
                 Privacy first
               </h3>
-              <p className="text-muted-foreground leading-relaxed text-base">
+              <p className="text-light leading-relaxed text-base">
                 We only use your information to provide early access updates and invite feedback. 
                 No resale, no third-party ads, no tracking beyond what's necessary to serve you better.
               </p>

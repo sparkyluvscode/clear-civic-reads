@@ -14,6 +14,7 @@ import LaunchTimeline from "@/components/waitlist/LaunchTimeline";
 import { RaindropEffect } from "@/components/effects/RaindropEffect";
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
+import clearpolicyLogo from "@/assets/clearpolicy-logo.png";
 
 export default function Waitlist() {
   useEffect(() => {
@@ -57,10 +58,11 @@ export default function Waitlist() {
       >
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl liquid-glass flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-glass-strong relative overflow-hidden">
-              <FileText className="h-6 w-6 text-ice-blue drop-shadow-lg relative z-10" />
-              <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
-            </div>
+            <img 
+              src={clearpolicyLogo} 
+              alt="ClearPolicy" 
+              className="w-11 h-11 rounded-xl group-hover:scale-110 transition-transform duration-500 drop-shadow-lg"
+            />
             <span className="text-xl font-black text-white tracking-tight">ClearPolicy</span>
           </Link>
           <Button 
@@ -82,7 +84,6 @@ export default function Waitlist() {
         <ComparisonTable />
         <HowItWorks />
         <LaunchBenefits />
-        <LaunchTimeline />
         <TrustSection />
         <AudienceSection />
         <FAQSection />
@@ -120,31 +121,26 @@ export default function Waitlist() {
         </section>
 
         {/* Data sources and privacy */}
-        <section className="py-20 px-4 bg-gradient-subtle border-t border-border/50">
+        <section className="py-20 px-4 relative">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-9">
               <div 
-                className="p-8 rounded-3xl shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden"
-                style={{ 
-                  background: 'hsla(0, 0%, 100%, 0.92)',
-                  backdropFilter: 'blur(48px) saturate(200%)',
-                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
-                }}
+                className="p-8 rounded-3xl liquid-glass-strong shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                 {/* Inner highlight */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
                 <div className="relative z-10">
-                <h3 className="text-xl font-bold text-foreground mb-4 tracking-tight">
+                <h3 className="text-xl font-bold text-white mb-4 tracking-tight">
                   Data <span className="relative inline-block">
                     <span className="relative z-10">sources</span>
                     <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                   </span>
                 </h3>
-                <p className="text-base text-muted-foreground leading-relaxed">
+                <p className="text-base text-light leading-relaxed">
                   ClearPolicy pulls from public datasets including legislative records, 
                   official government documents, and authoritative policy databases. 
-                  Every claim links to its <span className="relative inline-block font-semibold text-foreground group/word">
+                  Every claim links to its <span className="relative inline-block font-semibold text-white group/word">
                     <span className="relative z-10">source</span>
                     <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover/word:opacity-100 transition-opacity duration-500"></span>
                   </span>.
@@ -152,24 +148,19 @@ export default function Waitlist() {
               </div>
             </div>
               <div 
-                className="p-8 rounded-3xl shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden"
-                style={{ 
-                  background: 'hsla(0, 0%, 100%, 0.92)',
-                  backdropFilter: 'blur(48px) saturate(200%)',
-                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
-                }}
+                className="p-8 rounded-3xl liquid-glass-strong shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                 {/* Inner highlight */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
                 <div className="relative z-10">
-                <h3 className="text-xl font-bold text-foreground mb-4 tracking-tight">
+                <h3 className="text-xl font-bold text-white mb-4 tracking-tight">
                   Privacy <span className="relative inline-block">
                     <span className="relative z-10">commitment</span>
                     <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-civic-teal to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                   </span>
                 </h3>
-                <p className="text-base text-muted-foreground leading-relaxed">
+                <p className="text-base text-light leading-relaxed">
                   We only use your information to provide early access updates and 
                   product feedback invitations. No resale, no third-party ads.
                 </p>

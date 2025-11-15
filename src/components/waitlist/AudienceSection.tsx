@@ -33,19 +33,19 @@ const audiences = [
 
 export default function AudienceSection() {
   return (
-    <section className="py-24 px-4 bg-gradient-subtle relative">
+    <section className="py-24 px-4 relative">
       {/* Subtle droplet accents */}
       <div className="droplet top-[20%] right-[12%] w-24 h-24 blur-[35px] droplet-float-slow" style={{ animationDelay: '2s' }} />
       <div className="droplet bottom-[25%] left-[10%] w-30 h-30 blur-[42px] droplet-float" style={{ animationDelay: '5s' }} />
       
       <div className="max-w-6xl mx-auto relative">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 text-glow-hero">
             Who it's for
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
+          <p className="text-xl text-light max-w-2xl mx-auto font-medium">
             Whether you're voting, reporting, advocating, or governing—ClearPolicy helps you 
-            make <span className="text-foreground font-bold">informed</span> decisions with <span className="text-foreground font-bold">confidence</span>.
+            make <span className="text-white font-bold">informed</span> decisions with <span className="text-white font-bold">confidence</span>.
           </p>
         </div>
 
@@ -55,32 +55,22 @@ export default function AudienceSection() {
             return (
               <div
                 key={index}
-                className="p-7 rounded-3xl shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift group relative overflow-hidden"
-                style={{ 
-                  background: 'hsla(0, 0%, 100%, 0.92)',
-                  backdropFilter: 'blur(48px) saturate(200%)',
-                  border: '2px solid hsla(210, 60%, 85%, 0.5)'
-                }}
+                className="p-7 rounded-3xl liquid-glass-strong shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift group relative overflow-hidden"
               >
                 {/* Inner highlight */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
                 <div className="relative z-10">
                 <div 
-                  className="w-18 h-18 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500 relative overflow-hidden"
-                  style={{ 
-                    background: 'hsla(0, 0%, 100%, 0.92)',
-                    backdropFilter: 'blur(48px) saturate(200%)',
-                    border: '2px solid hsla(210, 60%, 85%, 0.5)'
-                  }}
+                  className="w-18 h-18 rounded-2xl liquid-glass flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500 relative overflow-hidden"
                 >
-                  <Icon className={`h-9 w-9 ${audience.color} drop-shadow-lg relative z-10`} />
+                  <Icon className="h-9 w-9 text-ice-blue drop-shadow-lg relative z-10" />
                   {/* Inner highlight */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">
+                <h3 className="text-xl font-bold text-white mb-3">
                   {audience.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-light leading-relaxed">
                   {audience.description}
                 </p>
               </div>
