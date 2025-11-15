@@ -44,15 +44,9 @@ export default function HowItWorks() {
               >
                 <div className="flex flex-col items-center text-center group">
                   <div 
-                    className="w-24 h-24 rounded-3xl flex items-center justify-center mb-7 group-hover:scale-110 transition-all duration-500 shadow-glass-strong hover:shadow-glow-blue shimmer-hover relative overflow-hidden"
-                    style={{ 
-                      background: 'hsla(0, 0%, 100%, 0.95)',
-                      backdropFilter: 'blur(48px) saturate(200%)',
-                      border: '2px solid hsla(210, 60%, 85%, 0.6)',
-                      boxShadow: 'var(--shadow-glass-strong)'
-                    }}
+                    className="w-24 h-24 rounded-3xl liquid-glass-strong flex items-center justify-center mb-7 group-hover:scale-110 transition-all duration-500 shadow-glass-strong hover:shadow-glow-blue shimmer-hover relative overflow-hidden"
                   >
-                    <Icon className="h-11 w-11 text-primary drop-shadow-lg relative z-10" />
+                    <Icon className="h-11 w-11 text-ice-blue drop-shadow-lg relative z-10" />
                     {/* Inner highlight - enhanced */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
                   </div>
@@ -61,13 +55,7 @@ export default function HowItWorks() {
                   />
                   <div className="relative mb-5">
                     <span 
-                      className="inline-flex items-center justify-center w-12 h-12 rounded-full text-primary text-base font-black shadow-glass shimmer-hover relative overflow-hidden"
-                      style={{ 
-                        background: 'hsla(0, 0%, 100%, 0.95)',
-                        backdropFilter: 'blur(48px) saturate(200%)',
-                        border: '2px solid hsla(210, 60%, 85%, 0.7)',
-                        boxShadow: 'var(--shadow-glass-strong)'
-                      }}
+                      className="inline-flex items-center justify-center w-12 h-12 rounded-full liquid-glass-strong text-ice-blue text-base font-black shadow-glass shimmer-hover relative overflow-hidden"
                     >
                       <span className="relative z-10">{index + 1}</span>
                       {/* Inner highlight - enhanced */}

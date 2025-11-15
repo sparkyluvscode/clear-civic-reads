@@ -43,14 +43,9 @@ export default function LaunchBenefits() {
                 className="text-center group"
               >
                 <div 
-                  className="inline-flex items-center justify-center w-24 h-24 rounded-3xl mb-8 group-hover:scale-110 group-hover:shadow-glow-blue transition-all duration-500 shadow-glass-strong hover-lift relative overflow-hidden"
-                  style={{ 
-                    background: 'hsla(0, 0%, 100%, 0.92)',
-                    backdropFilter: 'blur(48px) saturate(200%)',
-                    border: '2px solid hsla(210, 60%, 85%, 0.5)'
-                  }}
+                  className="inline-flex items-center justify-center w-24 h-24 rounded-3xl liquid-glass-strong mb-8 group-hover:scale-110 group-hover:shadow-glow-blue transition-all duration-500 shadow-glass-strong hover-lift relative overflow-hidden"
                 >
-                  <Icon className="h-12 w-12 text-primary drop-shadow-lg relative z-10" />
+                  <Icon className="h-12 w-12 text-ice-blue drop-shadow-lg relative z-10" />
                   {/* Inner highlight */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
                 </div>
