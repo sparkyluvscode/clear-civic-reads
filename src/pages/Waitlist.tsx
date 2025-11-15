@@ -11,6 +11,7 @@ import InteractiveDemo from "@/components/waitlist/InteractiveDemo";
 import SocialProof from "@/components/waitlist/SocialProof";
 import ComparisonTable from "@/components/waitlist/ComparisonTable";
 import LaunchTimeline from "@/components/waitlist/LaunchTimeline";
+import { RaindropEffect } from "@/components/effects/RaindropEffect";
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
 
@@ -33,6 +34,9 @@ export default function Waitlist() {
 
   return (
     <div className="min-h-screen">
+      {/* Raindrop dew effect overlay */}
+      <RaindropEffect />
+      
       {/* Floating orbs background */}
       <div className="floating-orbs">
         <div className="orb orb-1" />
