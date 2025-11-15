@@ -177,25 +177,40 @@ All colors MUST be HSL.
 
   body {
     @apply text-foreground;
-    /* Deep navy to silver-blue gradient for serene morning dew atmosphere */
-    background: linear-gradient(135deg, #0a1128 0%, #1a2847 25%, #2a3f5f 50%, #1a2847 75%, #0a1128 100%);
+    /* Unified Apple Liquid Glass radial gradient - Deep navy atmosphere */
+    background: radial-gradient(ellipse at 20% 30%, #1a2847 0%, #0a1128 50%, #2a3f5f 100%);
     background-attachment: fixed;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
+    overflow-x: hidden;
   }
   
-  /* Subtle noise texture overlay for depth */
+  /* Microscopic texture overlay for Apple Liquid Glass realism */
   body::before {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.04;
+    right: 0;
+    bottom: 0;
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.02) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(255, 255, 255, 0.02) 3px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.02) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(255, 255, 255, 0.02) 3px
+      );
+    opacity: 0.6;
     pointer-events: none;
     z-index: 1;
   }
@@ -220,20 +235,22 @@ All colors MUST be HSL.
 
 @layer utilities {
   /* ═══════════════════════════════════════
-     UNIFIED LIQUID GLASS SYSTEM
-     Ultra-realistic morning dew on glass
+     APPLE LIQUID GLASS META-MATERIAL SYSTEM
+     WWDC 2025 Specification
      ═══════════════════════════════════════ */
 
-  /* Base Liquid Glass - Subtle frosted glass with environmental tint */
+  /* Base Liquid Glass - Apple Specification */
   .liquid-glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(32px) saturate(180%);
-    -webkit-backdrop-filter: blur(32px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(24px) contrast(1.15) brightness(1.08);
+    -webkit-backdrop-filter: blur(24px) contrast(1.15) brightness(1.08);
+    border-radius: 1.5rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.28);
     box-shadow: 
-      0 8px 32px rgba(10, 17, 40, 0.15),
-      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      0 8px 32px rgba(31, 38, 135, 0.3),
+      inset 0 2px 10px rgba(255, 255, 255, 0.19);
     position: relative;
+    overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -243,31 +260,57 @@ All colors MUST be HSL.
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(147, 180, 220, 0.03) 0%, transparent 50%);
+    height: 30%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, transparent 100%);
+    filter: blur(1.2px);
     pointer-events: none;
-    border-radius: inherit;
+  }
+
+  .liquid-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.03) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(255, 255, 255, 0.03) 3px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.03) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(255, 255, 255, 0.03) 3px
+      );
+    opacity: 0.03;
+    mix-blend-mode: overlay;
+    pointer-events: none;
   }
 
   .liquid-glass:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.22);
-    transform: translateY(-1px);
+    backdrop-filter: blur(28px) contrast(1.18) brightness(1.1);
+    -webkit-backdrop-filter: blur(28px) contrast(1.18) brightness(1.1);
+    transform: translateY(-2px);
     box-shadow: 
-      0 12px 40px rgba(10, 17, 40, 0.2),
-      inset 0 1px 2px rgba(255, 255, 255, 0.15);
+      0 12px 48px rgba(31, 38, 135, 0.35),
+      inset 0 3px 12px rgba(255, 255, 255, 0.22);
   }
 
-  /* Strong Liquid Glass - More prominent for key sections */
+  /* Strong Liquid Glass - Enhanced prominence */
   .liquid-glass-strong {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(48px) saturate(200%);
-    -webkit-backdrop-filter: blur(48px) saturate(200%);
-    border: 2px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(32px) contrast(1.18) brightness(1.1);
+    -webkit-backdrop-filter: blur(32px) contrast(1.18) brightness(1.1);
+    border-radius: 1.5rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.32);
     box-shadow: 
-      0 12px 48px rgba(10, 17, 40, 0.25),
-      inset 0 1px 2px rgba(255, 255, 255, 0.12);
+      0 12px 48px rgba(31, 38, 135, 0.35),
+      inset 0 3px 12px rgba(255, 255, 255, 0.22);
     position: relative;
+    overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -277,23 +320,24 @@ All colors MUST be HSL.
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(200, 220, 240, 0.04) 0%, transparent 60%);
+    height: 35%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+    filter: blur(1.5px);
     pointer-events: none;
-    border-radius: inherit;
   }
 
   /* Button Liquid Glass - Interactive elements */
   .liquid-glass-button {
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(32px) saturate(180%);
-    -webkit-backdrop-filter: blur(32px) saturate(180%);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(20px) contrast(1.12) brightness(1.06);
+    -webkit-backdrop-filter: blur(20px) contrast(1.12) brightness(1.06);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
     box-shadow: 
-      0 8px 24px rgba(10, 17, 40, 0.2),
-      inset 0 1px 1px rgba(255, 255, 255, 0.15);
-    position: relative;
+      0 4px 16px rgba(31, 38, 135, 0.25),
+      inset 0 1px 2px rgba(255, 255, 255, 0.25);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
   }
 
   .liquid-glass-button::before {
@@ -302,19 +346,20 @@ All colors MUST be HSL.
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(180, 220, 255, 0.05) 0%, transparent 50%);
+    height: 40%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+    filter: blur(1px);
     pointer-events: none;
     border-radius: inherit;
   }
 
   .liquid-glass-button:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(24px) contrast(1.15) brightness(1.08);
+    -webkit-backdrop-filter: blur(24px) contrast(1.15) brightness(1.08);
     transform: translateY(-2px);
     box-shadow: 
-      0 16px 40px rgba(10, 17, 40, 0.3),
-      inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      0 6px 24px rgba(31, 38, 135, 0.35),
+      inset 0 1px 3px rgba(255, 255, 255, 0.3);
   }
   
   /* Glass morphism utilities - Legacy support with updated values */
