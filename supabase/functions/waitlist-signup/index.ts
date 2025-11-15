@@ -15,7 +15,7 @@ const waitlistSchema = z.object({
   use_case: z.string().max(500, 'Use case must be less than 500 characters').trim().nullable().optional(),
   source: z.string().max(50).optional().default('direct'),
   user_agent: z.string().max(500).optional().nullable(),
-  referer: z.string().max(500).optional().nullable(),
+  referer: z.string().max(1000).optional().nullable(),
 });
 
 // Simple in-memory rate limiting (resets on function restart)
