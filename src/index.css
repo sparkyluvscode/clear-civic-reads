@@ -8,6 +8,33 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* === Spacing Scale (8px base system) === */
+    --space-xs: 0.5rem;    /* 8px - Tiny gaps (icon to text) */
+    --space-sm: 1rem;      /* 16px - Small spacing (within cards) */
+    --space-md: 1.5rem;    /* 24px - Medium spacing (related elements) */
+    --space-lg: 2rem;      /* 32px - Large spacing (form fields) */
+    --space-xl: 3rem;      /* 48px - XL spacing (card padding) */
+    --space-2xl: 4rem;     /* 64px - XXL spacing (section padding) */
+    --space-3xl: 6rem;     /* 96px - Huge spacing (between major sections) */
+    --space-4xl: 7.5rem;   /* 120px - Massive spacing (hero padding) */
+    
+    /* === Typography Scale with Optimized Line Heights === */
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-base: 1rem;     /* 16px */
+    --text-lg: 1.125rem;   /* 18px */
+    --text-xl: 1.25rem;    /* 20px */
+    --text-2xl: 1.5rem;    /* 24px */
+    --text-3xl: 1.875rem;  /* 30px */
+    --text-4xl: 2.25rem;   /* 36px */
+    --text-5xl: 3rem;      /* 48px */
+    
+    /* Line heights (inversely proportional to font size) */
+    --leading-tight: 1.1;   /* Large display text */
+    --leading-snug: 1.3;    /* Headings */
+    --leading-normal: 1.5;  /* Body text */
+    --leading-relaxed: 1.7; /* Small text, captions */
+    
     --background: 220 20% 8%;
     --foreground: 0 0% 98%;
 
@@ -185,6 +212,8 @@ All colors MUST be HSL.
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    line-height: var(--leading-normal);
+    font-size: var(--text-base);
     position: relative;
     overflow-x: hidden;
   }
@@ -232,6 +261,40 @@ All colors MUST be HSL.
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+  }
+  
+  /* Typography hierarchy with proper line heights */
+  h1 {
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    font-weight: 900;
+  }
+  
+  h2 {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+    font-weight: 800;
+  }
+  
+  h3 {
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    font-weight: 700;
+  }
+  
+  h4, h5, h6 {
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    font-weight: 600;
+  }
+  
+  p, li {
+    line-height: var(--leading-normal);
+  }
+  
+  small, .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
   }
 }
 

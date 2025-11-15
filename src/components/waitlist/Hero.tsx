@@ -13,7 +13,7 @@ const benefits = [
 
 export default function Hero({ onJoinClick }: HeroProps) {
   return (
-    <section className="relative overflow-hidden px-4 py-20 md:py-32 min-h-[90vh] flex items-center">
+    <section className="relative overflow-hidden px-4 py-24 md:py-40 min-h-[90vh] flex items-center">
       {/* Liquid Glass Droplet Background */}
       <div className="absolute inset-0">
         {/* Large floating silver/ice translucent orbs */}
@@ -42,7 +42,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </div>
 
         <h1 
-          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-7 leading-[1.08] tracking-tight relative z-20"
+          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight relative z-20"
           style={{ 
             textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(147, 197, 253, 0.4)'
           }}
@@ -50,8 +50,8 @@ export default function Hero({ onJoinClick }: HeroProps) {
           Policy clarity, with sources you can check
         </h1>
         
-        <p className="text-xl text-white mb-11 max-w-3xl mx-auto leading-relaxed font-medium relative z-20" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3)' }}>
-          Plain-English explanations of bills and ballot measures—backed by <span className="font-bold">citations</span>. 
+        <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-[1.6] font-normal relative z-20" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3)' }}>
+          Plain-English explanations of bills and ballot measures—backed by <span className="font-semibold text-white">citations</span>. 
           Join the waitlist to get early access in your area.
         </p>
 
@@ -72,7 +72,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-5 justify-center mb-14">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
           <Button
             onClick={onJoinClick}
             size="lg"
@@ -87,21 +87,16 @@ export default function Hero({ onJoinClick }: HeroProps) {
           </Button>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 text-white mb-7">
-          {benefits.map((benefit, index) => (
-            <div 
-              key={index} 
-              className="flex items-center gap-3 liquid-glass-strong rounded-full px-7 py-4 hover-lift shadow-glass-strong shimmer-hover relative overflow-hidden group"
-            >
-              <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-ice-blue drop-shadow-lg relative z-10" />
-              <span className="text-sm font-black text-white relative z-10" style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.2)' }}>{benefit}</span>
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-70" />
-              <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ boxShadow: '0 0 20px rgba(147, 197, 253, 0.3) inset' }} />
-            </div>
+        <ul className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-x-12 gap-y-5 text-white/85 relative z-20 mb-8">
+          {benefits.map((benefit) => (
+            <li key={benefit} className="flex items-center gap-3 text-base font-normal">
+              <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-ice-blue drop-shadow-lg" />
+              <span style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>{benefit}</span>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <p className="text-sm text-white/90 mt-5 font-medium relative z-20" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
+        <p className="text-sm text-white/75 relative z-20 font-normal" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
           No spam. Unsubscribe anytime.
         </p>
       </div>
