@@ -34,15 +34,8 @@ export default function Waitlist() {
 
   return (
     <div className="min-h-screen">
-      {/* Raindrop dew effect overlay */}
+      {/* Ultra-realistic raindrop dew effect overlay */}
       <RaindropEffect />
-      
-      {/* Floating orbs background */}
-      <div className="floating-orbs">
-        <div className="orb orb-1" />
-        <div className="orb orb-2" />
-        <div className="orb orb-3" />
-      </div>
       
       {/* SVG Filter for liquid glass distortion */}
       <svg style={{ position: 'absolute', width: 0, height: 0 }}>
