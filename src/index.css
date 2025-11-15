@@ -24,7 +24,7 @@ All colors MUST be HSL.
     --secondary-foreground: 220 15% 10%;
 
     --muted: 210 20% 94%;
-    --muted-foreground: 220 10% 40%;
+    --muted-foreground: 220 10% 55%;
 
     --accent: 210 100% 88%;
     --accent-foreground: 220 15% 10%;
@@ -733,7 +733,7 @@ All colors MUST be HSL.
   
   /* Glass input styling - premium frosted effect */
   .input-glass {
-    background: hsla(0, 0%, 100%, 0.92);
+    background: hsla(0, 0%, 100%, 0.95);
     backdrop-filter: blur(32px) saturate(180%);
     -webkit-backdrop-filter: blur(32px) saturate(180%);
     border: 2px solid hsl(210 60% 85% / 0.6);
@@ -741,10 +741,17 @@ All colors MUST be HSL.
       inset 0 1px 0 0 hsl(0 0% 100% / 0.25),
       0 2px 8px hsl(210 30% 15% / 0.08);
     transition: all 0.3s ease;
+    color: hsl(220 15% 10%) !important;
+  }
+  
+  .input-glass::placeholder {
+    color: hsl(220 10% 45%);
+    opacity: 0.8;
   }
   
   .input-glass:focus {
     border-color: hsl(210 60% 55% / 0.8);
+    background: hsla(0, 0%, 100%, 0.98);
     box-shadow: 
       inset 0 1px 0 0 hsl(0 0% 100% / 0.3),
       0 4px 16px hsl(210 60% 55% / 0.15),
