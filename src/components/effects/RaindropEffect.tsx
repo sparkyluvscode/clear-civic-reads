@@ -17,35 +17,39 @@ export const RaindropEffect = () => {
   const animationFrameRef = useRef<number>();
   const mousePos = useRef({ x: 0, y: 0 });
 
-  // Initialize droplets with natural distribution - varied sizes from tiny mist to large dew
+  // Initialize droplets with natural distribution - microscopic dew realism
   useEffect(() => {
     const initialDroplets: Droplet[] = [];
-    const dropletCount = 45; // Increased for better coverage
+    // Higher density for microscopic appearance: 150-250 total droplets
+    const dropletCount = 200;
 
     for (let i = 0; i < dropletCount; i++) {
-      // Create natural clustering along curves
-      const isInCluster = Math.random() > 0.35;
+      // Create natural clustering along curves (Perlin-like distribution)
+      const isInCluster = Math.random() > 0.30;
       let x, y;
 
       if (isInCluster && initialDroplets.length > 0) {
         const clusterCenter = initialDroplets[Math.floor(Math.random() * initialDroplets.length)];
-        // Tighter clustering for realism
-        x = clusterCenter.x + (Math.random() - 0.5) * 120;
-        y = clusterCenter.y + (Math.random() - 0.5) * 120;
+        // Tighter clustering for condensation patterns
+        x = clusterCenter.x + (Math.random() - 0.5) * 80;
+        y = clusterCenter.y + (Math.random() - 0.5) * 80;
       } else {
         x = Math.random() * window.innerWidth;
         y = Math.random() * window.innerHeight;
       }
 
-      // Size distribution: 70% tiny (8-20px), 20% medium (20-50px), 10% large (50-100px)
+      // Apple Liquid Glass microscopic size distribution:
+      // 70% TINY (2-6px), 20% SMALL (8-15px), 8% MEDIUM (18-30px), 2% LARGE (35-50px)
       let size;
       const sizeRoll = Math.random();
-      if (sizeRoll < 0.7) {
-        size = 8 + Math.random() * 12; // Tiny mist-like
-      } else if (sizeRoll < 0.9) {
-        size = 20 + Math.random() * 30; // Medium
+      if (sizeRoll < 0.70) {
+        size = 2 + Math.random() * 4; // 2-6px: barely visible micro-beads
+      } else if (sizeRoll < 0.90) {
+        size = 8 + Math.random() * 7; // 8-15px: noticeable but delicate
+      } else if (sizeRoll < 0.98) {
+        size = 18 + Math.random() * 12; // 18-30px: occasional accent drops
       } else {
-        size = 50 + Math.random() * 50; // Large dewdrops
+        size = 35 + Math.random() * 15; // 35-50px: rare focal points (MAX 50px)
       }
 
       initialDroplets.push({
@@ -55,7 +59,7 @@ export const RaindropEffect = () => {
         size: size,
         velocity: { x: 0, y: 0 },
         wobble: Math.random() * Math.PI * 2,
-        wobbleSpeed: 0.015 + Math.random() * 0.025,
+        wobbleSpeed: size < 6 ? 0.005 + Math.random() * 0.01 : 0.01 + Math.random() * 0.02,
         merging: false,
       });
     }
@@ -94,29 +98,37 @@ export const RaindropEffect = () => {
 
       setDroplets((prevDroplets) => {
         return prevDroplets.map((droplet) => {
-          // Gravity effect - larger drops slide slower, tiny drops stay mostly still
-          const gravityFactor = Math.min(droplet.size / 100, 0.15);
-          let newY = droplet.y + gravityFactor * 0.08;
+          // Realistic microscopic physics based on size
+          let newY = droplet.y;
+          let newVelX = droplet.velocity.x * 0.95;
+          let newVelY = droplet.velocity.y * 0.95;
           
-          // Enhanced wobble animation with size-based variation
+          // Gravity: Only affects larger drops (35-50px slide, smaller stay mostly static)
+          if (droplet.size > 30) {
+            const gravityFactor = (droplet.size - 30) / 100; // 35-50px range
+            newY += gravityFactor * 0.05; // Very slow slide (5-15px/sec)
+          } else if (droplet.size > 15) {
+            // Medium drops: imperceptible drift
+            newY += 0.01;
+          }
+          // Tiny drops (2-6px) and small drops (8-15px): Static or negligible motion
+          
+          // Subtle wobble based on size
           const newWobble = droplet.wobble + droplet.wobbleSpeed;
-          const wobbleIntensity = droplet.size < 20 ? 0.5 : 0.2; // Tiny drops wobble more
+          const wobbleIntensity = droplet.size < 6 ? 0.15 : (droplet.size < 15 ? 0.25 : 0.1);
           const wobbleOffset = Math.sin(newWobble) * wobbleIntensity;
 
-          // Mouse interaction - gentle repel with spring-like physics
+          // Mouse interaction - gentle float/repel (NOT wild bounce)
           const dx = droplet.x - mousePos.current.x;
           const dy = droplet.y - mousePos.current.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           
-          let newVelX = droplet.velocity.x * 0.92;
-          let newVelY = droplet.velocity.y * 0.92;
-
-          // Interaction radius increases with droplet size
-          const interactionRadius = 100 + droplet.size * 0.5;
+          // Interaction radius based on drop size
+          const interactionRadius = droplet.size < 6 ? 60 : (droplet.size < 15 ? 80 : 120);
           
           if (dist < interactionRadius && dist > 0) {
-            const force = Math.pow((interactionRadius - dist) / interactionRadius, 2);
-            const pushStrength = droplet.size < 20 ? 3 : 1.5; // Tiny drops more reactive
+            const force = Math.pow((interactionRadius - dist) / interactionRadius, 1.8);
+            const pushStrength = droplet.size < 6 ? 1.2 : (droplet.size < 15 ? 0.8 : 0.4);
             newVelX += (dx / dist) * force * pushStrength;
             newVelY += (dy / dist) * force * pushStrength;
           }
@@ -162,103 +174,109 @@ export const RaindropEffect = () => {
   const renderDroplet = (ctx: CanvasRenderingContext2D, droplet: Droplet) => {
     const { x, y, size } = droplet;
 
-    // Soft diffused shadow beneath droplet
-    ctx.save();
-    ctx.beginPath();
-    const shadowGradient = ctx.createRadialGradient(x, y + size * 0.15, 0, x, y + size * 0.15, size * 0.9);
-    shadowGradient.addColorStop(0, "rgba(10, 17, 40, 0.2)");
-    shadowGradient.addColorStop(0.6, "rgba(10, 17, 40, 0.08)");
-    shadowGradient.addColorStop(1, "rgba(10, 17, 40, 0)");
-    ctx.fillStyle = shadowGradient;
-    ctx.arc(x, y + size * 0.15, size * 0.9, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
+    // Base opacity: 15-30% translucent (barely visible individually)
+    const baseOpacity = 0.15 + Math.random() * 0.15;
 
-    // Main droplet body - ultra-realistic translucent gradient
+    // Soft diffused shadow (only for medium+ drops)
+    if (size > 15) {
+      ctx.save();
+      ctx.beginPath();
+      const shadowGradient = ctx.createRadialGradient(x, y + size * 0.12, 0, x, y + size * 0.12, size * 0.7);
+      shadowGradient.addColorStop(0, `rgba(10, 17, 40, ${baseOpacity * 0.6})`);
+      shadowGradient.addColorStop(0.7, `rgba(10, 17, 40, ${baseOpacity * 0.2})`);
+      shadowGradient.addColorStop(1, "rgba(10, 17, 40, 0)");
+      ctx.fillStyle = shadowGradient;
+      ctx.arc(x, y + size * 0.12, size * 0.7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Main droplet body - ultra-subtle translucent gradient
     ctx.save();
     ctx.beginPath();
     const bodyGradient = ctx.createRadialGradient(
-      x - size * 0.25,
-      y - size * 0.25,
+      x - size * 0.3,
+      y - size * 0.3,
       size * 0.05,
       x,
       y,
       size
     );
-    // Environmental color pickup - pale blue/silver tones
-    bodyGradient.addColorStop(0, "rgba(255, 255, 255, 0.18)");
-    bodyGradient.addColorStop(0.3, "rgba(200, 220, 240, 0.06)");
-    bodyGradient.addColorStop(0.6, "rgba(147, 180, 220, 0.04)");
-    bodyGradient.addColorStop(1, "rgba(100, 150, 200, 0.02)");
+    // Environmental color pickup - barely visible, natural tones
+    bodyGradient.addColorStop(0, `rgba(255, 255, 255, ${baseOpacity * 0.8})`);
+    bodyGradient.addColorStop(0.4, `rgba(200, 220, 240, ${baseOpacity * 0.4})`);
+    bodyGradient.addColorStop(0.7, `rgba(147, 180, 220, ${baseOpacity * 0.25})`);
+    bodyGradient.addColorStop(1, `rgba(100, 150, 200, ${baseOpacity * 0.1})`);
     ctx.fillStyle = bodyGradient;
     ctx.arc(x, y, size, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
 
-    // Sharp specular highlight (top-left)
+    // Sharp specular highlight (1-2px white dot)
     ctx.save();
     ctx.beginPath();
+    const highlightSize = size < 6 ? size * 0.25 : (size < 15 ? size * 0.3 : size * 0.35);
     const highlightGradient = ctx.createRadialGradient(
       x - size * 0.35,
       y - size * 0.35,
       0,
       x - size * 0.35,
       y - size * 0.35,
-      size * 0.35
+      highlightSize
     );
-    highlightGradient.addColorStop(0, "rgba(255, 255, 255, 0.9)");
-    highlightGradient.addColorStop(0.4, "rgba(255, 255, 255, 0.4)");
+    highlightGradient.addColorStop(0, `rgba(255, 255, 255, ${Math.min(baseOpacity * 4, 0.9)})`);
+    highlightGradient.addColorStop(0.5, `rgba(255, 255, 255, ${baseOpacity * 1.5})`);
     highlightGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
     ctx.fillStyle = highlightGradient;
-    ctx.arc(x - size * 0.35, y - size * 0.35, size * 0.35, 0, Math.PI * 2);
+    ctx.arc(x - size * 0.35, y - size * 0.35, highlightSize, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
 
-    // Crisp meniscus edge
-    ctx.save();
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
-    ctx.lineWidth = size > 30 ? 1.5 : 1;
-    ctx.beginPath();
-    ctx.arc(x, y, size - 0.5, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.restore();
-
-    // Subtle iridescent prismatic fringe (rainbow specular glint)
-    if (size > 15) {
+    // Crisp meniscus edge with subtle rim (only for visible drops >8px)
+    if (size > 8) {
       ctx.save();
-      // Pale blue iridescence
-      ctx.strokeStyle = "rgba(180, 220, 255, 0.15)";
-      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = `rgba(255, 255, 255, ${baseOpacity * 1.2})`;
+      ctx.lineWidth = size > 30 ? 0.8 : 0.5;
       ctx.beginPath();
-      ctx.arc(x, y, size - 1, Math.PI * 1.1, Math.PI * 1.4);
-      ctx.stroke();
-      
-      // Pale green iridescence
-      ctx.strokeStyle = "rgba(200, 255, 220, 0.1)";
-      ctx.lineWidth = 0.6;
-      ctx.beginPath();
-      ctx.arc(x, y, size - 1.5, Math.PI * 1.5, Math.PI * 1.7);
+      ctx.arc(x, y, size - 0.3, 0, Math.PI * 2);
       ctx.stroke();
       ctx.restore();
     }
 
-    // Caustic light pattern inside larger drops
-    if (size > 40) {
+    // Subtle iridescent prismatic fringe (only for larger drops >18px)
+    if (size > 18) {
       ctx.save();
-      ctx.globalAlpha = 0.08;
+      ctx.strokeStyle = `rgba(180, 220, 255, ${baseOpacity * 0.6})`;
+      ctx.lineWidth = 0.5;
+      ctx.beginPath();
+      ctx.arc(x, y, size - 0.8, Math.PI * 1.1, Math.PI * 1.35);
+      ctx.stroke();
+      
+      ctx.strokeStyle = `rgba(200, 255, 220, ${baseOpacity * 0.4})`;
+      ctx.lineWidth = 0.4;
+      ctx.beginPath();
+      ctx.arc(x, y, size - 1, Math.PI * 1.45, Math.PI * 1.65);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Caustic light pattern (only for large focal drops >35px)
+    if (size > 35) {
+      ctx.save();
+      ctx.globalAlpha = baseOpacity * 0.5;
       const causticGradient = ctx.createRadialGradient(
-        x + size * 0.1,
-        y + size * 0.15,
+        x + size * 0.12,
+        y + size * 0.18,
         0,
-        x + size * 0.1,
-        y + size * 0.15,
-        size * 0.6
+        x + size * 0.12,
+        y + size * 0.18,
+        size * 0.5
       );
-      causticGradient.addColorStop(0, "rgba(200, 230, 255, 0.3)");
+      causticGradient.addColorStop(0, "rgba(200, 230, 255, 0.25)");
       causticGradient.addColorStop(1, "rgba(200, 230, 255, 0)");
       ctx.fillStyle = causticGradient;
       ctx.beginPath();
-      ctx.arc(x + size * 0.1, y + size * 0.15, size * 0.6, 0, Math.PI * 2);
+      ctx.arc(x + size * 0.12, y + size * 0.18, size * 0.5, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     }
