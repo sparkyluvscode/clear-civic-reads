@@ -199,6 +199,7 @@ export default function WaitlistForm() {
             <SelectValue placeholder="Select your role" />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value="student">Student</SelectItem>
             <SelectItem value="voter">Voter</SelectItem>
             <SelectItem value="journalist">Journalist / Creator</SelectItem>
             <SelectItem value="nonprofit">Nonprofit / Advocate</SelectItem>
