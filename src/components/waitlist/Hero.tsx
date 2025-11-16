@@ -12,8 +12,8 @@ const benefits = [
 
 export default function Hero({ onJoinClick }: HeroProps) {
   return (
-    <section className="relative overflow-hidden px-4 py-24 md:py-40 min-h-[90vh] flex items-center">
-      <div className="relative max-w-5xl mx-auto text-center">
+    <section className="relative overflow-hidden px-4 py-32 md:py-48 min-h-[90vh] flex items-center">
+      <div className="relative max-w-6xl mx-auto text-center">
         <div 
           className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-white text-sm font-semibold mb-8 shimmer shadow-glass-strong hover-lift opacity-0 animate-fade-in"
           style={{ 
@@ -29,7 +29,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </div>
 
         <h1 
-          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight relative z-20 opacity-0 animate-fade-in"
+          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-10 leading-[1.05] tracking-tight relative z-20 opacity-0 animate-fade-in"
           style={{ 
             textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(147, 197, 253, 0.4)',
             animationDelay: '1.2s',
@@ -40,7 +40,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </h1>
         
         <p 
-          className="text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-[1.6] font-normal relative z-20 opacity-0 animate-fade-in" 
+          className="text-xl md:text-2xl text-white/90 mb-16 max-w-3xl mx-auto leading-relaxed font-normal relative z-20 opacity-0 animate-fade-in"
           style={{ 
             textShadow: '0 3px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3)',
             animationDelay: '1.9s',
@@ -75,7 +75,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </div>
 
         <div 
-          className="flex flex-col sm:flex-row gap-6 justify-center mb-16 opacity-0 animate-fade-in"
+          className="flex flex-col sm:flex-row gap-6 justify-center mb-20 opacity-0 animate-fade-in"
           style={{ 
             animationDelay: '3.3s',
             animationFillMode: 'forwards'
@@ -83,18 +83,20 @@ export default function Hero({ onJoinClick }: HeroProps) {
         >
           <button
             onClick={onJoinClick}
-            className="liquid-glass-strong text-lg px-14 py-8 rounded-2xl text-white font-bold shadow-2xl shimmer-fast hover:scale-105 transition-transform"
+            className="group relative liquid-glass-strong text-lg px-16 py-9 rounded-2xl text-white font-bold shadow-glass-strong hover:shadow-glow-ice shimmer-fast transition-all duration-500 hover:scale-[1.02] overflow-hidden"
             aria-label="Join the waitlist for early access"
           >
-            <span className="relative z-10 flex items-center gap-2.5 justify-center">
+            {/* Glow effect on hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-ice-blue/20 via-ice-blue/30 to-ice-blue/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+            <span className="relative z-10 flex items-center gap-3 justify-center">
               Get Early Access — Launching Soon
-              <ArrowRight className="h-6 w-6" />
+              <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </button>
         </div>
 
         <ul
-          className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-x-12 gap-y-5 text-white/85 relative z-20 mb-8 opacity-0 animate-fade-in"
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-x-14 gap-y-6 text-white/85 relative z-20 mb-10 opacity-0 animate-fade-in"
           style={{ 
             animationDelay: '4.0s',
             animationFillMode: 'forwards'
