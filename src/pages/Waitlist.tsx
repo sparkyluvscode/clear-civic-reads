@@ -31,6 +31,10 @@ export default function Waitlist() {
     document.getElementById("waitlist-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -40,37 +44,78 @@ export default function Waitlist() {
           filter: 'url(#liquid-glass-distortion) brightness(1.05)',
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
-            <img 
-              src={clearpolicyLogo} 
-              alt="ClearPolicy" 
-              className="w-11 h-11 rounded-xl group-hover:scale-110 transition-transform duration-500 drop-shadow-lg"
-            />
-            <span className="text-xl font-black text-white tracking-tight">ClearPolicy</span>
-          </Link>
-          <Button 
-            onClick={scrollToForm} 
-            variant="premium"
-            size="default"
-            className="shadow-xl hover:shadow-2xl shimmer-fast"
-          >
-            Join waitlist
-          </Button>
+        <div className="max-w-7xl mx-auto px-6 py-5">
+          <div className="flex items-center justify-between mb-4">
+            <Link to="/" className="flex items-center gap-3 group">
+              <img 
+                src={clearpolicyLogo} 
+                alt="ClearPolicy" 
+                className="w-11 h-11 rounded-xl group-hover:scale-110 transition-transform duration-500 drop-shadow-lg"
+              />
+              <span className="text-xl font-black text-white tracking-tight">ClearPolicy</span>
+            </Link>
+            <Button 
+              onClick={scrollToForm} 
+              variant="premium"
+              size="default"
+              className="shadow-xl hover:shadow-2xl shimmer-fast"
+            >
+              Join waitlist
+            </Button>
+          </div>
+          
+          {/* Section Navigation */}
+          <nav className="flex items-center justify-center gap-6 overflow-x-auto">
+            <button 
+              onClick={() => scrollToSection("demo")}
+              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
+            >
+              Demo
+            </button>
+            <button 
+              onClick={() => scrollToSection("comparison")}
+              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
+            >
+              Comparison
+            </button>
+            <button 
+              onClick={() => scrollToSection("how-it-works")}
+              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
+            >
+              How It Works
+            </button>
+            <button 
+              onClick={() => scrollToSection("benefits")}
+              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
+            >
+              Benefits
+            </button>
+            <button 
+              onClick={() => scrollToSection("who-its-for")}
+              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
+            >
+              Who It's For
+            </button>
+            <button 
+              onClick={() => scrollToSection("faq")}
+              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
+            >
+              FAQ
+            </button>
+          </nav>
         </div>
       </header>
 
       {/* Main content */}
-      <main className="pt-16 relative z-10">
+      <main className="pt-28 relative z-10">
         <Hero onJoinClick={scrollToForm} />
-        <InteractiveDemo />
-        <SocialProof />
-        <ComparisonTable />
-        <HowItWorks />
-        <LaunchBenefits />
+        <div id="demo"><InteractiveDemo /></div>
+        <div id="comparison"><ComparisonTable /></div>
+        <div id="how-it-works"><HowItWorks /></div>
+        <div id="benefits"><LaunchBenefits /></div>
         <TrustSection />
-        <AudienceSection />
-        <FAQSection />
+        <div id="who-its-for"><AudienceSection /></div>
+        <div id="faq"><FAQSection /></div>
 
         {/* Form section */}
         <section id="waitlist-form" className="py-24 px-4 scroll-mt-20 relative">
