@@ -364,19 +364,26 @@ All colors MUST be HSL.
       inset 0 3px 12px rgba(255, 255, 255, 0.22);
   }
 
-  /* Strong Liquid Glass - Enhanced prominence */
+  /* Strong Liquid Glass - Premium luxury effect */
   .liquid-glass-strong {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(32px) contrast(1.18) brightness(1.1);
-    -webkit-backdrop-filter: blur(32px) contrast(1.18) brightness(1.1);
+    background: linear-gradient(
+      135deg,
+      hsla(210, 100%, 97%, 0.12) 0%,
+      hsla(220, 80%, 92%, 0.08) 50%,
+      hsla(215, 70%, 88%, 0.10) 100%
+    );
+    backdrop-filter: blur(40px) saturate(160%) brightness(1.05);
+    -webkit-backdrop-filter: blur(40px) saturate(160%) brightness(1.05);
     border-radius: 1.5rem;
-    border: 1.5px solid rgba(255, 255, 255, 0.32);
+    border: 1.5px solid hsla(210, 100%, 95%, 0.35);
     box-shadow: 
-      0 12px 48px rgba(31, 38, 135, 0.35),
-      inset 0 3px 12px rgba(255, 255, 255, 0.22);
+      0 8px 32px 0 hsla(220, 40%, 15%, 0.4),
+      0 16px 64px 0 hsla(220, 60%, 20%, 0.2),
+      inset 0 1px 2px 0 hsla(0, 0%, 100%, 0.45),
+      inset 0 -1px 2px 0 hsla(220, 50%, 70%, 0.15);
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Iridescent chromatic aberration overlay for liquid-glass-strong */
@@ -384,18 +391,22 @@ All colors MUST be HSL.
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: linear-gradient(120deg, 
-      rgba(255, 105, 180, 0.08) 0%, 
-      rgba(100, 200, 255, 0.08) 50%, 
-      rgba(150, 255, 150, 0.08) 100%
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsla(200, 100%, 95%, 0.15),
+      transparent
     );
-    filter: blur(1.5px);
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
-    opacity: 0.6;
     z-index: 1;
+  }
+  
+  .liquid-glass-strong:hover::before {
+    left: 100%;
   }
   
   /* Micro-texture for liquid-glass-strong */
@@ -424,14 +435,23 @@ All colors MUST be HSL.
     z-index: 2;
   }
   
+  
   .liquid-glass-strong:hover {
-    backdrop-filter: blur(40px) contrast(1.20) brightness(1.12);
-    -webkit-backdrop-filter: blur(40px) contrast(1.20) brightness(1.12);
-    border-color: rgba(255, 255, 255, 0.40);
+    background: linear-gradient(
+      135deg,
+      hsla(210, 100%, 97%, 0.18) 0%,
+      hsla(220, 80%, 92%, 0.12) 50%,
+      hsla(215, 70%, 88%, 0.14) 100%
+    );
+    backdrop-filter: blur(48px) saturate(180%) brightness(1.08);
+    -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(1.08);
+    border-color: hsla(210, 100%, 95%, 0.45);
     box-shadow: 
-      0 16px 64px rgba(31, 38, 135, 0.5),
-      inset 0 2px 14px rgba(255, 255, 255, 0.25);
-    transform: translateY(-3px);
+      0 12px 48px 0 hsla(220, 40%, 15%, 0.5),
+      0 24px 80px 0 hsla(220, 60%, 25%, 0.3),
+      inset 0 1px 3px 0 hsla(0, 0%, 100%, 0.55),
+      inset 0 -1px 3px 0 hsla(220, 60%, 75%, 0.2);
+    transform: translateY(-3px) scale(1.01);
   }
 
   /* Button Liquid Glass - Interactive elements */
