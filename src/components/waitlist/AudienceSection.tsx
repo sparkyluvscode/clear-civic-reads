@@ -3,7 +3,7 @@ import { Users, Newspaper, Heart, Briefcase } from "lucide-react";
 const audiences = [
   {
     icon: Users,
-    title: "Voters",
+    title: "Students & Voters",
     description: "Explain this measure to me in two minutes, and show the receipts.",
     color: "text-primary",
     bgColor: "bg-trust-blue-light",
