@@ -26,7 +26,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
           <img 
             src={clearPolicyLogo} 
             alt="ClearPolicy" 
-            className="h-16 md:h-20 mx-auto drop-shadow-2xl"
+            className="h-24 md:h-32 mx-auto drop-shadow-2xl"
             style={{
               filter: 'drop-shadow(0 4px 20px rgba(255,255,255,0.3)) drop-shadow(0 0 40px rgba(147, 197, 253, 0.4))'
             }}
