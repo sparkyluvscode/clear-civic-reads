@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Hero from "@/components/waitlist/Hero";
 import HowItWorks from "@/components/waitlist/HowItWorks";
@@ -9,6 +9,8 @@ import ComparisonTable from "@/components/waitlist/ComparisonTable";
 import { Button } from "@/components/ui/button";
 import clearpolicyLogo from "@/assets/clearpolicy-logo.png";
 export default function Waitlist() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
     // Update page title and meta description
     document.title = "ClearPolicy — Plain-English, cited explanations of ballot measures";
@@ -16,6 +18,14 @@ export default function Waitlist() {
     if (metaDescription) {
       metaDescription.setAttribute("content", "Understand bills and ballot measures in minutes. ClearPolicy gives plain-English summaries with citations you can verify. Join the waitlist for early access.");
     }
+
+    // Scroll detection
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   const scrollToForm = () => {
     document.getElementById("waitlist-form")?.scrollIntoView({
@@ -29,28 +39,60 @@ export default function Waitlist() {
   };
   return <div className="min-h-screen">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong" style={{
-      filter: 'url(#liquid-glass-distortion) brightness(1.05)',
-      borderRadius: '0 0 1rem 1rem'
-    }}>
-        <div className="max-w-7xl mx-auto px-6 py-5">
-          <div className="flex items-center justify-between mb-4">
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong transition-all duration-700 ease-in-out ${
+          isScrolled ? 'py-2' : 'py-0'
+        }`}
+        style={{
+          filter: 'url(#liquid-glass-distortion) brightness(1.05)',
+          borderRadius: '0 0 1rem 1rem',
+          backdropFilter: isScrolled ? 'blur(30px) saturate(180%)' : 'blur(20px) saturate(150%)',
+        }}
+      >
+        <div className={`max-w-7xl mx-auto px-6 transition-all duration-700 ease-in-out ${
+          isScrolled ? 'py-3' : 'py-5'
+        }`}>
+          <div className={`flex items-center justify-between transition-all duration-700 ease-in-out ${
+            isScrolled ? 'mb-0' : 'mb-4'
+          }`}>
             <div className="flex items-center gap-6">
               <Link to="/" className="flex items-center gap-3 group">
-                <img src={clearpolicyLogo} alt="ClearPolicy" className="w-11 h-11 rounded-xl group-hover:scale-110 transition-transform duration-500 drop-shadow-lg" />
-                <span className="text-xl font-black text-white tracking-tight">ClearPolicy</span>
+                <img 
+                  src={clearpolicyLogo} 
+                  alt="ClearPolicy" 
+                  className={`rounded-xl group-hover:scale-110 transition-all duration-700 ease-in-out drop-shadow-lg ${
+                    isScrolled ? 'w-9 h-9' : 'w-11 h-11'
+                  }`}
+                />
+                <span className={`font-black text-white tracking-tight transition-all duration-700 ease-in-out ${
+                  isScrolled ? 'text-lg' : 'text-xl'
+                }`}>
+                  ClearPolicy
+                </span>
               </Link>
-              <Link to="/about" className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap">
+              <Link 
+                to="/about" 
+                className={`text-sm font-medium text-white/80 hover:text-white transition-all duration-700 ease-in-out whitespace-nowrap ${
+                  isScrolled ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'
+                }`}
+              >
                 About
               </Link>
             </div>
-            <Button onClick={scrollToForm} variant="premium" size="default" className="shadow-xl hover:shadow-2xl shimmer-fast">
+            <Button 
+              onClick={scrollToForm} 
+              variant="premium" 
+              size={isScrolled ? "sm" : "default"}
+              className="shadow-xl hover:shadow-2xl shimmer-fast transition-all duration-700 ease-in-out"
+            >
               Join waitlist
             </Button>
           </div>
           
           {/* Section Navigation */}
-          <nav className="flex items-center justify-center gap-6 overflow-x-auto">
+          <nav className={`flex items-center justify-center gap-6 overflow-x-auto transition-all duration-700 ease-in-out ${
+            isScrolled ? 'opacity-0 max-h-0 overflow-hidden' : 'opacity-100 max-h-20'
+          }`}>
             <button onClick={() => scrollToSection("demo")} className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap">
               Demo
             </button>
