@@ -1,4 +1,5 @@
 import { ArrowRight, CheckCircle2, Search } from "lucide-react";
+import clearPolicyLogo from "@/assets/clearpolicy-logo.png";
 
 interface HeroProps {
   onJoinClick: () => void;
@@ -14,6 +15,24 @@ export default function Hero({ onJoinClick }: HeroProps) {
   return (
     <section className="relative overflow-hidden px-4 py-32 md:py-48 min-h-[90vh] flex items-center">
       <div className="relative max-w-6xl mx-auto text-center">
+        {/* ClearPolicy Logo */}
+        <div 
+          className="mb-12 opacity-0 animate-fade-in"
+          style={{ 
+            animationDelay: '0s',
+            animationFillMode: 'forwards'
+          }}
+        >
+          <img 
+            src={clearPolicyLogo} 
+            alt="ClearPolicy" 
+            className="h-16 md:h-20 mx-auto drop-shadow-2xl"
+            style={{
+              filter: 'drop-shadow(0 4px 20px rgba(255,255,255,0.3)) drop-shadow(0 0 40px rgba(147, 197, 253, 0.4))'
+            }}
+          />
+        </div>
+
         <div 
           className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-white text-sm font-semibold mb-8 shimmer shadow-glass-strong hover-lift opacity-0 animate-fade-in"
           style={{ 
