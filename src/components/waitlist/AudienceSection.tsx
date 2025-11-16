@@ -40,12 +40,12 @@ export default function AudienceSection() {
       
       <div className="max-w-6xl mx-auto relative">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 text-glow-hero">
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5 text-glow-hero">
             Who it's for
           </h2>
           <p className="text-xl text-light max-w-2xl mx-auto font-medium">
             Whether you're voting, reporting, advocating, or governing—ClearPolicy helps you 
-            make <span className="text-white font-bold">informed</span> decisions with <span className="text-white font-bold">confidence</span>.
+            make <span className="text-foreground font-bold">informed</span> decisions with <span className="text-foreground font-bold">confidence</span>.
           </p>
         </div>
 
@@ -67,7 +67,7 @@ export default function AudienceSection() {
                   {/* Inner highlight */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-foreground mb-3">
                   {audience.title}
                 </h3>
                 <p className="text-sm text-light leading-relaxed">

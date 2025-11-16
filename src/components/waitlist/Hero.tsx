@@ -15,7 +15,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
     <section className="relative overflow-hidden px-4 py-24 md:py-40 min-h-[90vh] flex items-center">
       <div className="relative max-w-5xl mx-auto text-center">
         <div 
-          className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-white text-sm font-semibold mb-8 shimmer shadow-glass-strong hover-lift opacity-0 animate-fade-in"
+          className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-foreground text-sm font-semibold mb-8 shimmer shadow-glass-strong hover-lift opacity-0 animate-fade-in"
           style={{ 
             animationDelay: '0.5s',
             animationFillMode: 'forwards'
@@ -29,9 +29,8 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </div>
 
         <h1 
-          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight relative z-20 opacity-0 animate-fade-in"
+          className="text-5xl md:text-6xl lg:text-7xl font-black text-foreground mb-8 leading-[1.1] tracking-tight relative z-20 opacity-0 animate-fade-in"
           style={{ 
-            textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(147, 197, 253, 0.4)',
             animationDelay: '1.2s',
             animationFillMode: 'forwards'
           }}
@@ -40,14 +39,13 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </h1>
         
         <p 
-          className="text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-[1.6] font-normal relative z-20 opacity-0 animate-fade-in" 
+          className="text-xl text-foreground/90 mb-12 max-w-3xl mx-auto leading-[1.6] font-normal relative z-20 opacity-0 animate-fade-in" 
           style={{ 
-            textShadow: '0 3px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3)',
             animationDelay: '1.9s',
             animationFillMode: 'forwards'
           }}
         >
-          Plain-English explanations of bills and ballot measures—backed by <span className="font-semibold text-white">citations</span>. 
+          Plain-English explanations of bills and ballot measures—backed by <span className="font-semibold text-foreground">citations</span>. 
           Join the waitlist to get early access in your area.
         </p>
 
@@ -61,13 +59,10 @@ export default function Hero({ onJoinClick }: HeroProps) {
         >
           <div 
             className="liquid-glass-strong rounded-2xl p-2 shadow-glass-hover relative overflow-hidden group"
-            style={{ 
-              filter: 'url(#liquid-glass-distortion) brightness(1.1)',
-            }}
           >
             <div className="flex items-center gap-3 px-4">
-              <Search className="h-6 w-6 text-white opacity-70" />
-              <span className="flex-1 py-4 text-gray-400 text-lg">
+              <Search className="h-6 w-6 text-foreground opacity-70" />
+              <span className="flex-1 py-4 text-muted-foreground text-lg">
                 Search for a ballot measure or policy...
               </span>
             </div>
@@ -83,7 +78,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
         >
           <button
             onClick={onJoinClick}
-            className="liquid-glass-strong text-lg px-14 py-8 rounded-2xl text-white font-bold shadow-2xl shimmer-fast hover:scale-105 transition-transform"
+            className="liquid-glass-strong text-lg px-14 py-8 rounded-2xl text-foreground font-bold shadow-2xl shimmer-fast hover:scale-105 transition-transform"
             aria-label="Join the waitlist for early access"
           >
             <span className="relative z-10 flex items-center gap-2.5 justify-center">
@@ -94,7 +89,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </div>
 
         <ul
-          className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-x-12 gap-y-5 text-white/85 relative z-20 mb-8 opacity-0 animate-fade-in"
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-x-12 gap-y-5 text-foreground/85 relative z-20 mb-8 opacity-0 animate-fade-in"
           style={{ 
             animationDelay: '4.0s',
             animationFillMode: 'forwards'
@@ -103,15 +98,14 @@ export default function Hero({ onJoinClick }: HeroProps) {
           {benefits.map((benefit) => (
             <li key={benefit} className="flex items-center gap-3 text-base font-normal">
               <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-ice-blue drop-shadow-lg" />
-              <span style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>{benefit}</span>
+              <span>{benefit}</span>
             </li>
           ))}
         </ul>
 
         <p 
-          className="text-sm text-white/75 relative z-20 font-normal opacity-0 animate-fade-in" 
+          className="text-sm text-foreground/75 relative z-20 font-normal opacity-0 animate-fade-in" 
           style={{ 
-            textShadow: '0 2px 8px rgba(0,0,0,0.3)',
             animationDelay: '4.0s',
             animationFillMode: 'forwards'
           }}
