@@ -11,7 +11,7 @@ const corsHeaders = {
 const waitlistSchema = z.object({
   email: z.string().email('Invalid email address').max(255, 'Email too long').toLowerCase().trim(),
   zip: z.string().regex(/^\d{5}(-\d{4})?$/, 'Invalid ZIP code format').max(10).optional().nullable(),
-  role: z.enum(['voter', 'journalist', 'nonprofit', 'official', 'other']).nullable().optional(),
+  role: z.enum(['voter', 'student', 'journalist', 'nonprofit', 'official', 'other']).nullable().optional(),
   use_case: z.string().max(500, 'Use case must be less than 500 characters').trim().nullable().optional(),
   source: z.string().max(50).optional().default('direct'),
   user_agent: z.string().max(500).optional().nullable(),
