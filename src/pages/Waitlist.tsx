@@ -2,16 +2,11 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Hero from "@/components/waitlist/Hero";
 import HowItWorks from "@/components/waitlist/HowItWorks";
-import TrustSection from "@/components/waitlist/TrustSection";
 import LaunchBenefits from "@/components/waitlist/LaunchBenefits";
-import AudienceSection from "@/components/waitlist/AudienceSection";
-import FAQSection from "@/components/waitlist/FAQSection";
 import WaitlistForm from "@/components/waitlist/WaitlistForm";
 import InteractiveDemo from "@/components/waitlist/InteractiveDemo";
-import SocialProof from "@/components/waitlist/SocialProof";
 import ComparisonTable from "@/components/waitlist/ComparisonTable";
 import { Button } from "@/components/ui/button";
-import { FileText } from "lucide-react";
 import clearpolicyLogo from "@/assets/clearpolicy-logo.png";
 
 export default function Waitlist() {
@@ -66,6 +61,12 @@ export default function Waitlist() {
           
           {/* Section Navigation */}
           <nav className="flex items-center justify-center gap-6 overflow-x-auto">
+            <Link 
+              to="/about"
+              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
+            >
+              About
+            </Link>
             <button 
               onClick={() => scrollToSection("demo")}
               className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
@@ -90,18 +91,6 @@ export default function Waitlist() {
             >
               Benefits
             </button>
-            <button 
-              onClick={() => scrollToSection("who-its-for")}
-              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
-            >
-              Who It's For
-            </button>
-            <button 
-              onClick={() => scrollToSection("faq")}
-              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
-            >
-              FAQ
-            </button>
           </nav>
         </div>
       </header>
@@ -113,9 +102,6 @@ export default function Waitlist() {
         <div id="comparison"><ComparisonTable /></div>
         <div id="how-it-works"><HowItWorks /></div>
         <div id="benefits"><LaunchBenefits /></div>
-        <TrustSection />
-        <div id="who-its-for"><AudienceSection /></div>
-        <div id="faq"><FAQSection /></div>
 
         {/* Form section */}
         <section id="waitlist-form" className="py-24 px-4 scroll-mt-20 relative">
@@ -224,9 +210,11 @@ export default function Waitlist() {
               {/* Brand Section */}
               <div className="space-y-6">
                 <div className="flex items-center gap-3 group">
-                  <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg group-hover:shadow-glow-blue transition-all duration-500 group-hover:scale-110">
-                    <FileText className="h-6 w-6 text-primary-foreground drop-shadow" />
-                  </div>
+                  <img 
+                    src={clearpolicyLogo} 
+                    alt="ClearPolicy" 
+                    className="w-10 h-10 rounded-xl shadow-lg group-hover:shadow-glow-blue transition-all duration-500 group-hover:scale-110 drop-shadow"
+                  />
                   <span className="text-xl font-black text-foreground tracking-tight">ClearPolicy</span>
                 </div>
                 <p className="text-sm text-foreground/80 leading-relaxed max-w-xs">

@@ -7,6 +7,16 @@ All colors MUST be HSL.
 */
 
 @layer base {
+  /* Hide scrollbar but keep scrolling functionality */
+  * {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  *::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
   :root {
     /* === Spacing Scale (8px base system) === */
     --space-xs: 0.5rem;    /* 8px - Tiny gaps (icon to text) */

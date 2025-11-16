@@ -17,7 +17,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
       <div className="relative max-w-6xl mx-auto text-center">
         {/* ClearPolicy Logo */}
         <div 
-          className="mb-12 opacity-0 animate-fade-in"
+          className="mb-6 opacity-0 animate-fade-in"
           style={{ 
             animationDelay: '0s',
             animationFillMode: 'forwards'
@@ -26,7 +26,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
           <img 
             src={clearPolicyLogo} 
             alt="ClearPolicy" 
-            className="h-48 md:h-64 mx-auto drop-shadow-2xl"
+            className="h-72 md:h-96 mx-auto drop-shadow-2xl"
             style={{
               filter: 'drop-shadow(0 4px 20px rgba(255,255,255,0.3)) drop-shadow(0 0 40px rgba(147, 197, 253, 0.4))'
             }}
