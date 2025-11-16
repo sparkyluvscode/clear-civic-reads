@@ -33,11 +33,14 @@ export default function Hero({ onJoinClick }: HeroProps) {
       
       <div className="relative max-w-5xl mx-auto text-center">
         <h1 
-          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight relative z-20 opacity-0 animate-fade-in"
+          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight relative z-20 opacity-0"
           style={{ 
             textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(147, 197, 253, 0.4)',
-            animationDelay: '0.5s',
-            animationFillMode: 'forwards'
+            animation: 'typing 2s steps(50) forwards',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            borderRight: '3px solid rgba(255,255,255,0.8)',
+            animationDelay: '0.5s'
           }}
         >
           Policy clarity, with sources you can check
