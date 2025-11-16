@@ -15,11 +15,26 @@ export default function Hero({ onJoinClick }: HeroProps) {
   return (
     <section className="relative overflow-hidden px-4 pt-8 pb-32 md:pt-12 md:pb-48 min-h-[90vh] flex items-center">
       <div className="relative max-w-6xl mx-auto text-center">
+        {/* Badge above logo */}
+        <div 
+          className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-white text-sm font-semibold mb-8 shimmer shadow-glass-strong hover-lift opacity-0 animate-fade-in"
+          style={{ 
+            animationDelay: '0s',
+            animationFillMode: 'forwards'
+          }}
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" style={{ boxShadow: '0 0 30px rgba(52, 211, 153, 0.6)' }}></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" style={{ boxShadow: '0 0 25px rgba(52, 211, 153, 0.9), 0 0 40px rgba(52, 211, 153, 0.5)' }}></span>
+          </span>
+          Now accepting early access signups
+        </div>
+
         {/* ClearPolicy Logo */}
         <div 
           className="mb-6 opacity-0 animate-fade-in"
           style={{ 
-            animationDelay: '0s',
+            animationDelay: '0.5s',
             animationFillMode: 'forwards'
           }}
         >
@@ -31,20 +46,6 @@ export default function Hero({ onJoinClick }: HeroProps) {
               filter: 'drop-shadow(0 4px 20px rgba(255,255,255,0.3)) drop-shadow(0 0 40px rgba(147, 197, 253, 0.4))'
             }}
           />
-        </div>
-
-        <div 
-          className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-white text-sm font-semibold mb-8 shimmer shadow-glass-strong hover-lift opacity-0 animate-fade-in"
-          style={{ 
-            animationDelay: '0.5s',
-            animationFillMode: 'forwards'
-          }}
-        >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" style={{ boxShadow: '0 0 30px rgba(52, 211, 153, 0.6)' }}></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" style={{ boxShadow: '0 0 25px rgba(52, 211, 153, 0.9), 0 0 40px rgba(52, 211, 153, 0.5)' }}></span>
-          </span>
-          Now accepting early access signups
         </div>
 
         <h1 
