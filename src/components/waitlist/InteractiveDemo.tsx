@@ -67,11 +67,11 @@ export default function InteractiveDemo() {
       
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 text-glow-hero">
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5 text-glow-hero">
             See it in action
           </h2>
           <p className="text-xl text-light max-w-2xl mx-auto font-medium">
-            Try searching for a ballot measure to see how ClearPolicy makes complex policy <span className="text-white font-bold">instantly understandable</span>.
+            Try searching for a ballot measure to see how ClearPolicy makes complex policy <span className="text-foreground font-bold">instantly understandable</span>.
           </p>
         </div>
 
@@ -84,13 +84,13 @@ export default function InteractiveDemo() {
             }}
           >
             <div className="flex items-center gap-3 px-4">
-              <Search className="h-6 w-6 text-white opacity-70" />
+              <Search className="h-6 w-6 text-foreground opacity-70" />
               <input
                 type="text"
                 placeholder='Try typing "Prop 47" or "Measure A"...'
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className="flex-1 bg-transparent border-0 outline-none py-4 text-white placeholder:text-gray-400 text-lg"
+                className="flex-1 bg-transparent border-0 outline-none py-4 text-foreground placeholder:text-muted-foreground text-lg"
                 aria-label="Search for ballot measures"
               />
             </div>

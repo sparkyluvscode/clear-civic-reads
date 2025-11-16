@@ -44,7 +44,7 @@ export default function ComparisonTable() {
     <section className="py-24 px-4 relative overflow-hidden">
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 text-glow-hero">
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5 text-glow-hero">
             Why ClearPolicy?
           </h2>
           <p className="text-xl text-light max-w-2xl mx-auto font-medium">
@@ -59,8 +59,8 @@ export default function ComparisonTable() {
           <div className="overflow-x-auto relative z-10">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-white/10">
-                  <th className="text-left p-6 text-white font-bold text-lg">Feature</th>
+                <tr className="border-b border-border/30">
+                  <th className="text-left p-6 text-foreground font-bold text-lg">Feature</th>
                   <th className="text-center p-6">
                     <div className="text-ice-blue font-black text-xl">ClearPolicy</div>
                   </th>

@@ -33,14 +33,14 @@ export default function TrustSection() {
       
       <div className="max-w-6xl mx-auto relative">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 text-glow-hero">
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5 text-glow-hero">
             Why <span className="relative inline-block">
               <span className="relative z-10">trust</span>
               <span className="absolute bottom-1 left-0 right-0 h-3 bg-primary/20 blur-sm -z-0"></span>
             </span> ClearPolicy?
           </h2>
           <p className="text-xl text-light max-w-2xl mx-auto font-medium">
-            Built for <span className="text-white font-bold">transparency</span>, designed for <span className="text-white font-bold">clarity</span>. Every feature reinforces trust.
+            Built for <span className="text-foreground font-bold">transparency</span>, designed for <span className="text-foreground font-bold">clarity</span>. Every feature reinforces trust.
           </p>
         </div>
 
@@ -63,7 +63,7 @@ export default function TrustSection() {
                     <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
                 </div>
                 <div className="relative z-10">
-                    <h3 className="text-xl font-bold text-white mb-3">
+                    <h3 className="text-xl font-bold text-foreground mb-3">
                       {feature.title}
                     </h3>
                     <p className="text-light leading-relaxed text-base">

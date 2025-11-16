@@ -15,6 +15,14 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { FileText } from "lucide-react";
 import clearpolicyLogo from "@/assets/clearpolicy-logo.png";
 
+const sections = [
+  { id: "demo", label: "Demo" },
+  { id: "how-it-works", label: "How It Works" },
+  { id: "benefits", label: "Benefits" },
+  { id: "who-its-for", label: "Who It's For" },
+  { id: "faq", label: "FAQ" },
+];
+
 export default function Waitlist() {
   useEffect(() => {
     // Update page title and meta description
@@ -32,17 +40,18 @@ export default function Waitlist() {
     document.getElementById("waitlist-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <header 
-        className="fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong"
-        style={{ 
-          filter: 'url(#liquid-glass-distortion) brightness(1.05)',
-        }}
+        className="fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong backdrop-blur-lg"
       >
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between gap-8">
+          <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
             <img 
               src={clearpolicyLogo} 
               alt="ClearPolicy" 
@@ -50,7 +59,21 @@ export default function Waitlist() {
             />
             <span className="text-xl font-black text-foreground tracking-tight">ClearPolicy</span>
           </Link>
-          <div className="flex items-center gap-3">
+          
+          {/* Section Navigation */}
+          <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => scrollToSection(section.id)}
+                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
+              >
+                {section.label}
+              </button>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3 flex-shrink-0">
             <ThemeToggle />
             <Button 
               onClick={scrollToForm} 
@@ -67,14 +90,24 @@ export default function Waitlist() {
       {/* Main content */}
       <main className="pt-16 relative z-10">
         <Hero onJoinClick={scrollToForm} />
-        <InteractiveDemo />
+        <div id="demo">
+          <InteractiveDemo />
+        </div>
         <SocialProof />
         <ComparisonTable />
-        <HowItWorks />
-        <LaunchBenefits />
+        <div id="how-it-works">
+          <HowItWorks />
+        </div>
+        <div id="benefits">
+          <LaunchBenefits />
+        </div>
         <TrustSection />
-        <AudienceSection />
-        <FAQSection />
+        <div id="who-its-for">
+          <AudienceSection />
+        </div>
+        <div id="faq">
+          <FAQSection />
+        </div>
 
         {/* Form section */}
         <section id="waitlist-form" className="py-24 px-4 scroll-mt-20 relative">
