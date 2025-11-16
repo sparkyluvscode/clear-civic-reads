@@ -8,87 +8,56 @@ import InteractiveDemo from "@/components/waitlist/InteractiveDemo";
 import ComparisonTable from "@/components/waitlist/ComparisonTable";
 import { Button } from "@/components/ui/button";
 import clearpolicyLogo from "@/assets/clearpolicy-logo.png";
-
 export default function Waitlist() {
   useEffect(() => {
     // Update page title and meta description
     document.title = "ClearPolicy — Plain-English, cited explanations of ballot measures";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        "Understand bills and ballot measures in minutes. ClearPolicy gives plain-English summaries with citations you can verify. Join the waitlist for early access."
-      );
+      metaDescription.setAttribute("content", "Understand bills and ballot measures in minutes. ClearPolicy gives plain-English summaries with citations you can verify. Join the waitlist for early access.");
     }
   }, []);
-
   const scrollToForm = () => {
-    document.getElementById("waitlist-form")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("waitlist-form")?.scrollIntoView({
+      behavior: "smooth"
+    });
   };
-
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth"
+    });
   };
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       {/* Header */}
-      <header 
-        className="fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong"
-        style={{ 
-          filter: 'url(#liquid-glass-distortion) brightness(1.05)',
-        }}
-      >
+      <header className="fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong" style={{
+      filter: 'url(#liquid-glass-distortion) brightness(1.05)'
+    }}>
         <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between mb-4">
             <Link to="/" className="flex items-center gap-3 group">
-              <img 
-                src={clearpolicyLogo} 
-                alt="ClearPolicy" 
-                className="w-11 h-11 rounded-xl group-hover:scale-110 transition-transform duration-500 drop-shadow-lg"
-              />
+              <img src={clearpolicyLogo} alt="ClearPolicy" className="w-11 h-11 rounded-xl group-hover:scale-110 transition-transform duration-500 drop-shadow-lg" />
               <span className="text-xl font-black text-white tracking-tight">ClearPolicy</span>
             </Link>
-            <Button 
-              onClick={scrollToForm} 
-              variant="premium"
-              size="default"
-              className="shadow-xl hover:shadow-2xl shimmer-fast"
-            >
+            <Button onClick={scrollToForm} variant="premium" size="default" className="shadow-xl hover:shadow-2xl shimmer-fast">
               Join waitlist
             </Button>
           </div>
           
           {/* Section Navigation */}
           <nav className="flex items-center justify-center gap-6 overflow-x-auto">
-            <Link 
-              to="/about"
-              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
-            >
+            <Link to="/about" className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap">
               About
             </Link>
-            <button 
-              onClick={() => scrollToSection("demo")}
-              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
-            >
+            <button onClick={() => scrollToSection("demo")} className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap">
               Demo
             </button>
-            <button 
-              onClick={() => scrollToSection("comparison")}
-              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
-            >
+            <button onClick={() => scrollToSection("comparison")} className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap">
               Comparison
             </button>
-            <button 
-              onClick={() => scrollToSection("how-it-works")}
-              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
-            >
+            <button onClick={() => scrollToSection("how-it-works")} className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap">
               How It Works
             </button>
-            <button 
-              onClick={() => scrollToSection("benefits")}
-              className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
-            >
+            <button onClick={() => scrollToSection("benefits")} className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap">
               Benefits
             </button>
           </nav>
@@ -96,7 +65,7 @@ export default function Waitlist() {
       </header>
 
       {/* Main content */}
-      <main className="pt-28 relative z-10">
+      <main className="pt-28 relative z-10 mx-0 rounded-none my-0">
         <Hero onJoinClick={scrollToForm} />
         <div id="demo"><InteractiveDemo /></div>
         <div id="comparison"><ComparisonTable /></div>
@@ -139,9 +108,7 @@ export default function Waitlist() {
         <section className="py-20 px-4 relative">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-9">
-              <div 
-                className="p-8 rounded-3xl liquid-glass-strong shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden"
-              >
+              <div className="p-8 rounded-3xl liquid-glass-strong shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                 {/* Inner highlight */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
@@ -162,9 +129,7 @@ export default function Waitlist() {
                 </p>
               </div>
             </div>
-              <div 
-                className="p-8 rounded-3xl liquid-glass-strong shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden"
-              >
+              <div className="p-8 rounded-3xl liquid-glass-strong shadow-glass hover:shadow-glass-hover transition-all duration-500 group relative overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                 {/* Inner highlight */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
@@ -189,14 +154,11 @@ export default function Waitlist() {
       {/* Footer with Glass Edge Bar */}
       <footer className="relative">
         {/* Glass edge reflection bar - iOS dock style with enhanced shimmer */}
-        <div 
-          className="h-1 border-t-2 shadow-glass-strong relative overflow-hidden"
-          style={{ 
-            background: 'hsla(0, 0%, 100%, 0.95)',
-            backdropFilter: 'blur(48px) saturate(200%)',
-            borderColor: 'hsla(180, 55%, 80%, 0.6)'
-          }}
-        >
+        <div className="h-1 border-t-2 shadow-glass-strong relative overflow-hidden" style={{
+        background: 'hsla(0, 0%, 100%, 0.95)',
+        backdropFilter: 'blur(48px) saturate(200%)',
+        borderColor: 'hsla(180, 55%, 80%, 0.6)'
+      }}>
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-civic-teal/10 to-primary/10" />
         </div>
@@ -210,11 +172,7 @@ export default function Waitlist() {
               {/* Brand Section */}
               <div className="space-y-6">
                 <div className="flex items-center gap-3 group">
-                  <img 
-                    src={clearpolicyLogo} 
-                    alt="ClearPolicy" 
-                    className="w-10 h-10 rounded-xl shadow-lg group-hover:shadow-glow-blue transition-all duration-500 group-hover:scale-110 drop-shadow"
-                  />
+                  <img src={clearpolicyLogo} alt="ClearPolicy" className="w-10 h-10 rounded-xl shadow-lg group-hover:shadow-glow-blue transition-all duration-500 group-hover:scale-110 drop-shadow" />
                   <span className="text-xl font-black text-foreground tracking-tight">ClearPolicy</span>
                 </div>
                 <p className="text-sm text-foreground/80 leading-relaxed max-w-xs">
@@ -222,13 +180,13 @@ export default function Waitlist() {
                 </p>
                 <div className="flex gap-4">
                   <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-lg glass flex items-center justify-center hover:glass-strong transition-all duration-300 hover:scale-110">
-                    <svg className="w-5 h-5 text-foreground" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    <svg className="w-5 h-5 text-foreground" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
                   </a>
                   <a href="#" aria-label="LinkedIn" className="w-10 h-10 rounded-lg glass flex items-center justify-center hover:glass-strong transition-all duration-300 hover:scale-110">
-                    <svg className="w-5 h-5 text-foreground" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    <svg className="w-5 h-5 text-foreground" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
                   </a>
                   <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-lg glass flex items-center justify-center hover:glass-strong transition-all duration-300 hover:scale-110">
-                    <svg className="w-5 h-5 text-foreground" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    <svg className="w-5 h-5 text-foreground" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
                   </a>
                 </div>
               </div>
@@ -261,10 +219,7 @@ export default function Waitlist() {
                 <p className="text-sm text-foreground/70 leading-relaxed">
                   Join our waitlist to be the first to know when we launch and get early access to ClearPolicy.
                 </p>
-                <a 
-                  href="#waitlist" 
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg glass hover:glass-strong transition-all duration-300 text-sm font-semibold text-foreground hover:scale-105"
-                >
+                <a href="#waitlist" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg glass hover:glass-strong transition-all duration-300 text-sm font-semibold text-foreground hover:scale-105">
                   Join Waitlist
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </a>
@@ -281,6 +236,5 @@ export default function Waitlist() {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 }
