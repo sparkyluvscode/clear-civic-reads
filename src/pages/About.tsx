@@ -40,7 +40,6 @@ export default function About() {
           isScrolled ? 'py-2' : 'py-0'
         }`}
         style={{ 
-          filter: 'url(#liquid-glass-distortion) brightness(1.05)',
           borderRadius: '0 0 1rem 1rem',
           backdropFilter: isScrolled ? 'blur(30px) saturate(180%)' : 'blur(20px) saturate(150%)',
         }}
