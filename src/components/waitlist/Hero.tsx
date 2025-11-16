@@ -13,7 +13,7 @@ const benefits = [
 
 export default function Hero({ onJoinClick }: HeroProps) {
   return (
-    <section className="relative overflow-hidden px-4 pt-8 pb-32 md:pt-12 md:pb-48 min-h-[90vh] flex items-center">
+    <section className="relative overflow-hidden px-4 pt-2 pb-32 md:pt-4 md:pb-48 min-h-[90vh] flex items-center">
       <div className="relative max-w-6xl mx-auto text-center">
         {/* Badge above logo */}
         <div 
