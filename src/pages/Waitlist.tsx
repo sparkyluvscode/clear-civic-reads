@@ -30,14 +30,20 @@ export default function Waitlist() {
   return <div className="min-h-screen">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong" style={{
-      filter: 'url(#liquid-glass-distortion) brightness(1.05)'
+      filter: 'url(#liquid-glass-distortion) brightness(1.05)',
+      borderRadius: '0 0 1rem 1rem'
     }}>
         <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between mb-4">
-            <Link to="/" className="flex items-center gap-3 group">
-              <img src={clearpolicyLogo} alt="ClearPolicy" className="w-11 h-11 rounded-xl group-hover:scale-110 transition-transform duration-500 drop-shadow-lg" />
-              <span className="text-xl font-black text-white tracking-tight">ClearPolicy</span>
-            </Link>
+            <div className="flex items-center gap-6">
+              <Link to="/" className="flex items-center gap-3 group">
+                <img src={clearpolicyLogo} alt="ClearPolicy" className="w-11 h-11 rounded-xl group-hover:scale-110 transition-transform duration-500 drop-shadow-lg" />
+                <span className="text-xl font-black text-white tracking-tight">ClearPolicy</span>
+              </Link>
+              <Link to="/about" className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap">
+                About
+              </Link>
+            </div>
             <Button onClick={scrollToForm} variant="premium" size="default" className="shadow-xl hover:shadow-2xl shimmer-fast">
               Join waitlist
             </Button>
@@ -45,9 +51,6 @@ export default function Waitlist() {
           
           {/* Section Navigation */}
           <nav className="flex items-center justify-center gap-6 overflow-x-auto">
-            <Link to="/about" className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap">
-              About
-            </Link>
             <button onClick={() => scrollToSection("demo")} className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap">
               Demo
             </button>
