@@ -34,11 +34,11 @@ export default function SocialProof() {
             </div>
             
             <div className="mb-4">
-              <div className="text-6xl md:text-7xl font-black text-foreground mb-2 text-glow-hero">
+              <div className="text-6xl md:text-7xl font-black text-white mb-2 text-glow-hero">
                 {count.toLocaleString()}+
               </div>
               <p className="text-xl text-light font-semibold">
-                Voters joined from <span className="text-foreground">{cities.length}</span> cities
+                Voters joined from <span className="text-white">{cities.length}</span> cities
               </p>
             </div>
 
@@ -46,7 +46,7 @@ export default function SocialProof() {
               {cities.slice(0, 6).map((city, idx) => (
                 <div 
                   key={idx}
-                  className="liquid-glass rounded-full px-5 py-2 text-sm font-medium text-foreground border border-foreground/20"
+                  className="liquid-glass rounded-full px-5 py-2 text-sm font-medium text-white border border-white/20"
                   style={{ animationDelay: `${idx * 0.1}s` }}
                 >
                   {city}
@@ -60,7 +60,7 @@ export default function SocialProof() {
                 {['TechCrunch', 'The Verge', 'Wired', 'Axios'].map((pub, idx) => (
                   <div 
                     key={idx}
-                    className="text-xl font-bold text-foreground"
+                    className="text-xl font-bold text-white"
                     style={{ fontFamily: 'Georgia, serif' }}
                   >
                     {pub}
