@@ -11,6 +11,7 @@ import InteractiveDemo from "@/components/waitlist/InteractiveDemo";
 import SocialProof from "@/components/waitlist/SocialProof";
 import ComparisonTable from "@/components/waitlist/ComparisonTable";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { FileText } from "lucide-react";
 import clearpolicyLogo from "@/assets/clearpolicy-logo.png";
 
@@ -47,16 +48,19 @@ export default function Waitlist() {
               alt="ClearPolicy" 
               className="w-11 h-11 rounded-xl group-hover:scale-110 transition-transform duration-500 drop-shadow-lg"
             />
-            <span className="text-xl font-black text-white tracking-tight">ClearPolicy</span>
+            <span className="text-xl font-black text-foreground tracking-tight">ClearPolicy</span>
           </Link>
-          <Button 
-            onClick={scrollToForm} 
-            variant="premium"
-            size="default"
-            className="shadow-xl hover:shadow-2xl shimmer-fast"
-          >
-            Join waitlist
-          </Button>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <Button 
+              onClick={scrollToForm} 
+              variant="premium"
+              size="default"
+              className="shadow-xl hover:shadow-2xl shimmer-fast"
+            >
+              Join waitlist
+            </Button>
+          </div>
         </div>
       </header>
 

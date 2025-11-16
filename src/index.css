@@ -35,8 +35,9 @@ All colors MUST be HSL.
     --leading-normal: 1.5;  /* Body text */
     --leading-relaxed: 1.7; /* Small text, captions */
     
-    --background: 220 20% 8%;
-    --foreground: 0 0% 98%;
+    /* Light Mode - Silver with hints of light blue */
+    --background: 210 20% 95%;
+    --foreground: 220 15% 10%;
 
     --card: 0 0% 100%;
     --card-foreground: 220 15% 10%;
@@ -44,24 +45,24 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 220 15% 10%;
 
-    --primary: 210 100% 85%;
-    --primary-foreground: 220 15% 10%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
+    --secondary: 210 15% 90%;
     --secondary-foreground: 220 15% 10%;
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 210 20% 88%;
+    --muted-foreground: 220 10% 40%;
 
-    --accent: 210 100% 88%;
-    --accent-foreground: 220 15% 10%;
+    --accent: 210 100% 60%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 30% 85%;
-    --input: 210 30% 90%;
-    --ring: 210 100% 85%;
+    --border: 210 20% 80%;
+    --input: 210 20% 85%;
+    --ring: 210 100% 50%;
 
     --radius: 1rem;
     
