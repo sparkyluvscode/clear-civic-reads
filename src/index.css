@@ -762,6 +762,22 @@ All colors MUST be HSL.
     }
   }
   
+  /* Typing animation for hero title */
+  @keyframes typing {
+    0% {
+      width: 0;
+      opacity: 1;
+    }
+    99% {
+      border-right: 3px solid rgba(255,255,255,0.8);
+    }
+    100% {
+      width: 100%;
+      opacity: 1;
+      border-right: none;
+    }
+  }
+  
   /* Button glow on focus */
   .btn-glow {
     position: relative;

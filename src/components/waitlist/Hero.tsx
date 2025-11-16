@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, Search } from "lucide-react";
 
 interface HeroProps {
@@ -32,31 +31,41 @@ export default function Hero({ onJoinClick }: HeroProps) {
         <div className="glass-raindrop droplet-float-medium" style={{ width: '100px', height: '100px', top: '78%', left: '18%', animationDelay: '4.5s', opacity: 0.59 }} />
       </div>
       
-      <div className="relative max-w-5xl mx-auto text-center animate-fade-in">
-        <div className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-white text-sm font-semibold mb-10 shimmer shadow-glass-strong hover-lift">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white shadow-glow-ice"></span>
-          </span>
-          Now accepting early access signups
-        </div>
-
+      <div className="relative max-w-5xl mx-auto text-center">
         <h1 
-          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight relative z-20"
+          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight relative z-20 opacity-0"
           style={{ 
-            textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(147, 197, 253, 0.4)'
+            textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(147, 197, 253, 0.4)',
+            animation: 'typing 2s steps(50) forwards',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            borderRight: '3px solid rgba(255,255,255,0.8)',
+            animationDelay: '0.5s'
           }}
         >
           Policy clarity, with sources you can check
         </h1>
         
-        <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-[1.6] font-normal relative z-20" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3)' }}>
+        <p 
+          className="text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-[1.6] font-normal relative z-20 opacity-0 animate-fade-in" 
+          style={{ 
+            textShadow: '0 3px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3)',
+            animationDelay: '2.5s',
+            animationFillMode: 'forwards'
+          }}
+        >
           Plain-English explanations of bills and ballot measures—backed by <span className="font-semibold text-white">citations</span>. 
           Join the waitlist to get early access in your area.
         </p>
 
         {/* Search box teaser with liquid glass */}
-        <div className="mb-12 max-w-2xl mx-auto">
+        <div 
+          className="mb-12 max-w-2xl mx-auto opacity-0 animate-fade-in"
+          style={{ 
+            animationDelay: '3.2s',
+            animationFillMode: 'forwards'
+          }}
+        >
           <div 
             className="liquid-glass-strong rounded-2xl p-2 shadow-glass-hover relative overflow-hidden group"
             style={{ 
@@ -72,22 +81,46 @@ export default function Hero({ onJoinClick }: HeroProps) {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-          <Button
+        <div 
+          className="flex flex-col sm:flex-row gap-6 justify-center mb-16 opacity-0 animate-fade-in"
+          style={{ 
+            animationDelay: '3.9s',
+            animationFillMode: 'forwards'
+          }}
+        >
+          <button
             onClick={onJoinClick}
-            size="lg"
-            variant="premium"
-            className="text-lg px-14 py-8 h-auto font-bold shadow-2xl shimmer-fast"
+            className="liquid-glass-strong text-lg px-14 py-8 rounded-2xl text-white font-bold shadow-2xl shimmer-fast hover:scale-105 transition-transform"
             aria-label="Join the waitlist for early access"
           >
-            <span className="relative z-10 flex items-center gap-2.5">
+            <span className="relative z-10 flex items-center gap-2.5 justify-center">
               Get Early Access — Launching Soon
               <ArrowRight className="h-6 w-6" />
             </span>
-          </Button>
+          </button>
         </div>
 
-        <ul className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-x-12 gap-y-5 text-white/85 relative z-20 mb-8">
+        <div 
+          className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-white text-sm font-semibold mb-8 shimmer shadow-glass-strong hover-lift opacity-0 animate-fade-in"
+          style={{ 
+            animationDelay: '4.6s',
+            animationFillMode: 'forwards'
+          }}
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400" style={{ boxShadow: '0 0 20px rgba(74, 222, 128, 0.8)' }}></span>
+          </span>
+          Now accepting early access signups
+        </div>
+
+        <ul 
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-x-12 gap-y-5 text-white/85 relative z-20 mb-8 opacity-0 animate-fade-in"
+          style={{ 
+            animationDelay: '4.6s',
+            animationFillMode: 'forwards'
+          }}
+        >
           {benefits.map((benefit) => (
             <li key={benefit} className="flex items-center gap-3 text-base font-normal">
               <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-ice-blue drop-shadow-lg" />
@@ -96,7 +129,14 @@ export default function Hero({ onJoinClick }: HeroProps) {
           ))}
         </ul>
 
-        <p className="text-sm text-white/75 relative z-20 font-normal" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
+        <p 
+          className="text-sm text-white/75 relative z-20 font-normal opacity-0 animate-fade-in" 
+          style={{ 
+            textShadow: '0 2px 8px rgba(0,0,0,0.3)',
+            animationDelay: '4.6s',
+            animationFillMode: 'forwards'
+          }}
+        >
           No spam. Unsubscribe anytime.
         </p>
       </div>
