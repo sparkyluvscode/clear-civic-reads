@@ -103,6 +103,9 @@ export default function Hero({ onJoinClick }: HeroProps) {
           <button
             onClick={onJoinClick}
             className="group relative liquid-glass-strong text-lg px-16 py-9 rounded-2xl text-white font-bold shadow-glass-strong hover:shadow-glow-ice shimmer-fast transition-all duration-500 hover:scale-[1.02] overflow-hidden"
+            style={{ 
+              filter: 'url(#liquid-glass-distortion) brightness(1.1)',
+            }}
             aria-label="Join the waitlist for early access"
           >
             {/* Glow effect on hover */}
