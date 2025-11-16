@@ -25,26 +25,26 @@ const features = [
 
 export default function TrustSection() {
   return (
-    <section className="py-24 px-4 relative">
+    <section className="py-32 px-4 relative">
       {/* Background droplets - Enhanced variety */}
       <div className="droplet top-[10%] left-[15%] w-28 h-28 blur-[38px] droplet-float" />
       <div className="droplet bottom-[15%] right-[20%] w-32 h-32 blur-[40px] droplet-float-slow" style={{ animationDelay: '4s' }} />
       <div className="droplet top-[50%] left-[8%] w-24 h-24 blur-[36px] droplet-float" style={{ animationDelay: '2s' }} />
       
       <div className="max-w-6xl mx-auto relative">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 text-glow-hero">
+        <div className="text-center mb-24">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 text-glow-hero leading-tight">
             Why <span className="relative inline-block">
               <span className="relative z-10">trust</span>
               <span className="absolute bottom-1 left-0 right-0 h-3 bg-primary/20 blur-sm -z-0"></span>
             </span> ClearPolicy?
           </h2>
-          <p className="text-xl text-light max-w-2xl mx-auto font-medium">
+          <p className="text-xl md:text-2xl text-light max-w-3xl mx-auto font-medium leading-relaxed">
             Built for <span className="text-white font-bold">transparency</span>, designed for <span className="text-white font-bold">clarity</span>. Every feature reinforces trust.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-7">
+        <div className="grid md:grid-cols-2 gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
@@ -63,10 +63,10 @@ export default function TrustSection() {
                     <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
                 </div>
                 <div className="relative z-10">
-                    <h3 className="text-xl font-bold text-white mb-3">
+                    <h3 className="text-xl font-bold text-white mb-4 leading-snug">
                       {feature.title}
                     </h3>
-                    <p className="text-light leading-relaxed text-base">
+                    <p className="text-light leading-relaxed text-lg">
                       {feature.description}
                     </p>
                   </div>

@@ -33,29 +33,29 @@ const audiences = [
 
 export default function AudienceSection() {
   return (
-    <section className="py-24 px-4 relative">
+    <section className="py-32 px-4 relative">
       {/* Subtle droplet accents */}
       <div className="droplet top-[20%] right-[12%] w-24 h-24 blur-[35px] droplet-float-slow" style={{ animationDelay: '2s' }} />
       <div className="droplet bottom-[25%] left-[10%] w-30 h-30 blur-[42px] droplet-float" style={{ animationDelay: '5s' }} />
       
       <div className="max-w-6xl mx-auto relative">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 text-glow-hero">
+        <div className="text-center mb-24">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 text-glow-hero leading-tight">
             Who it's for
           </h2>
-          <p className="text-xl text-light max-w-2xl mx-auto font-medium">
+          <p className="text-xl md:text-2xl text-light max-w-3xl mx-auto font-medium leading-relaxed">
             Whether you're voting, reporting, advocating, or governing—ClearPolicy helps you 
             make <span className="text-white font-bold">informed</span> decisions with <span className="text-white font-bold">confidence</span>.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {audiences.map((audience, index) => {
             const Icon = audience.icon;
             return (
               <div
                 key={index}
-                className="p-7 rounded-3xl liquid-glass-strong shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 hover-lift group relative overflow-hidden"
+                className="p-8 rounded-3xl liquid-glass-strong shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 card-hover-lift group relative overflow-hidden"
               >
                 {/* Inner highlight */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
@@ -67,10 +67,10 @@ export default function AudienceSection() {
                   {/* Inner highlight */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-white mb-4 leading-snug">
                   {audience.title}
                 </h3>
-                <p className="text-sm text-light leading-relaxed">
+                <p className="text-base text-light leading-relaxed">
                   {audience.description}
                 </p>
               </div>
