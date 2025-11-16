@@ -10,8 +10,6 @@ import WaitlistForm from "@/components/waitlist/WaitlistForm";
 import InteractiveDemo from "@/components/waitlist/InteractiveDemo";
 import SocialProof from "@/components/waitlist/SocialProof";
 import ComparisonTable from "@/components/waitlist/ComparisonTable";
-import LaunchTimeline from "@/components/waitlist/LaunchTimeline";
-import { RaindropEffect } from "@/components/effects/RaindropEffect";
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
 import clearpolicyLogo from "@/assets/clearpolicy-logo.png";
@@ -35,20 +33,6 @@ export default function Waitlist() {
 
   return (
     <div className="min-h-screen">
-      {/* Ultra-realistic raindrop dew effect overlay */}
-      <RaindropEffect />
-      
-      {/* SVG Filter for liquid glass distortion */}
-      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
-        <defs>
-          <filter id="liquid-glass-distortion" x="-50%" y="-50%" width="200%" height="200%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="3" seed="5" result="turbulence" />
-            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacement" />
-            <feGaussianBlur in="displacement" stdDeviation="0.5" result="blur" />
-          </filter>
-        </defs>
-      </svg>
-      
       {/* Header */}
       <header 
         className="fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong"
