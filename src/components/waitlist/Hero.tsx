@@ -26,8 +26,8 @@ export default function Hero({ onJoinClick }: HeroProps) {
           }}
         >
           <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400" style={{ boxShadow: '0 0 20px rgba(74, 222, 128, 0.8)' }}></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" style={{ boxShadow: '0 0 30px rgba(52, 211, 153, 0.6)' }}></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" style={{ boxShadow: '0 0 25px rgba(52, 211, 153, 0.9), 0 0 40px rgba(52, 211, 153, 0.5)' }}></span>
           </span>
           Now accepting early access signups
         </div>
