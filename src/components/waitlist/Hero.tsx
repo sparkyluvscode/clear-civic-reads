@@ -1,4 +1,5 @@
 import { ArrowRight, CheckCircle2, Search } from "lucide-react";
+import { RaindropEffect } from "@/components/effects/RaindropEffect";
 
 interface HeroProps {
   onJoinClick: () => void;
@@ -13,6 +14,9 @@ const benefits = [
 export default function Hero({ onJoinClick }: HeroProps) {
   return (
     <section className="relative overflow-hidden px-4 py-24 md:py-40 min-h-[90vh] flex items-center">
+      {/* Crystal Clear Raindrop Background */}
+      <RaindropEffect />
+      
       <div className="relative max-w-5xl mx-auto text-center">
         <div 
           className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-white text-sm font-semibold mb-8 shimmer shadow-glass-strong hover-lift opacity-0 animate-fade-in"
