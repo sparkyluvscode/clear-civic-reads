@@ -44,7 +44,6 @@ export default function Waitlist() {
           isScrolled ? 'py-2' : 'py-0'
         }`}
         style={{
-          filter: 'url(#liquid-glass-distortion) brightness(1.05)',
           borderRadius: '0 0 1rem 1rem',
           backdropFilter: isScrolled ? 'blur(30px) saturate(180%)' : 'blur(20px) saturate(150%)',
         }}
@@ -106,6 +105,21 @@ export default function Waitlist() {
               Benefits
             </button>
           </nav>
+
+          {/* Badge at bottom left */}
+          <div 
+            className={`absolute bottom-4 left-6 transition-all duration-700 ease-in-out ${
+              isScrolled ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100'
+            }`}
+          >
+            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full liquid-glass-strong text-white text-xs font-semibold shimmer shadow-glass-strong">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" style={{ boxShadow: '0 0 20px rgba(52, 211, 153, 0.6)' }}></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" style={{ boxShadow: '0 0 15px rgba(52, 211, 153, 0.9), 0 0 30px rgba(52, 211, 153, 0.5)' }}></span>
+              </span>
+              Now accepting early access signups
+            </div>
+          </div>
         </div>
       </header>
 
