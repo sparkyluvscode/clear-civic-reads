@@ -106,18 +106,19 @@ export default function Waitlist() {
             </button>
           </nav>
 
-          {/* Badge at bottom left */}
+          {/* Badge under Join Waitlist */}
           <div 
-            className={`absolute bottom-4 left-6 transition-all duration-700 ease-in-out ${
-              isScrolled ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100'
+            className={`absolute right-4 sm:right-6 transition-all duration-700 ease-in-out ${
+              isScrolled ? 'top-16 sm:top-14 opacity-0 scale-90 pointer-events-none' : 'top-20 sm:top-[4.5rem] opacity-100 scale-100'
             }`}
           >
-            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full liquid-glass-strong text-white text-xs font-semibold shimmer shadow-glass-strong">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" style={{ boxShadow: '0 0 20px rgba(52, 211, 153, 0.6)' }}></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" style={{ boxShadow: '0 0 15px rgba(52, 211, 153, 0.9), 0 0 30px rgba(52, 211, 153, 0.5)' }}></span>
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full liquid-glass-strong text-white text-[10px] sm:text-xs font-semibold shimmer shadow-glass-strong">
+              <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" style={{ boxShadow: '0 0 15px rgba(52, 211, 153, 0.6)' }}></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-emerald-400" style={{ boxShadow: '0 0 12px rgba(52, 211, 153, 0.9), 0 0 20px rgba(52, 211, 153, 0.5)' }}></span>
               </span>
-              Now accepting early access signups
+              <span className="hidden sm:inline">Now accepting early access signups</span>
+              <span className="sm:hidden">Early access open</span>
             </div>
           </div>
         </div>

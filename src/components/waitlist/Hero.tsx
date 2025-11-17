@@ -13,28 +13,13 @@ const benefits = [
 
 export default function Hero({ onJoinClick }: HeroProps) {
   return (
-    <section className="relative overflow-hidden px-4 pt-2 pb-32 md:pt-4 md:pb-48 min-h-[90vh] flex items-center">
+    <section className="relative overflow-hidden px-4 pt-8 pb-32 md:pt-12 md:pb-48 min-h-[90vh] flex items-center">
       <div className="relative max-w-6xl mx-auto text-center">
-        {/* Badge above logo */}
-        <div 
-          className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full liquid-glass-strong text-white text-sm font-semibold mb-8 shimmer shadow-glass-strong hover-lift opacity-0 animate-fade-in"
-          style={{ 
-            animationDelay: '0s',
-            animationFillMode: 'forwards'
-          }}
-        >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" style={{ boxShadow: '0 0 30px rgba(52, 211, 153, 0.6)' }}></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" style={{ boxShadow: '0 0 25px rgba(52, 211, 153, 0.9), 0 0 40px rgba(52, 211, 153, 0.5)' }}></span>
-          </span>
-          Now accepting early access signups
-        </div>
-
         {/* ClearPolicy Logo */}
         <div 
           className="mb-6 opacity-0 animate-fade-in"
           style={{ 
-            animationDelay: '0.5s',
+            animationDelay: '0s',
             animationFillMode: 'forwards'
           }}
         >
@@ -52,7 +37,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
           className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-10 leading-[1.05] tracking-tight relative z-20 opacity-0 animate-fade-in"
           style={{ 
             textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(147, 197, 253, 0.4)',
-            animationDelay: '1.2s',
+            animationDelay: '0.7s',
             animationFillMode: 'forwards'
           }}
         >
@@ -63,7 +48,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
           className="text-xl md:text-2xl text-white/90 mb-16 max-w-3xl mx-auto leading-relaxed font-normal relative z-20 opacity-0 animate-fade-in"
           style={{ 
             textShadow: '0 3px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3)',
-            animationDelay: '1.9s',
+            animationDelay: '1.4s',
             animationFillMode: 'forwards'
           }}
         >
@@ -75,7 +60,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
         <div 
           className="mb-12 max-w-2xl mx-auto opacity-0 animate-fade-in"
           style={{ 
-            animationDelay: '2.6s',
+            animationDelay: '2.1s',
             animationFillMode: 'forwards'
           }}
         >
@@ -97,7 +82,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
         <div 
           className="flex flex-col sm:flex-row gap-6 justify-center mb-20 opacity-0 animate-fade-in"
           style={{ 
-            animationDelay: '3.3s',
+            animationDelay: '2.8s',
             animationFillMode: 'forwards'
           }}
         >
@@ -121,7 +106,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
         <ul
           className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-x-14 gap-y-6 text-white/85 relative z-20 mb-10 opacity-0 animate-fade-in"
           style={{ 
-            animationDelay: '4.0s',
+            animationDelay: '3.5s',
             animationFillMode: 'forwards'
           }}
         >
@@ -137,7 +122,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
           className="text-sm text-white/75 relative z-20 font-normal opacity-0 animate-fade-in" 
           style={{ 
             textShadow: '0 2px 8px rgba(0,0,0,0.3)',
-            animationDelay: '4.0s',
+            animationDelay: '3.5s',
             animationFillMode: 'forwards'
           }}
         >
