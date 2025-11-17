@@ -42,7 +42,7 @@ export default function About() {
         style={{ 
           borderRadius: '0 0 1rem 1rem',
           backdropFilter: isScrolled ? 'blur(30px) saturate(180%)' : 'blur(20px) saturate(150%)',
-          filter: 'url(#liquid-glass-distortion) brightness(1.02)',
+          filter: 'brightness(1.01)',
         }}
       >
         <div className={`max-w-7xl mx-auto px-6 transition-all duration-700 ease-in-out ${
