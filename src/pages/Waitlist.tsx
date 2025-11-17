@@ -46,6 +46,7 @@ export default function Waitlist() {
         style={{
           borderRadius: '0 0 1rem 1rem',
           backdropFilter: isScrolled ? 'blur(30px) saturate(180%)' : 'blur(20px) saturate(150%)',
+          filter: 'url(#liquid-glass-distortion) brightness(1.02)',
         }}
       >
         <div className={`max-w-7xl mx-auto px-6 transition-all duration-700 ease-in-out ${
@@ -78,14 +79,25 @@ export default function Waitlist() {
                 About
               </Link>
             </div>
-            <Button 
-              onClick={scrollToForm} 
-              variant="premium" 
-              size={isScrolled ? "sm" : "default"}
-              className="shadow-xl hover:shadow-2xl shimmer-fast transition-all duration-700 ease-in-out"
-            >
-              Join waitlist
-            </Button>
+            <div className="flex flex-col items-end gap-1.5">
+              <Button 
+                onClick={scrollToForm} 
+                variant="premium" 
+                size={isScrolled ? "sm" : "default"}
+                className="shadow-xl hover:shadow-2xl shimmer-fast transition-all duration-700 ease-in-out"
+              >
+                Join waitlist
+              </Button>
+              <div className={`flex items-center gap-1.5 liquid-glass-strong px-2 py-0.5 rounded-full transition-all duration-700 ease-in-out ${
+                isScrolled ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
+              }`}>
+                <div className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </div>
+                <span className="text-[10px] text-white/90 font-medium whitespace-nowrap">Now accepting early access signups</span>
+              </div>
+            </div>
           </div>
           
           {/* Section Navigation */}
