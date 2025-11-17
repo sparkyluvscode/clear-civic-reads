@@ -106,7 +106,7 @@ export default function WaitlistForm() {
   };
 
   const handleCopyLink = () => {
-    const shareUrl = `${window.location.origin}/waitlist`;
+    const shareUrl = `${window.location.origin}/thanks`;
     navigator.clipboard.writeText(shareUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
