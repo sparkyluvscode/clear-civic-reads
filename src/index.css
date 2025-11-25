@@ -314,11 +314,11 @@ All colors MUST be HSL.
      WWDC 2025 Specification
      ═══════════════════════════════════════ */
 
-  /* Base Liquid Glass - Apple Specification */
+  /* Base Liquid Glass - Apple Specification - OPTIMIZED */
   .liquid-glass {
     background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(24px) contrast(1.15) brightness(1.08);
-    -webkit-backdrop-filter: blur(24px) contrast(1.15) brightness(1.08);
+    backdrop-filter: blur(12px) contrast(1.1) brightness(1.05);
+    -webkit-backdrop-filter: blur(12px) contrast(1.1) brightness(1.05);
     border-radius: 1.5rem;
     border: 1.5px solid rgba(255, 255, 255, 0.28);
     box-shadow: 
@@ -326,7 +326,8 @@ All colors MUST be HSL.
       inset 0 2px 10px rgba(255, 255, 255, 0.19);
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
   }
 
   .liquid-glass::before {
@@ -366,15 +367,13 @@ All colors MUST be HSL.
   }
 
   .liquid-glass:hover {
-    backdrop-filter: blur(28px) contrast(1.18) brightness(1.1);
-    -webkit-backdrop-filter: blur(28px) contrast(1.18) brightness(1.1);
-    transform: translateY(-2px);
+    transform: translateY(-2px) translateZ(0);
     box-shadow: 
       0 12px 48px rgba(31, 38, 135, 0.35),
       inset 0 3px 12px rgba(255, 255, 255, 0.22);
   }
 
-  /* Strong Liquid Glass - Premium luxury effect */
+  /* Strong Liquid Glass - Premium luxury effect - OPTIMIZED */
   .liquid-glass-strong {
     background: linear-gradient(
       135deg,
@@ -382,8 +381,8 @@ All colors MUST be HSL.
       hsla(220, 80%, 92%, 0.08) 50%,
       hsla(215, 70%, 88%, 0.10) 100%
     );
-    backdrop-filter: blur(40px) saturate(160%) brightness(1.05);
-    -webkit-backdrop-filter: blur(40px) saturate(160%) brightness(1.05);
+    backdrop-filter: blur(16px) saturate(140%) brightness(1.04);
+    -webkit-backdrop-filter: blur(16px) saturate(140%) brightness(1.04);
     border-radius: 1.5rem;
     border: 1.5px solid hsla(210, 100%, 95%, 0.35);
     box-shadow: 
@@ -393,7 +392,8 @@ All colors MUST be HSL.
       inset 0 -1px 2px 0 hsla(220, 50%, 70%, 0.15);
     position: relative;
     overflow: hidden;
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
   }
 
   /* Iridescent chromatic aberration overlay for liquid-glass-strong */
@@ -453,29 +453,28 @@ All colors MUST be HSL.
       hsla(220, 80%, 92%, 0.12) 50%,
       hsla(215, 70%, 88%, 0.14) 100%
     );
-    backdrop-filter: blur(48px) saturate(180%) brightness(1.08);
-    -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(1.08);
     border-color: hsla(210, 100%, 95%, 0.45);
     box-shadow: 
       0 12px 48px 0 hsla(220, 40%, 15%, 0.5),
       0 24px 80px 0 hsla(220, 60%, 25%, 0.3),
       inset 0 1px 3px 0 hsla(0, 0%, 100%, 0.55),
       inset 0 -1px 3px 0 hsla(220, 60%, 75%, 0.2);
-    transform: translateY(-3px) scale(1.01);
+    transform: translateY(-3px) scale(1.01) translateZ(0);
   }
 
-  /* Button Liquid Glass - Interactive elements */
+  /* Button Liquid Glass - Interactive elements - OPTIMIZED */
   .liquid-glass-button {
     background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(20px) contrast(1.12) brightness(1.06);
-    -webkit-backdrop-filter: blur(20px) contrast(1.12) brightness(1.06);
+    backdrop-filter: blur(10px) contrast(1.08) brightness(1.04);
+    -webkit-backdrop-filter: blur(10px) contrast(1.08) brightness(1.04);
     border-radius: 0.75rem;
     border: 1px solid rgba(255, 255, 255, 0.35);
     box-shadow: 
       0 4px 16px rgba(31, 38, 135, 0.25),
       inset 0 1px 2px rgba(255, 255, 255, 0.25);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    will-change: transform;
   }
 
   .liquid-glass-button::before {
@@ -492,16 +491,14 @@ All colors MUST be HSL.
   }
 
   .liquid-glass-button:hover {
-    backdrop-filter: blur(24px) contrast(1.15) brightness(1.08);
-    -webkit-backdrop-filter: blur(24px) contrast(1.15) brightness(1.08);
-    transform: translateY(-2px);
+    transform: translateY(-2px) translateZ(0);
     box-shadow: 
       0 6px 24px rgba(31, 38, 135, 0.35),
       inset 0 1px 3px rgba(255, 255, 255, 0.3);
   }
   
   .liquid-glass-button:active {
-    transform: translateY(0) scale(0.98);
+    transform: translateY(0) scale(0.98) translateZ(0);
     box-shadow: 
       0 2px 12px rgba(31, 38, 135, 0.2),
       inset 0 1px 6px rgba(255, 255, 255, 0.15);
@@ -511,31 +508,31 @@ All colors MUST be HSL.
      RESPONSIVE GLASS ADJUSTMENTS
      ═══════════════════════════════════════ */
   
-  /* Mobile: Reduce blur for performance (< 768px) */
+  /* Mobile: Reduce blur for performance (< 768px) - OPTIMIZED */
   @media (max-width: 768px) {
     .liquid-glass,
     .liquid-glass-button {
-      backdrop-filter: blur(16px) contrast(1.10) brightness(1.05);
-      -webkit-backdrop-filter: blur(16px) contrast(1.10) brightness(1.05);
+      backdrop-filter: blur(8px) contrast(1.06) brightness(1.03);
+      -webkit-backdrop-filter: blur(8px) contrast(1.06) brightness(1.03);
     }
     
     .liquid-glass-strong {
-      backdrop-filter: blur(20px) contrast(1.12) brightness(1.08);
-      -webkit-backdrop-filter: blur(20px) contrast(1.12) brightness(1.08);
+      backdrop-filter: blur(10px) contrast(1.08) brightness(1.04);
+      -webkit-backdrop-filter: blur(10px) contrast(1.08) brightness(1.04);
     }
   }
   
-  /* Tablet: Moderate blur (768px - 1024px) */
+  /* Tablet: Moderate blur (768px - 1024px) - OPTIMIZED */
   @media (min-width: 769px) and (max-width: 1024px) {
     .liquid-glass,
     .liquid-glass-button {
-      backdrop-filter: blur(20px) contrast(1.12) brightness(1.06);
-      -webkit-backdrop-filter: blur(20px) contrast(1.12) brightness(1.06);
+      backdrop-filter: blur(10px) contrast(1.08) brightness(1.04);
+      -webkit-backdrop-filter: blur(10px) contrast(1.08) brightness(1.04);
     }
     
     .liquid-glass-strong {
-      backdrop-filter: blur(24px) contrast(1.15) brightness(1.09);
-      -webkit-backdrop-filter: blur(24px) contrast(1.15) brightness(1.09);
+      backdrop-filter: blur(12px) contrast(1.1) brightness(1.05);
+      -webkit-backdrop-filter: blur(12px) contrast(1.1) brightness(1.05);
     }
   }
   
@@ -554,19 +551,19 @@ All colors MUST be HSL.
     }
   }
   
-  /* Glass morphism utilities - Legacy support with updated values */
+  /* Glass morphism utilities - Legacy support with updated values - OPTIMIZED */
   .glass {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 6px 24px rgba(10, 17, 40, 0.15);
   }
   
   .glass-strong {
     background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(40px) saturate(200%);
-    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 10px 40px rgba(10, 17, 40, 0.2);
   }
@@ -600,16 +597,17 @@ All colors MUST be HSL.
   
   @keyframes shimmer {
     0%, 100% {
-      transform: translateX(-100%) skewX(-15deg);
+      transform: translate3d(-100%, 0, 0) skewX(-15deg);
     }
     50% {
-      transform: translateX(250%) skewX(-15deg);
+      transform: translate3d(250%, 0, 0) skewX(-15deg);
     }
   }
   
-  /* Fast shimmer for interactive elements */
+  /* Fast shimmer for interactive elements - OPTIMIZED */
   .shimmer-fast::after {
-    animation: shimmer 2s ease-in-out infinite;
+    animation: shimmer 3s ease-in-out infinite;
+    will-change: transform;
   }
   
   /* Shimmer on hover only */
@@ -622,13 +620,14 @@ All colors MUST be HSL.
     opacity: 1;
   }
   
-  /* Smooth lift - Apple dock style */
+  /* Smooth lift - Apple dock style - OPTIMIZED */
   .hover-lift {
-    transition: var(--transition-smooth);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
   }
   
   .hover-lift:hover {
-    transform: translateY(-5px) scale(1.015);
+    transform: translate3d(0, -5px, 0) scale(1.015);
   }
   
   /* Text glow effects - Enhanced for legibility */
@@ -724,45 +723,45 @@ All colors MUST be HSL.
   
   @keyframes droplet-float {
     0%, 100% {
-      transform: translate(0, 0) scale(1);
+      transform: translate3d(0, 0, 0) scale(1);
       opacity: 0.12;
     }
     25% {
-      transform: translate(12px, -18px) scale(1.08);
+      transform: translate3d(12px, -18px, 0) scale(1.08);
       opacity: 0.22;
     }
     50% {
-      transform: translate(-10px, -28px) scale(0.96);
+      transform: translate3d(-10px, -28px, 0) scale(0.96);
       opacity: 0.18;
     }
     75% {
-      transform: translate(18px, -12px) scale(1.04);
+      transform: translate3d(18px, -12px, 0) scale(1.04);
       opacity: 0.16;
     }
   }
   
   @keyframes droplet-float-slow {
     0%, 100% {
-      transform: translate(0, 0) rotate(0deg) scale(1);
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
       opacity: 0.1;
     }
     33% {
-      transform: translate(20px, -25px) rotate(5deg) scale(1.1);
+      transform: translate3d(20px, -25px, 0) rotate(5deg) scale(1.1);
       opacity: 0.2;
     }
     66% {
-      transform: translate(-15px, -35px) rotate(-5deg) scale(0.92);
+      transform: translate3d(-15px, -35px, 0) rotate(-5deg) scale(0.92);
       opacity: 0.15;
     }
   }
   
   @keyframes droplet-float-medium {
     0%, 100% {
-      transform: translate(0, 0) scale(1);
+      transform: translate3d(0, 0, 0) scale(1);
       opacity: 0.15;
     }
     50% {
-      transform: translate(-18px, -30px) scale(1.06);
+      transform: translate3d(-18px, -30px, 0) scale(1.06);
       opacity: 0.25;
     }
   }
@@ -778,17 +777,18 @@ All colors MUST be HSL.
     }
   }
   
-  /* Glass orb floating animation */
+  /* Glass orb floating animation - OPTIMIZED */
   .orb-float {
     animation: orb-float 8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    will-change: transform;
   }
   
   @keyframes orb-float {
     0%, 100% {
-      transform: translate(0, 0) scale(1);
+      transform: translate3d(0, 0, 0) scale(1);
     }
     50% {
-      transform: translate(-15px, -20px) scale(1.08);
+      transform: translate3d(-15px, -20px, 0) scale(1.08);
     }
   }
   
@@ -840,6 +840,38 @@ All colors MUST be HSL.
     }
   }
   
+  /* Fade-in animation - OPTIMIZED */
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Scale-in animation - OPTIMIZED */
+  .animate-scale-in {
+    animation: scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateZ(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateZ(0);
+    }
+  }
+  
   /* Glass input styling - premium frosted effect */
   .input-glass {
     background: hsla(0, 0%, 100%, 0.95);
@@ -867,13 +899,14 @@ All colors MUST be HSL.
       0 0 0 3px hsl(210 60% 55% / 0.1);
   }
   
-  /* Elevated hover state for cards */
+  /* Elevated hover state for cards - OPTIMIZED */
   .card-hover-lift {
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
   }
   
   .card-hover-lift:hover {
-    transform: translateY(-8px) scale(1.01);
+    transform: translate3d(0, -8px, 0) scale(1.01);
     box-shadow: var(--shadow-glass-hover);
   }
   
@@ -925,13 +958,13 @@ All colors MUST be HSL.
   
   @keyframes float-orb {
     0%, 100% {
-      transform: translate(0, 0);
+      transform: translate3d(0, 0, 0);
     }
     33% {
-      transform: translate(30px, -30px);
+      transform: translate3d(30px, -30px, 0);
     }
     66% {
-      transform: translate(-20px, 20px);
+      transform: translate3d(-20px, 20px, 0);
     }
   }
   

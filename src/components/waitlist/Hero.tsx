@@ -15,12 +15,13 @@ export default function Hero({ onJoinClick }: HeroProps) {
   return (
     <section className="relative overflow-hidden px-4 pt-4 pb-32 md:pt-6 md:pb-48 min-h-[90vh] flex items-center">
       <div className="relative max-w-6xl mx-auto text-center">
-        {/* ClearPolicy Logo */}
+        {/* ClearPolicy Logo - OPTIMIZED */}
         <div 
           className="mb-6 opacity-0 animate-fade-in"
           style={{ 
             animationDelay: '0s',
-            animationFillMode: 'forwards'
+            animationFillMode: 'forwards',
+            willChange: 'opacity'
           }}
         >
           <img 
@@ -28,8 +29,10 @@ export default function Hero({ onJoinClick }: HeroProps) {
             alt="ClearPolicy" 
             className="h-72 md:h-96 mx-auto drop-shadow-2xl"
             style={{
-              filter: 'drop-shadow(0 4px 20px rgba(255,255,255,0.3)) drop-shadow(0 0 40px rgba(147, 197, 253, 0.4))'
+              filter: 'drop-shadow(0 4px 20px rgba(255,255,255,0.3)) drop-shadow(0 0 40px rgba(147, 197, 253, 0.4))',
+              willChange: 'auto'
             }}
+            loading="eager"
           />
         </div>
 
@@ -37,8 +40,9 @@ export default function Hero({ onJoinClick }: HeroProps) {
           className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-10 leading-[1.05] tracking-tight relative z-20 opacity-0 animate-fade-in"
           style={{ 
             textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(147, 197, 253, 0.4)',
-            animationDelay: '0.7s',
-            animationFillMode: 'forwards'
+            animationDelay: '0.3s',
+            animationFillMode: 'forwards',
+            willChange: 'opacity'
           }}
         >
           Policy clarity, with sources you can check
@@ -48,27 +52,26 @@ export default function Hero({ onJoinClick }: HeroProps) {
           className="text-xl md:text-2xl text-white/90 mb-16 max-w-3xl mx-auto leading-relaxed font-normal relative z-20 opacity-0 animate-fade-in"
           style={{ 
             textShadow: '0 3px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3)',
-            animationDelay: '1.4s',
-            animationFillMode: 'forwards'
+            animationDelay: '0.5s',
+            animationFillMode: 'forwards',
+            willChange: 'opacity'
           }}
         >
           Plain-English explanations of bills and ballot measures—backed by <span className="font-semibold text-white">citations</span>. 
           Join the waitlist to get early access in your area.
         </p>
 
-        {/* Search box teaser with liquid glass */}
+        {/* Search box teaser with liquid glass - OPTIMIZED */}
         <div 
           className="mb-12 max-w-2xl mx-auto opacity-0 animate-fade-in"
           style={{ 
-            animationDelay: '2.1s',
-            animationFillMode: 'forwards'
+            animationDelay: '0.7s',
+            animationFillMode: 'forwards',
+            willChange: 'opacity'
           }}
         >
           <div 
             className="liquid-glass-strong rounded-2xl p-2 shadow-glass-hover relative overflow-hidden group"
-            style={{ 
-              filter: 'url(#liquid-glass-distortion) brightness(1.1)',
-            }}
           >
             <div className="flex items-center gap-3 px-4">
               <Search className="h-6 w-6 text-white opacity-70" />
@@ -82,23 +85,24 @@ export default function Hero({ onJoinClick }: HeroProps) {
         <div 
           className="flex flex-col sm:flex-row gap-6 justify-center mb-20 opacity-0 animate-fade-in"
           style={{ 
-            animationDelay: '2.8s',
-            animationFillMode: 'forwards'
+            animationDelay: '0.9s',
+            animationFillMode: 'forwards',
+            willChange: 'opacity'
           }}
         >
           <button
             onClick={onJoinClick}
-            className="group relative liquid-glass-strong text-lg px-16 py-9 rounded-2xl text-white font-bold shadow-glass-strong hover:shadow-glow-ice shimmer-fast transition-all duration-500 hover:scale-[1.02] overflow-hidden"
+            className="group relative liquid-glass-strong text-lg px-16 py-9 rounded-2xl text-white font-bold shadow-glass-strong hover:shadow-glow-ice shimmer-fast transition-transform duration-300 hover:scale-[1.02] overflow-hidden"
             style={{ 
-              filter: 'url(#liquid-glass-distortion) brightness(1.1)',
+              willChange: 'transform',
             }}
             aria-label="Join the waitlist for early access"
           >
-            {/* Glow effect on hover */}
-            <div className="absolute inset-0 bg-gradient-to-r from-ice-blue/20 via-ice-blue/30 to-ice-blue/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+            {/* Glow effect on hover - OPTIMIZED */}
+            <div className="absolute inset-0 bg-gradient-to-r from-ice-blue/20 via-ice-blue/30 to-ice-blue/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
             <span className="relative z-10 flex items-center gap-3 justify-center">
               Get Early Access — Launching Soon
-              <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" style={{ willChange: 'transform' }} />
             </span>
           </button>
         </div>
@@ -106,8 +110,9 @@ export default function Hero({ onJoinClick }: HeroProps) {
         <ul
           className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-x-14 gap-y-6 text-white/85 relative z-20 mb-10 opacity-0 animate-fade-in"
           style={{ 
-            animationDelay: '3.5s',
-            animationFillMode: 'forwards'
+            animationDelay: '1.1s',
+            animationFillMode: 'forwards',
+            willChange: 'opacity'
           }}
         >
           {benefits.map((benefit) => (
@@ -122,8 +127,9 @@ export default function Hero({ onJoinClick }: HeroProps) {
           className="text-sm text-white/75 relative z-20 font-normal opacity-0 animate-fade-in" 
           style={{ 
             textShadow: '0 2px 8px rgba(0,0,0,0.3)',
-            animationDelay: '3.5s',
-            animationFillMode: 'forwards'
+            animationDelay: '1.1s',
+            animationFillMode: 'forwards',
+            willChange: 'opacity'
           }}
         >
           No spam. Unsubscribe anytime.

@@ -51,19 +51,8 @@ export default function InteractiveDemo() {
 
   return (
     <section className="py-24 px-4 relative overflow-hidden">
-      {/* SVG Filter for liquid glass distortion */}
-      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
-        <defs>
-          <filter id="liquid-glass-distortion" x="-50%" y="-50%" width="200%" height="200%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="3" seed="5" result="turbulence" />
-            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacement" />
-            <feGaussianBlur in="displacement" stdDeviation="0.5" result="blur" />
-          </filter>
-        </defs>
-      </svg>
-
-      {/* Background orbs */}
-      <div className="absolute top-20 right-[10%] w-[400px] h-[400px] bg-gradient-orb-ice opacity-30 rounded-full blur-[100px] pointer-events-none animate-pulse-glow" />
+      {/* Background orbs - OPTIMIZED */}
+      <div className="absolute top-20 right-[10%] w-[400px] h-[400px] bg-gradient-orb-ice opacity-30 rounded-full blur-[100px] pointer-events-none animate-pulse-glow" style={{ willChange: 'opacity' }} />
       
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-12">
@@ -75,13 +64,10 @@ export default function InteractiveDemo() {
           </p>
         </div>
 
-        {/* Interactive Search Input */}
+        {/* Interactive Search Input - OPTIMIZED */}
         <div className="mb-12">
           <div 
             className="liquid-glass-strong rounded-2xl p-2 shadow-glass-hover relative"
-            style={{ 
-              filter: 'url(#liquid-glass-distortion) brightness(1.1)',
-            }}
           >
             <div className="flex items-center gap-3 px-4">
               <Search className="h-6 w-6 text-white opacity-70" />
@@ -97,12 +83,12 @@ export default function InteractiveDemo() {
           </div>
         </div>
 
-        {/* Demo Preview */}
+        {/* Demo Preview - OPTIMIZED */}
         {(showDemo || isTyping) && (
           <div 
             className="liquid-glass rounded-3xl p-8 shadow-glass-strong animate-scale-in relative overflow-hidden"
             style={{ 
-              filter: 'url(#liquid-glass-distortion) brightness(1.06)',
+              willChange: 'transform, opacity',
             }}
           >
             {/* Inner highlight */}
