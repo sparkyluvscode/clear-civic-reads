@@ -26,10 +26,10 @@ const features = [
 export default function TrustSection() {
   return (
     <section className="py-32 px-4 relative">
-      {/* Background droplets - Enhanced variety */}
-      <div className="droplet top-[10%] left-[15%] w-28 h-28 blur-[38px] droplet-float" />
-      <div className="droplet bottom-[15%] right-[20%] w-32 h-32 blur-[40px] droplet-float-slow" style={{ animationDelay: '4s' }} />
-      <div className="droplet top-[50%] left-[8%] w-24 h-24 blur-[36px] droplet-float" style={{ animationDelay: '2s' }} />
+      {/* Background droplets - OPTIMIZED */}
+      <div className="droplet top-[10%] left-[15%] w-28 h-28 blur-[38px] droplet-float" style={{ willChange: 'transform, opacity' }} />
+      <div className="droplet bottom-[15%] right-[20%] w-32 h-32 blur-[40px] droplet-float-slow" style={{ animationDelay: '4s', willChange: 'transform, opacity' }} />
+      <div className="droplet top-[50%] left-[8%] w-24 h-24 blur-[36px] droplet-float" style={{ animationDelay: '2s', willChange: 'transform, opacity' }} />
       
       <div className="max-w-6xl mx-auto relative">
         <div className="text-center mb-24">
@@ -56,7 +56,8 @@ export default function TrustSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-transparent pointer-events-none" />
                 <div className="flex items-start gap-5">
                   <div 
-                    className="flex-shrink-0 w-16 h-16 rounded-2xl liquid-glass flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500 shimmer-hover relative overflow-hidden"
+                    className="flex-shrink-0 w-16 h-16 rounded-2xl liquid-glass flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow-teal transition-transform duration-300 shimmer-hover relative overflow-hidden"
+                    style={{ willChange: 'transform' }}
                   >
                     <Icon className="h-8 w-8 text-ice-blue drop-shadow-lg relative z-10" />
                     {/* Inner highlight - enhanced */}

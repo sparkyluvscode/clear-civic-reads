@@ -19,12 +19,19 @@ export default function About() {
       );
     }
 
-    // Scroll detection
+    // Optimized scroll detection with requestAnimationFrame throttling
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -34,21 +41,21 @@ export default function About() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
+      {/* Header - OPTIMIZED */}
       <header 
-        className={`fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong transition-all duration-700 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-50 border-b liquid-glass-strong transition-all duration-300 ease-out ${
           isScrolled ? 'py-2' : 'py-0'
         }`}
         style={{ 
           borderRadius: '0 0 1rem 1rem',
-          backdropFilter: isScrolled ? 'blur(30px) saturate(180%)' : 'blur(20px) saturate(150%)',
-          filter: 'brightness(1.01)',
+          willChange: 'padding',
+          contain: 'layout style paint',
         }}
       >
-        <div className={`max-w-7xl mx-auto px-6 transition-all duration-700 ease-in-out ${
+        <div className={`max-w-7xl mx-auto px-6 transition-all duration-300 ease-out ${
           isScrolled ? 'py-3' : 'py-5'
         }`}>
-          <div className={`flex items-center justify-between transition-all duration-700 ease-in-out ${
+          <div className={`flex items-center justify-between transition-all duration-300 ease-out ${
             isScrolled ? 'mb-0' : 'mb-4'
           }`}>
             <div className="flex items-center gap-6">
@@ -56,11 +63,12 @@ export default function About() {
                 <img 
                   src={clearpolicyLogo} 
                   alt="ClearPolicy" 
-                  className={`rounded-xl group-hover:scale-110 transition-all duration-700 ease-in-out drop-shadow-lg ${
+                  className={`rounded-xl group-hover:scale-110 transition-transform duration-300 ease-out drop-shadow-lg ${
                     isScrolled ? 'w-9 h-9' : 'w-11 h-11'
                   }`}
+                  style={{ willChange: 'transform' }}
                 />
-                <span className={`font-black text-white tracking-tight transition-all duration-700 ease-in-out ${
+                <span className={`font-black text-white tracking-tight transition-all duration-300 ease-out ${
                   isScrolled ? 'text-lg' : 'text-xl'
                 }`}>
                   ClearPolicy
@@ -72,14 +80,15 @@ export default function About() {
                 <Button 
                   variant="premium"
                   size={isScrolled ? "sm" : "default"}
-                  className="shadow-xl hover:shadow-2xl shimmer-fast transition-all duration-700 ease-in-out"
+                  className="shadow-xl hover:shadow-2xl shimmer-fast transition-all duration-300 ease-out"
                 >
                   Back to Home
                 </Button>
               </Link>
-              <div className={`flex items-center gap-1.5 liquid-glass-strong px-2 py-0.5 rounded-full transition-all duration-700 ease-in-out ${
+              <div className={`flex items-center gap-1.5 liquid-glass-strong px-2 py-0.5 rounded-full transition-all duration-300 ease-out ${
                 isScrolled ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
-              }`}>
+              }`}
+              style={{ willChange: 'opacity, transform' }}>
                 <div className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -89,10 +98,11 @@ export default function About() {
             </div>
           </div>
           
-          {/* Section Navigation */}
-          <nav className={`flex items-center justify-center gap-6 overflow-x-auto transition-all duration-700 ease-in-out ${
+          {/* Section Navigation - OPTIMIZED */}
+          <nav className={`flex items-center justify-center gap-6 overflow-x-auto transition-all duration-300 ease-out ${
             isScrolled ? 'opacity-0 max-h-0 overflow-hidden' : 'opacity-100 max-h-20'
-          }`}>
+          }`}
+          style={{ willChange: 'opacity, max-height' }}>
             <button 
               onClick={() => scrollToSection("trust")}
               className="text-sm font-medium text-white/80 hover:text-white transition-colors whitespace-nowrap"
@@ -144,9 +154,9 @@ export default function About() {
         <div id="who-its-for"><AudienceSection /></div>
         <div id="faq"><FAQSection /></div>
 
-        {/* Footer */}
+        {/* Footer - OPTIMIZED */}
         <footer className="relative mt-32 py-16 px-4">
-          <div className="absolute inset-0 liquid-glass-strong border-t" style={{ filter: 'url(#liquid-glass-distortion) brightness(1.05)' }} />
+          <div className="absolute inset-0 liquid-glass-strong border-t" />
           
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="grid md:grid-cols-3 gap-12 mb-12">
@@ -188,16 +198,6 @@ export default function About() {
           </div>
         </footer>
       </main>
-
-      {/* SVG Filters */}
-      <svg className="absolute w-0 h-0">
-        <defs>
-          <filter id="liquid-glass-distortion">
-            <feTurbulence type="fractalNoise" baseFrequency="0.01 0.003" numOctaves="2" result="warp" seed="2" />
-            <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="20" in="SourceGraphic" in2="warp" />
-          </filter>
-        </defs>
-      </svg>
     </div>
   );
 }

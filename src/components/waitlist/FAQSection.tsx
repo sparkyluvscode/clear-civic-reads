@@ -43,8 +43,8 @@ const faqs = [
 export default function FAQSection() {
   return (
     <section id="faq" className="py-24 px-4 relative">
-      {/* Background orb */}
-      <div className="absolute top-1/2 left-[5%] w-[450px] h-[450px] bg-gradient-orb-blue opacity-25 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background orb - OPTIMIZED */}
+      <div className="absolute top-1/2 left-[5%] w-[450px] h-[450px] bg-gradient-orb-blue opacity-25 rounded-full blur-[80px] pointer-events-none" />
       
       <div className="max-w-3xl mx-auto relative">
         <div className="text-center mb-16">
@@ -61,7 +61,7 @@ export default function FAQSection() {
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="glass-strong rounded-3xl px-7 shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 border-0"
+              className="glass-strong rounded-3xl px-7 shadow-glass-strong hover:shadow-glass-hover transition-all duration-300 border-0"
             >
               <AccordionTrigger className="text-left font-bold hover:no-underline py-6 text-base">
                 {faq.question}

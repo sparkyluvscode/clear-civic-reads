@@ -34,9 +34,9 @@ const audiences = [
 export default function AudienceSection() {
   return (
     <section className="py-32 px-4 relative">
-      {/* Subtle droplet accents */}
-      <div className="droplet top-[20%] right-[12%] w-24 h-24 blur-[35px] droplet-float-slow" style={{ animationDelay: '2s' }} />
-      <div className="droplet bottom-[25%] left-[10%] w-30 h-30 blur-[42px] droplet-float" style={{ animationDelay: '5s' }} />
+      {/* Subtle droplet accents - OPTIMIZED */}
+      <div className="droplet top-[20%] right-[12%] w-24 h-24 blur-[35px] droplet-float-slow" style={{ animationDelay: '2s', willChange: 'transform, opacity' }} />
+      <div className="droplet bottom-[25%] left-[10%] w-30 h-30 blur-[42px] droplet-float" style={{ animationDelay: '5s', willChange: 'transform, opacity' }} />
       
       <div className="max-w-6xl mx-auto relative">
         <div className="text-center mb-24">
@@ -55,13 +55,14 @@ export default function AudienceSection() {
             return (
               <div
                 key={index}
-                className="p-8 rounded-3xl liquid-glass-strong shadow-glass-strong hover:shadow-glass-hover transition-all duration-500 card-hover-lift group relative overflow-hidden"
+                className="p-8 rounded-3xl liquid-glass-strong shadow-glass-strong hover:shadow-glass-hover transition-all duration-300 card-hover-lift group relative overflow-hidden"
               >
                 {/* Inner highlight */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none" />
                 <div className="relative z-10">
                 <div 
-                  className="w-18 h-18 rounded-2xl liquid-glass flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-glow-teal transition-all duration-500 relative overflow-hidden"
+                  className="w-18 h-18 rounded-2xl liquid-glass flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-glow-teal transition-transform duration-300 relative overflow-hidden"
+                  style={{ willChange: 'transform' }}
                 >
                   <Icon className="h-9 w-9 text-ice-blue drop-shadow-lg relative z-10" />
                   {/* Inner highlight */}
