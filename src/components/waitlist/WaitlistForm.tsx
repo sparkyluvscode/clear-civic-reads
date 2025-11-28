@@ -68,24 +68,27 @@ export default function WaitlistForm() {
     setIsSubmitting(true);
 
     try {
-      // Call the secure edge function instead of direct database insert
-      const { data, error } = await supabase.functions.invoke('waitlist-signup', {
-        body: {
-          email: formData.email,
+      // Insert directly into waitlist_signups table
+      const { data, error } = await supabase
+        .from('waitlist_signups')
+        .insert({
+          email: formData.email.toLowerCase(),
           zip: formData.zip || null,
           role: formData.role || null,
           use_case: formData.useCase || null,
           source: "waitlist_landing_v1",
           user_agent: navigator.userAgent,
           referer: document.referrer || null,
-        },
-      });
+        })
+        .select()
+        .single();
 
-      // Check for errors - when edge function returns non-2xx, both error and data are set
-      if (error || !data?.success) {
-        // The error message is in data.error even when error object is set
-        const errorMessage = (data as any)?.error || error?.message || 'Failed to submit signup';
-        throw new Error(errorMessage);
+      if (error) {
+        // Handle duplicate email
+        if (error.code === '23505') {
+          throw new Error('This email is already on the waitlist!');
+        }
+        throw new Error(error.message || 'Failed to submit signup');
       }
 
       setIsSuccess(true);
