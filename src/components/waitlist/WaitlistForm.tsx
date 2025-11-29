@@ -68,9 +68,10 @@ export default function WaitlistForm() {
     setIsSubmitting(true);
 
     try {
-      // Call the secure edge function to handle signup
-      const { data, error } = await supabase.functions.invoke('waitlist-signup', {
-        body: {
+      // Insert directly into waitlist_signups table
+      const { data, error } = await supabase
+        .from('waitlist_signups')
+        .insert({
           email: formData.email.toLowerCase(),
           zip: formData.zip || null,
           role: formData.role || null,
@@ -78,16 +79,16 @@ export default function WaitlistForm() {
           source: "waitlist_landing_v1",
           user_agent: navigator.userAgent,
           referer: document.referrer || null,
-        },
-      });
+        })
+        .select()
+        .single();
 
       if (error) {
+        // Handle duplicate email
+        if (error.code === '23505') {
+          throw new Error('This email is already on the waitlist!');
+        }
         throw new Error(error.message || 'Failed to submit signup');
-      }
-
-      // Edge function returns error in response body for handled errors
-      if (data?.error) {
-        throw new Error(data.error);
       }
 
       setIsSuccess(true);
