@@ -1,4 +1,5 @@
-import { ArrowRight, CheckCircle2, Search } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import clearPolicyAnimation from "@/assets/clearpolicy-animation.mp4";
 import clearPolicyLogo from "@/assets/clearpolicy-logo.png";
 
 interface HeroProps {
@@ -13,127 +14,88 @@ const benefits = [
 
 export default function Hero({ onJoinClick }: HeroProps) {
   return (
-    <section className="relative overflow-hidden px-4 pt-4 pb-32 md:pt-6 md:pb-48 min-h-[90vh] flex items-center">
-      <div className="relative max-w-6xl mx-auto text-center">
-        {/* ClearPolicy Logo - OPTIMIZED */}
-        <div 
-          className="mb-6 opacity-0 animate-fade-in"
-          style={{ 
-            animationDelay: '0s',
-            animationFillMode: 'forwards',
-            willChange: 'opacity'
-          }}
-        >
-          <img 
-            src={clearPolicyLogo} 
-            alt="ClearPolicy" 
-            className="h-72 md:h-96 mx-auto drop-shadow-2xl"
-            style={{
-              filter: 'drop-shadow(0 4px 20px rgba(255,255,255,0.3)) drop-shadow(0 0 40px rgba(147, 197, 253, 0.4))',
-              willChange: 'auto'
-            }}
-            loading="eager"
-          />
-        </div>
+    <section className="min-h-[calc(100vh-4rem)] flex items-center px-4 sm:px-6 py-12 md:py-16 relative overflow-hidden">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0">
+        <video 
+          src={clearPolicyAnimation}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-[0.35] dark:opacity-[0.30] blur-[1px] scale-125"
+        />
+        {/* Gradient overlay to blend video into background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
+      </div>
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        {/* Desktop: Side by side | Mobile: Logo on top */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 items-center">
+          {/* Content - appears second on mobile, first on desktop */}
+          <div className="order-2 lg:order-1 text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6 animate-fade-in text-glow">
+              Policy clarity, with sources you can check
+            </h1>
+            
+            <p 
+              className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed animate-fade-in" 
+              style={{ animationDelay: '0.1s' }}
+            >
+              Plain-English explanations of bills and ballot measures—backed by{" "}
+              <span className="text-foreground font-medium">citations</span>. 
+              Join the waitlist to get early access in your area.
+            </p>
 
-        <h1 
-          className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-10 leading-[1.05] tracking-tight relative z-20 opacity-0 animate-fade-in"
-          style={{ 
-            textShadow: '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(147, 197, 253, 0.4)',
-            animationDelay: '0.3s',
-            animationFillMode: 'forwards',
-            willChange: 'opacity'
-          }}
-        >
-          Policy clarity, with sources you can check
-        </h1>
-        
-        <p 
-          className="text-xl md:text-2xl text-white/90 mb-16 max-w-3xl mx-auto leading-relaxed font-normal relative z-20 opacity-0 animate-fade-in"
-          style={{ 
-            textShadow: '0 3px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3)',
-            animationDelay: '0.5s',
-            animationFillMode: 'forwards',
-            willChange: 'opacity'
-          }}
-        >
-          Plain-English explanations of bills and ballot measures—backed by <span className="font-semibold text-white">citations</span>. 
-          Join the waitlist to get early access in your area.
-        </p>
+            {/* Benefits */}
+            <ul 
+              className="space-y-3 mb-8 animate-fade-in inline-block text-left" 
+              style={{ animationDelay: '0.2s' }}
+            >
+              {benefits.map((benefit) => (
+                <li key={benefit} className="flex items-start gap-3 text-muted-foreground">
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0 icon-glow" />
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
 
-        {/* Search box teaser with liquid glass - OPTIMIZED */}
-        <div 
-          className="mb-12 max-w-2xl mx-auto opacity-0 animate-fade-in"
-          style={{ 
-            animationDelay: '0.7s',
-            animationFillMode: 'forwards',
-            willChange: 'opacity'
-          }}
-        >
-          <div 
-            className="liquid-glass-strong rounded-2xl p-2 shadow-glass-hover relative overflow-hidden group"
-          >
-            <div className="flex items-center gap-3 px-4">
-              <Search className="h-6 w-6 text-white opacity-70" />
-              <span className="flex-1 py-4 text-gray-400 text-lg">
-                Search for a ballot measure or policy...
-              </span>
+            {/* CTA */}
+            <div 
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in" 
+              style={{ animationDelay: '0.3s' }}
+            >
+              <button
+                onClick={onJoinClick}
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-lg btn-glow shimmer"
+              >
+                Get Early Access
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            <p 
+              className="text-sm text-muted-foreground mt-4 animate-fade-in" 
+              style={{ animationDelay: '0.4s' }}
+            >
+              No spam. Unsubscribe anytime.
+            </p>
+          </div>
+
+          {/* Logo - appears first on mobile, second on desktop */}
+          <div className="order-1 lg:order-2 flex justify-center animate-fade-in">
+            <div className="relative">
+              {/* Glow effect behind logo */}
+              <div className="absolute inset-0 blur-3xl bg-primary/30 rounded-full scale-110 animate-pulse opacity-50 dark:opacity-70" />
+              <div className="absolute inset-0 blur-2xl bg-accent/20 rounded-full" />
+              <img 
+                src={clearPolicyLogo}
+                alt="ClearPolicy"
+                className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 object-contain drop-shadow-2xl transition-transform duration-300 hover:scale-105"
+              />
             </div>
           </div>
         </div>
-
-        <div 
-          className="flex flex-col sm:flex-row gap-6 justify-center mb-20 opacity-0 animate-fade-in"
-          style={{ 
-            animationDelay: '0.9s',
-            animationFillMode: 'forwards',
-            willChange: 'opacity'
-          }}
-        >
-          <button
-            onClick={onJoinClick}
-            className="group relative liquid-glass-strong text-lg px-16 py-9 rounded-2xl text-white font-bold shadow-glass-strong hover:shadow-glow-ice shimmer-fast transition-transform duration-300 hover:scale-[1.02] overflow-hidden"
-            style={{ 
-              willChange: 'transform',
-            }}
-            aria-label="Join the waitlist for early access"
-          >
-            {/* Glow effect on hover - OPTIMIZED */}
-            <div className="absolute inset-0 bg-gradient-to-r from-ice-blue/20 via-ice-blue/30 to-ice-blue/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
-            <span className="relative z-10 flex items-center gap-3 justify-center">
-              Get Early Access — Launching Soon
-              <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" style={{ willChange: 'transform' }} />
-            </span>
-          </button>
-        </div>
-
-        <ul
-          className="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-x-14 gap-y-6 text-white/85 relative z-20 mb-10 opacity-0 animate-fade-in"
-          style={{ 
-            animationDelay: '1.1s',
-            animationFillMode: 'forwards',
-            willChange: 'opacity'
-          }}
-        >
-          {benefits.map((benefit) => (
-            <li key={benefit} className="flex items-center gap-3 text-base font-normal">
-              <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-ice-blue drop-shadow-lg" />
-              <span style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>{benefit}</span>
-            </li>
-          ))}
-        </ul>
-
-        <p 
-          className="text-sm text-white/75 relative z-20 font-normal opacity-0 animate-fade-in" 
-          style={{ 
-            textShadow: '0 2px 8px rgba(0,0,0,0.3)',
-            animationDelay: '1.1s',
-            animationFillMode: 'forwards',
-            willChange: 'opacity'
-          }}
-        >
-          No spam. Unsubscribe anytime.
-        </p>
       </div>
     </section>
   );

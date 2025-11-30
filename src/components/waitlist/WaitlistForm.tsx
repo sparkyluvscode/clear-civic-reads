@@ -68,7 +68,6 @@ export default function WaitlistForm() {
     setIsSubmitting(true);
 
     try {
-      // Insert directly into waitlist_signups table
       const { data, error } = await supabase
         .from('waitlist_signups')
         .insert({
@@ -84,7 +83,6 @@ export default function WaitlistForm() {
         .single();
 
       if (error) {
-        // Handle duplicate email
         if (error.code === '23505') {
           throw new Error('This email is already on the waitlist!');
         }
@@ -121,25 +119,25 @@ export default function WaitlistForm() {
 
   if (isSuccess) {
     return (
-      <div className="text-center space-y-8 animate-fade-in">
-        <div className="w-24 h-24 mx-auto glass-strong rounded-full flex items-center justify-center shadow-glass-strong pulse-glow">
-          <CheckCircle2 className="h-12 w-12 text-civic-teal drop-shadow-lg" />
+      <div className="text-center space-y-6 animate-fade-in">
+        <div className="w-20 h-20 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
+          <CheckCircle2 className="h-10 w-10 text-primary" />
         </div>
         <div>
-          <h3 className="text-3xl font-black text-foreground mb-3">You're on the list!</h3>
-          <p className="text-muted-foreground text-lg font-medium">
+          <h3 className="text-2xl font-bold text-foreground mb-2">You're on the list!</h3>
+          <p className="text-muted-foreground">
             Check your email for confirmation. We'll notify you when ClearPolicy launches in your area.
           </p>
         </div>
-        <Button onClick={handleCopyLink} variant="secondary" size="lg" className="gap-2 shadow-lg hover:shadow-xl">
+        <Button onClick={handleCopyLink} variant="outline" className="gap-2">
           {copied ? (
             <>
-              <Check className="h-5 w-5" />
+              <Check className="h-4 w-4" />
               Copied!
             </>
           ) : (
             <>
-              <Copy className="h-5 w-5" />
+              <Copy className="h-4 w-4" />
               Copy waitlist link
             </>
           )}
@@ -149,9 +147,9 @@ export default function WaitlistForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-7 max-w-lg mx-auto">
-      <div className="space-y-3">
-        <Label htmlFor="email" className="text-base font-bold">
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="space-y-2">
+        <Label htmlFor="email" className="text-sm font-medium">
           Email address <span className="text-destructive">*</span>
         </Label>
         <Input
@@ -160,20 +158,16 @@ export default function WaitlistForm() {
           placeholder="your.email@example.com"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className={`h-12 text-base rounded-xl border-2 input-glass ${errors.email ? "border-destructive" : ""}`}
-          aria-label="Email address"
-          aria-required="true"
-          aria-invalid={!!errors.email}
-          aria-describedby={errors.email ? "email-error" : undefined}
+          className={errors.email ? "border-destructive" : ""}
           required
         />
         {errors.email && (
-          <p id="email-error" className="text-sm text-destructive font-medium" role="alert">{errors.email}</p>
+          <p className="text-sm text-destructive">{errors.email}</p>
         )}
       </div>
 
-      <div className="space-y-3">
-        <Label htmlFor="zip" className="text-base font-bold">
+      <div className="space-y-2">
+        <Label htmlFor="zip" className="text-sm font-medium">
           ZIP code (helps us prioritize your area)
         </Label>
         <Input
@@ -182,23 +176,20 @@ export default function WaitlistForm() {
           placeholder="12345"
           value={formData.zip}
           onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-          className={`h-12 text-base rounded-xl border-2 input-glass ${errors.zip ? "border-destructive" : ""}`}
-          aria-label="ZIP code"
-          aria-invalid={!!errors.zip}
-          aria-describedby={errors.zip ? "zip-error" : undefined}
+          className={errors.zip ? "border-destructive" : ""}
           maxLength={10}
         />
         {errors.zip && (
-          <p id="zip-error" className="text-sm text-destructive font-medium" role="alert">{errors.zip}</p>
+          <p className="text-sm text-destructive">{errors.zip}</p>
         )}
       </div>
 
-      <div className="space-y-3">
-        <Label htmlFor="role" className="text-base font-bold">
+      <div className="space-y-2">
+        <Label htmlFor="role" className="text-sm font-medium">
           I am a...
         </Label>
         <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })}>
-          <SelectTrigger id="role" className="h-12 rounded-xl border-2 input-glass" aria-label="Select your role">
+          <SelectTrigger id="role">
             <SelectValue placeholder="Select your role" />
           </SelectTrigger>
           <SelectContent>
@@ -212,8 +203,8 @@ export default function WaitlistForm() {
         </Select>
       </div>
 
-      <div className="space-y-3">
-        <Label htmlFor="useCase" className="text-base font-bold">
+      <div className="space-y-2">
+        <Label htmlFor="useCase" className="text-sm font-medium">
           What would you use ClearPolicy for? (optional)
         </Label>
         <Textarea
@@ -221,11 +212,10 @@ export default function WaitlistForm() {
           placeholder="E.g., 'Understanding ballot measures before voting' or 'Research for articles'"
           value={formData.useCase}
           onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
-          className="min-h-[100px] resize-none rounded-xl border-2 input-glass"
-          aria-label="What would you use ClearPolicy for"
+          className="min-h-[80px] resize-none"
           maxLength={500}
         />
-        <p className="text-xs text-muted-foreground font-medium">
+        <p className="text-xs text-muted-foreground">
           {formData.useCase.length}/500 characters
         </p>
       </div>
@@ -240,10 +230,7 @@ export default function WaitlistForm() {
           className={errors.consent ? "border-destructive" : ""}
         />
         <div className="space-y-1 leading-none">
-          <Label
-            htmlFor="consent"
-            className="text-sm font-normal cursor-pointer"
-          >
+          <Label htmlFor="consent" className="text-sm font-normal cursor-pointer">
             I agree to be contacted about early access and product feedback.{" "}
             <span className="text-destructive">*</span>
           </Label>
@@ -253,27 +240,25 @@ export default function WaitlistForm() {
         </div>
       </div>
 
-      <div className="pt-3">
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full h-14 text-lg font-bold shadow-xl hover:shadow-2xl shimmer-fast"
-          size="lg"
-          aria-label="Join the waitlist"
-        >
-          {isSubmitting ? (
-            <>
-              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Joining...
-            </>
-          ) : (
-            "Join the waitlist"
-          )}
-        </Button>
-        <p className="text-sm text-center text-muted-foreground mt-4 font-medium">
-          No spam. Unsubscribe anytime. We only use your info for early access updates.
-        </p>
-      </div>
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full h-14 text-base font-semibold"
+        size="lg"
+      >
+        {isSubmitting ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Joining...
+          </>
+        ) : (
+          "Join the waitlist"
+        )}
+      </Button>
+      
+      <p className="text-xs text-center text-muted-foreground">
+        No spam. Unsubscribe anytime.
+      </p>
     </form>
   );
 }

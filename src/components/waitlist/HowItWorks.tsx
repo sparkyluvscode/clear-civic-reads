@@ -20,55 +20,43 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-24 px-4 relative">
-      {/* Subtle background orb */}
-      <div className="absolute top-1/4 right-[5%] w-[400px] h-[400px] bg-gradient-orb-blue opacity-30 rounded-full blur-[120px] pointer-events-none" />
-      
-      <div className="max-w-6xl mx-auto relative">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-5">
+    <section className="py-20 px-4 sm:px-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-14">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-glow">
             How it works
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
-            Three simple steps to understand any policy, backed by <span className="text-foreground font-bold">sources</span> you can check.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Three simple steps to understand any policy, backed by sources you can check.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-3 gap-8">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <div
-                key={index}
-                className="relative"
+              <div 
+                key={index} 
+                className="glass-card p-8 text-center"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex flex-col items-center text-center group">
-                  <div 
-                    className="w-24 h-24 rounded-3xl liquid-glass-strong flex items-center justify-center mb-7 group-hover:scale-110 transition-all duration-500 shadow-glass-strong hover:shadow-glow-blue shimmer-hover relative overflow-hidden"
-                  >
-                    <Icon className="h-11 w-11 text-ice-blue drop-shadow-lg relative z-10" />
-                    {/* Inner highlight - enhanced */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
-                  </div>
-                  <div className="absolute top-12 left-[calc(50%+3rem)] w-[calc(100%-6rem)] h-[2px] bg-gradient-to-r from-primary/40 via-accent/35 to-primary/40 hidden md:block"
-                    style={{ display: index === steps.length - 1 ? 'none' : undefined }}
-                  />
-                  <div className="relative mb-5">
-                    <span 
-                      className="inline-flex items-center justify-center w-12 h-12 rounded-full liquid-glass-strong text-ice-blue text-base font-black shadow-glass shimmer-hover relative overflow-hidden"
-                    >
-                      <span className="relative z-10">{index + 1}</span>
-                      {/* Inner highlight - enhanced */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed text-base">
-                    {step.description}
-                  </p>
+                {/* Icon */}
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary mb-5 pulse-glow">
+                  <Icon className="w-7 h-7" />
                 </div>
+                
+                {/* Step number */}
+                <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-muted text-muted-foreground text-sm font-semibold mb-4">
+                  {index + 1}
+                </div>
+                
+                {/* Content */}
+                <h3 className="text-xl font-semibold text-foreground mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-muted-foreground">
+                  {step.description}
+                </p>
               </div>
             );
           })}

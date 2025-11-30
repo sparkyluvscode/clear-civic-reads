@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Search, CheckCircle2, FileText, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const demoExamples = [
   {
@@ -27,11 +26,77 @@ const demoExamples = [
   }
 ];
 
+const typingSequence = ["Prop 47", "Measure A"];
+
 export default function InteractiveDemo() {
   const [inputValue, setInputValue] = useState("");
   const [showDemo, setShowDemo] = useState(false);
   const [currentDemo, setCurrentDemo] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  
+  // Typing animation state
+  const [animatedText, setAnimatedText] = useState("");
+  const [isAnimating, setIsAnimating] = useState(true);
+  const animationRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Typing animation effect
+  useEffect(() => {
+    if (isFocused || inputValue) {
+      setIsAnimating(false);
+      if (animationRef.current) clearTimeout(animationRef.current);
+      return;
+    }
+
+    setIsAnimating(true);
+    let sequenceIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let currentText = "";
+
+    const animate = () => {
+      const targetText = typingSequence[sequenceIndex];
+
+      if (!isDeleting) {
+        // Typing
+        currentText = targetText.slice(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === targetText.length) {
+          // Pause at end of word
+          animationRef.current = setTimeout(() => {
+            isDeleting = true;
+            animate();
+          }, 1500);
+          setAnimatedText(currentText);
+          return;
+        }
+      } else {
+        // Deleting
+        currentText = targetText.slice(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          isDeleting = false;
+          sequenceIndex = (sequenceIndex + 1) % typingSequence.length;
+          // Pause before typing next word
+          animationRef.current = setTimeout(animate, 500);
+          setAnimatedText("");
+          return;
+        }
+      }
+
+      setAnimatedText(currentText);
+      const delay = isDeleting ? 50 : 100;
+      animationRef.current = setTimeout(animate, delay);
+    };
+
+    animate();
+
+    return () => {
+      if (animationRef.current) clearTimeout(animationRef.current);
+    };
+  }, [isFocused, inputValue]);
 
   useEffect(() => {
     if (inputValue.toLowerCase().includes("prop") || inputValue.toLowerCase().includes("measure")) {
@@ -40,7 +105,7 @@ export default function InteractiveDemo() {
         setShowDemo(true);
         setIsTyping(false);
         setCurrentDemo(inputValue.toLowerCase().includes("47") ? 0 : 1);
-      }, 800);
+      }, 600);
       return () => clearTimeout(timer);
     } else {
       setShowDemo(false);
@@ -50,118 +115,110 @@ export default function InteractiveDemo() {
   const demo = demoExamples[currentDemo];
 
   return (
-    <section className="py-24 px-4 relative overflow-hidden">
-      {/* Background orbs - OPTIMIZED */}
-      <div className="absolute top-20 right-[10%] w-[400px] h-[400px] bg-gradient-orb-ice opacity-30 rounded-full blur-[100px] pointer-events-none animate-pulse-glow" style={{ willChange: 'opacity' }} />
-      
-      <div className="max-w-5xl mx-auto relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-5 text-glow-hero">
+    <section className="py-20 px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-glow">
             See it in action
           </h2>
-          <p className="text-xl text-light max-w-2xl mx-auto font-medium">
-            Try searching for a ballot measure to see how ClearPolicy makes complex policy <span className="text-white font-bold">instantly understandable</span>.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Try searching for a ballot measure to see how ClearPolicy makes complex policy instantly understandable.
           </p>
         </div>
 
-        {/* Interactive Search Input - OPTIMIZED */}
-        <div className="mb-12">
-          <div 
-            className="liquid-glass-strong rounded-2xl p-2 shadow-glass-hover relative"
-          >
-            <div className="flex items-center gap-3 px-4">
-              <Search className="h-6 w-6 text-white opacity-70" />
+        {/* Search Input with typing animation */}
+        <div className="mb-8">
+          <div className="glass rounded-2xl p-1 hover:shadow-lg transition-shadow">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <input
                 type="text"
-                placeholder='Try typing "Prop 47" or "Measure A"...'
+                placeholder=""
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className="flex-1 bg-transparent border-0 outline-none py-4 text-white placeholder:text-gray-400 text-lg"
-                aria-label="Search for ballot measures"
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                className="w-full pl-12 pr-4 py-4 rounded-xl bg-background/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
               />
+              {/* Animated placeholder */}
+              {!inputValue && !isFocused && (
+                <div className="absolute left-12 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
+                  {animatedText}
+                  <span className="animate-pulse">|</span>
+                </div>
+              )}
+              {!inputValue && isFocused && (
+                <div className="absolute left-12 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground/50">
+                  Type "Prop 47" or "Measure A"...
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Demo Preview - OPTIMIZED */}
+        {/* Demo Preview */}
         {(showDemo || isTyping) && (
-          <div 
-            className="liquid-glass rounded-3xl p-8 shadow-glass-strong animate-scale-in relative overflow-hidden"
-            style={{ 
-              willChange: 'transform, opacity',
-            }}
-          >
-            {/* Inner highlight */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
-            
+          <div className="frosted-panel rounded-3xl p-6 sm:p-8 animate-scale-in">
             {isTyping ? (
-              <div className="text-center py-12">
-                <div className="inline-flex items-center gap-3 text-white">
-                  <div className="w-2 h-2 bg-ice-blue rounded-full animate-pulse" />
-                  <div className="w-2 h-2 bg-ice-blue rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
-                  <div className="w-2 h-2 bg-ice-blue rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
-                  <span className="ml-2 text-light">Searching...</span>
+              <div className="text-center py-8">
+                <div className="inline-flex items-center gap-2 text-muted-foreground">
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.15s' }} />
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
+                  <span className="ml-2">Searching...</span>
                 </div>
               </div>
             ) : (
-              <div className="relative z-10">
+              <div>
+                {/* Title */}
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-ice-blue/20 backdrop-blur-sm border border-ice-blue/30">
-                    <FileText className="h-6 w-6 text-ice-blue" />
+                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary pulse-glow">
+                    <FileText className="w-5 h-5" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-2">
+                  <div>
+                    <h3 className="text-xl font-semibold text-foreground mb-2">
                       {demo.title}
                     </h3>
-                    <p className="text-light leading-relaxed text-lg">
+                    <p className="text-muted-foreground">
                       {demo.summary}
                     </p>
                   </div>
                 </div>
 
-                <div className="liquid-glass rounded-xl p-6 mb-6">
+                {/* Impact */}
+                <div className="glass rounded-xl p-5 mb-6">
                   <div className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-ice-blue mt-1 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <h4 className="text-white font-bold mb-2">Key Impact</h4>
-                      <p className="text-light">
+                      <h4 className="font-medium text-foreground mb-1">Key Impact</h4>
+                      <p className="text-muted-foreground text-sm">
                         {demo.impact}
                       </p>
                     </div>
                   </div>
                 </div>
 
+                {/* Sources */}
                 <div>
-                  <h4 className="text-white font-bold mb-4 flex items-center gap-2">
-                    <ExternalLink className="h-4 w-4" />
+                  <h4 className="font-medium text-foreground mb-3 flex items-center gap-2">
+                    <ExternalLink className="w-4 h-4" />
                     Verified Sources
                   </h4>
-                  <div className="grid md:grid-cols-3 gap-3">
+                  <div className="grid sm:grid-cols-3 gap-3">
                     {demo.sources.map((source, idx) => (
                       <div 
                         key={idx}
-                        className="liquid-glass rounded-lg p-4 hover:bg-white/10 transition-all cursor-pointer"
+                        className="card-interactive p-3 cursor-pointer"
                       >
-                        <div className="text-sm font-semibold text-white mb-1">
+                        <div className="text-sm font-medium text-foreground mb-0.5">
                           {source.title}
                         </div>
-                        <div className="text-xs text-muted-light">
+                        <div className="text-xs text-muted-foreground">
                           {source.org}
                         </div>
                       </div>
                     ))}
                   </div>
-                </div>
-
-                <div className="mt-6 pt-6 border-t border-white/10 flex justify-center">
-                  <Button 
-                    variant="premium" 
-                    size="lg"
-                    className="shimmer-fast"
-                    aria-label="Join waitlist to get full access"
-                  >
-                    Join Waitlist for Full Access
-                  </Button>
                 </div>
               </div>
             )}
@@ -169,11 +226,9 @@ export default function InteractiveDemo() {
         )}
 
         {!showDemo && !isTyping && (
-          <div className="text-center">
-            <p className="text-muted-light text-sm">
-              Start typing above to see a live preview
-            </p>
-          </div>
+          <p className="text-center text-sm text-muted-foreground">
+            Watch the typing animation above, or click to search yourself
+          </p>
         )}
       </div>
     </section>

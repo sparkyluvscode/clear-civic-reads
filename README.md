@@ -1,5 +1,11 @@
 # Welcome to your Lovable project
 
+## 🎯 New: Waitlist Data Access
+
+**Looking for your waitlist signups?** → See [START_HERE.md](./START_HERE.md) 📍
+
+I've created a complete toolkit to help you access and manage your waitlist data, including migration tools to move from Lovable Cloud to your own Supabase instance.
+
 ## Project info
 
 **URL**: https://lovable.dev/projects/6a1efb2e-eb01-4968-993c-894041b92be8
@@ -71,3 +77,53 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## Waitlist Management
+
+This project includes a waitlist signup system powered by Supabase.
+
+### Current Setup
+
+Your waitlist currently uses **Lovable Cloud** (managed Supabase infrastructure). Signups are accessible through:
+- Lovable Cloud panel: Cloud → Database → waitlist_signups
+
+### Migrating to Your Own Supabase (Recommended)
+
+For full data access and control, you can migrate to your own Supabase instance.
+
+**Quick Start**: See [QUICK_START.md](./QUICK_START.md) for step-by-step instructions.
+
+**Benefits**:
+- ✅ Full database access via Supabase dashboard
+- ✅ Direct SQL queries and exports
+- ✅ Complete data ownership
+- ✅ Access to advanced Supabase features
+
+**Available Commands**:
+```bash
+# Verify your setup is correct
+npm run verify-setup
+
+# Import waitlist data from CSV
+npm run import-waitlist <csv-file>
+
+# Export waitlist data to CSV
+npm run export-waitlist [output-file]
+```
+
+**Documentation**:
+- [QUICK_START.md](./QUICK_START.md) - Quick migration guide (⚡ start here)
+- [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md) - Comprehensive documentation
+- [scripts/README.md](./scripts/README.md) - Detailed script documentation
+
+### Accessing Waitlist Data
+
+**Via Lovable Cloud** (current):
+1. Go to your Lovable project
+2. Navigate to: Cloud → Database → waitlist_signups
+3. View/export data directly
+
+**After Migration to Supabase**:
+1. Supabase Dashboard: Table Editor → waitlist_signups
+2. SQL Editor: Run custom queries
+3. Export scripts: `npm run export-waitlist`
