@@ -40,14 +40,15 @@ export default function HowItWorks() {
                 className="glass-card p-8 text-center"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Icon */}
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary mb-5 pulse-glow">
-                  <Icon className="w-7 h-7" />
-                </div>
-                
-                {/* Step number */}
-                <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-muted text-muted-foreground text-sm font-semibold mb-4">
-                  {index + 1}
+                {/* Icon with step number */}
+                <div className="relative inline-block mb-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary pulse-glow">
+                    <Icon className="w-7 h-7" />
+                  </div>
+                  {/* Step number - positioned top-right */}
+                  <div className="absolute -top-2 -right-2 flex items-center justify-center w-7 h-7 rounded-full bg-muted text-muted-foreground text-sm font-semibold shadow-md">
+                    {index + 1}
+                  </div>
                 </div>
                 
                 {/* Content */}
