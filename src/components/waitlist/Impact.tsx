@@ -40,7 +40,7 @@ export default function Impact() {
           <div className="relative rounded-2xl overflow-hidden glass shadow-xl border border-white/10">
             <img
               src={kileyPhoto}
-              alt="Pranil with Congressman Kevin Kiley"
+              alt="Pranil with Congressman Kiley"
               className="w-full h-auto object-cover transform transition duration-700 hover:scale-[1.02]"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-8 pt-24 text-center">
@@ -49,7 +49,7 @@ export default function Impact() {
                 <span>Congressional Recognition</span>
               </div>
               <p className="text-white font-bold text-2xl md:text-3xl drop-shadow-md mb-2">
-                "We need tools like this!" - Congressman Kevin Kiley
+                "We need tools like this!" - Congressman Kiley
               </p>
               <p className="text-white/80 text-base md:text-lg">
                 Demoed at the Congressional Reception
