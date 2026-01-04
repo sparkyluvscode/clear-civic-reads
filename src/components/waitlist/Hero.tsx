@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Users } from "lucide-react";
 import clearPolicyAnimation from "@/assets/clearpolicy-animation.mp4";
 import clearPolicyLogo from "@/assets/clearpolicy-logo.png";
 
@@ -17,13 +17,13 @@ export default function Hero({ onJoinClick }: HeroProps) {
     <section className="min-h-[calc(100vh-4rem)] flex items-center px-4 sm:px-6 py-12 md:py-16 relative overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <video 
+        <video
           src={clearPolicyAnimation}
           autoPlay
           loop
           muted
           playsInline
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-[0.35] dark:opacity-[0.30] blur-[1px] scale-125"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-[0.45] dark:opacity-[0.40] blur-[1px] scale-125"
         />
         {/* Gradient overlay to blend video into background */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
@@ -34,22 +34,27 @@ export default function Hero({ onJoinClick }: HeroProps) {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 items-center">
           {/* Content - appears second on mobile, first on desktop */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
+            <div className="flex items-center gap-2 mb-6 animate-fade-in group w-fit">
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+              <span className="text-foreground font-semibold tracking-wide text-sm sm:text-base">1,000+ people joined the waitlist!</span>
+            </div>
+
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6 animate-fade-in text-glow">
               Policy clarity, with sources you can check
             </h1>
-            
-            <p 
-              className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed animate-fade-in" 
+
+            <p
+              className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed animate-fade-in"
               style={{ animationDelay: '0.1s' }}
             >
               Plain-English explanations of bills and ballot measures—backed by{" "}
-              <span className="text-foreground font-medium">citations</span>. 
+              <span className="text-foreground font-medium">citations</span>.
               Join the waitlist to get early access in your area.
             </p>
 
             {/* Benefits */}
-            <ul 
-              className="space-y-3 mb-8 animate-fade-in inline-block text-left" 
+            <ul
+              className="space-y-3 mb-8 animate-fade-in inline-block text-left"
               style={{ animationDelay: '0.2s' }}
             >
               {benefits.map((benefit) => (
@@ -61,8 +66,8 @@ export default function Hero({ onJoinClick }: HeroProps) {
             </ul>
 
             {/* CTA */}
-            <div 
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in" 
+            <div
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in"
               style={{ animationDelay: '0.3s' }}
             >
               <button
@@ -74,8 +79,8 @@ export default function Hero({ onJoinClick }: HeroProps) {
               </button>
             </div>
 
-            <p 
-              className="text-sm text-muted-foreground mt-4 animate-fade-in" 
+            <p
+              className="text-sm text-muted-foreground mt-4 animate-fade-in"
               style={{ animationDelay: '0.4s' }}
             >
               No spam. Unsubscribe anytime.
@@ -88,7 +93,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
               {/* Glow effect behind logo */}
               <div className="absolute inset-0 blur-3xl bg-primary/30 rounded-full scale-110 animate-pulse opacity-50 dark:opacity-70" />
               <div className="absolute inset-0 blur-2xl bg-accent/20 rounded-full" />
-              <img 
+              <img
                 src={clearPolicyLogo}
                 alt="ClearPolicy"
                 className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 object-contain drop-shadow-2xl transition-transform duration-300 hover:scale-105"

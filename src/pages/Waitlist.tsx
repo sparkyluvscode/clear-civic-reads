@@ -11,6 +11,8 @@ import DewDrops from "@/components/DewDrops";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/useTheme";
 import clearpolicyLogo from "@/assets/clearpolicy-logo.png";
+import Impact from "@/components/waitlist/Impact";
+import LiquidNavigation from "@/components/LiquidNavigation";
 
 export default function Waitlist() {
   const { theme, toggleTheme } = useTheme();
@@ -34,61 +36,23 @@ export default function Waitlist() {
       {/* Animated Dew Drops Background */}
       <DewDrops />
 
-      {/* Header with glass effect */}
-      <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <img 
-                src={clearpolicyLogo} 
-                alt="ClearPolicy" 
-                className="w-9 h-9 rounded-xl shadow-md group-hover:shadow-lg transition-shadow icon-glow"
-              />
-              <span className="font-bold text-lg text-foreground">
-                ClearPolicy
-              </span>
-            </Link>
-
-            {/* Right side: Theme toggle + CTA */}
-            <div className="flex items-center gap-3">
-              {/* Theme Toggle */}
-              <button
-                onClick={toggleTheme}
-                className="p-2.5 rounded-xl glass hover-lift"
-                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              >
-                {theme === 'dark' ? (
-                  <Sun className="w-5 h-5 text-foreground icon-glow" />
-                ) : (
-                  <Moon className="w-5 h-5 text-foreground icon-glow" />
-                )}
-              </button>
-
-              {/* CTA Button */}
-              <Button 
-                onClick={scrollToForm} 
-                size="sm"
-                className="font-semibold btn-glow"
-              >
-                Join waitlist
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* Liquid Glass Navigation */}
+      <LiquidNavigation />
 
       {/* Main content */}
       <main className="pt-16 relative z-10">
         <Hero onJoinClick={scrollToForm} />
-        
+
+        {/* Impact Section */}
+        <Impact />
+
         {/* Liquid glass transition effect on scroll */}
         <LiquidTransition />
-        
+
         <div id="demo">
           <InteractiveDemo />
         </div>
-        
+
         <div id="how-it-works">
           <HowItWorks />
         </div>
@@ -106,7 +70,7 @@ export default function Waitlist() {
                 Join the waitlist to be notified when ClearPolicy launches in your area.
               </p>
             </div>
-            
+
             <div className="frosted-panel rounded-3xl p-8 md:p-10">
               <WaitlistForm />
             </div>
@@ -122,8 +86,8 @@ export default function Waitlist() {
                   Data sources
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  ClearPolicy pulls from public datasets including legislative records, 
-                  official government documents, and authoritative policy databases. 
+                  ClearPolicy pulls from public datasets including legislative records,
+                  official government documents, and authoritative policy databases.
                   Every claim links to its source.
                 </p>
               </div>
@@ -132,7 +96,7 @@ export default function Waitlist() {
                   Privacy commitment
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  We only use your information to provide early access updates and 
+                  We only use your information to provide early access updates and
                   product feedback invitations. No resale, no third-party ads.
                 </p>
               </div>
@@ -147,10 +111,10 @@ export default function Waitlist() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Brand */}
             <div className="flex items-center gap-2.5">
-              <img 
-                src={clearpolicyLogo} 
-                alt="ClearPolicy" 
-                className="w-8 h-8 rounded-lg shadow-md" 
+              <img
+                src={clearpolicyLogo}
+                alt="ClearPolicy"
+                className="w-8 h-8 rounded-lg shadow-md"
               />
               <span className="font-bold text-foreground">ClearPolicy</span>
             </div>

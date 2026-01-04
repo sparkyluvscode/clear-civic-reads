@@ -32,9 +32,9 @@
     --border: 220 15% 88%;
     --input: 220 15% 90%;
     --ring: 210 100% 50%;
-    
+
     --radius: 0.75rem;
-    
+
     /* Shadows for light mode */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -71,7 +71,7 @@
     --border: 225 20% 18%;
     --input: 225 20% 15%;
     --ring: 210 100% 60%;
-    
+
     /* Shadows for dark mode */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -89,16 +89,17 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
+
     * {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
@@ -108,6 +109,7 @@
 }
 
 @layer components {
+
   /* Subtle glass effect - refined */
   .glass {
     background: hsl(var(--card) / 0.7);
@@ -139,7 +141,7 @@
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
     border: 1px solid hsl(var(--border) / 0.6);
-    box-shadow: 
+    box-shadow:
       var(--shadow-lg),
       inset 0 1px 0 hsl(0 0% 100% / 0.1);
   }
@@ -155,7 +157,7 @@
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
   }
-  
+
   .card-interactive:hover {
     box-shadow: var(--shadow-md);
     border-color: hsl(var(--primary) / 0.3);
@@ -167,7 +169,7 @@
     overflow: hidden;
     transition: all 0.3s ease;
   }
-  
+
   .btn-glow::before {
     content: '';
     position: absolute;
@@ -191,27 +193,32 @@
 }
 
 @layer utilities {
+
   /* Fade-in animation */
   .animate-fade-in {
     animation: fade-in 0.6s ease-out forwards;
   }
-  
+
   @keyframes fade-in {
     from {
       opacity: 0;
       transform: translateY(16px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
+
   @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0);
       opacity: 0.6;
     }
+
     50% {
       transform: translateY(-8px);
       opacity: 1;
@@ -221,17 +228,18 @@
   .animate-float {
     animation: float 2s ease-in-out infinite;
   }
-  
+
   /* Scale-in animation */
   .animate-scale-in {
     animation: scale-in 0.4s ease-out forwards;
   }
-  
+
   @keyframes scale-in {
     from {
       opacity: 0;
       transform: scale(0.95);
     }
+
     to {
       opacity: 1;
       transform: scale(1);
@@ -272,7 +280,7 @@
     position: relative;
     overflow: hidden;
   }
-  
+
   .shimmer::after {
     content: '';
     position: absolute;
@@ -280,18 +288,21 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(0 0% 100% / 0.1),
-      transparent
-    );
+    background: linear-gradient(90deg,
+        transparent,
+        hsl(0 0% 100% / 0.1),
+        transparent);
     animation: shimmer 3s ease-in-out infinite;
   }
 
   @keyframes shimmer {
-    0% { left: -100%; }
-    100% { left: 100%; }
+    0% {
+      left: -100%;
+    }
+
+    100% {
+      left: 100%;
+    }
   }
 
   /* Pulse glow for emphasis */
@@ -300,9 +311,12 @@
   }
 
   @keyframes pulse-glow {
-    0%, 100% {
+
+    0%,
+    100% {
       box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
     }
+
     50% {
       box-shadow: 0 0 30px hsl(var(--primary) / 0.4);
     }
@@ -316,4 +330,420 @@
   .icon-glow:hover {
     filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.5));
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FLOATING PILL NAVIGATION BAR
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Force pill shape on nav elements - CRITICAL FOR PILL SHAPE */
+.glass-nav-wrapper,
+.glass-nav-wrapper * {
+  border-radius: 999px !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Wrapper Container - Creates Centered Floating Effect
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-nav-wrapper {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  justify-content: center;
+  /* Centers the pill horizontally */
+  width: 100%;
+  z-index: 50;
+  /* Z-index > hero content */
+  pointer-events: none;
+  /* Allows clicking through empty space */
+  padding: 0 24px;
+  box-sizing: border-box;
+  transition: opacity 0.6s ease;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Main Glass Surface - The Pill Container
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.26s ease-out;
+  isolation: auto;
+  width: min(760px, 100%);
+  /* Max width 760px, responsive fallback */
+  border-radius: 999px;
+  /* Full pill shape */
+  pointer-events: auto;
+  /* Re-enable clicks on nav itself */
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Liquid Glass Effect with SVG Filter
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-surface--svg {
+  background: hsl(var(--card) / 0.4);
+  isolation: auto;
+
+  /* Multiple layered shadows for depth */
+  box-shadow:
+    /* Inner edge highlights */
+    0 0 2px 1px rgba(255, 255, 255, 0.4) inset,
+    0 0 10px 4px rgba(255, 255, 255, 0.1) inset,
+    /* Outer shadows for elevation */
+    0px 4px 16px rgba(17, 17, 26, 0.05),
+    0px 8px 24px rgba(17, 17, 26, 0.05),
+    0px 16px 56px rgba(17, 17, 26, 0.05);
+}
+
+.dark .glass-surface--svg {
+  background: hsl(var(--card) / 0.2);
+  box-shadow:
+    /* Inner edge highlights */
+    0 0 2px 1px rgba(255, 255, 255, 0.1) inset,
+    0 0 10px 4px rgba(255, 255, 255, 0.05) inset,
+    /* Outer shadows for elevation */
+    0px 4px 16px rgba(0, 0, 0, 0.2),
+    0px 8px 24px rgba(0, 0, 0, 0.2),
+    0px 16px 56px rgba(0, 0, 0, 0.2);
+}
+
+/* Backdrop filter with SVG turbulence - THIS IS THE LIQUID EFFECT */
+@supports ((backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))) {
+  .glass-surface--svg {
+    backdrop-filter: url(#glass-filter) saturate(1.2);
+    -webkit-backdrop-filter: url(#glass-filter) saturate(1.2);
+  }
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not ((backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))) {
+  .glass-surface--svg {
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  }
+
+  .glass-surface--svg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    filter: url(#glass-filter);
+    pointer-events: none;
+    z-index: -1;
+    border-radius: inherit;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Content Container
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-surface__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Spaced out content */
+  padding: 0.5rem 0.75rem;
+  border-radius: inherit;
+  position: relative;
+  isolation: auto;
+  gap: 16px;
+  z-index: 10;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Subtle Highlight Overlay
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-surface::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent);
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   IRIDESCENT HOLOGRAPHIC OVERLAY - Rainbow Effect
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-nav__surface {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  /* Three radial gradients create the rainbow shimmer */
+  background:
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.25),
+      transparent 55%),
+    radial-gradient(circle at 70% 35%, rgba(118, 171, 255, 0.15),
+      transparent 60%),
+    radial-gradient(circle at 50% 80%, rgba(255, 170, 210, 0.15),
+      transparent 55%);
+
+  mix-blend-mode: screen;
+  /* CRITICAL for holographic effect */
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.dark .glass-nav__surface {
+  opacity: 0.3;
+  /* Subtle on dark mode */
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Vertical Dividers
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-nav__divider {
+  width: 1px;
+  height: 24px;
+  background: hsl(var(--border));
+  border-radius: 999px;
+  opacity: 0.5;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Navigation Links
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.glass-nav__links a {
+  transition: color 0.2s ease;
+}
+
+.glass-nav__links a:hover {
+  color: hsl(var(--primary));
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FLOATING PILL NAVIGATION BAR
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Make everything square by default (reset) - skipping to avoid breaking other UI components needlessly, relying on specific overrides */
+/* body * { border-radius: 0 !important; } */
+
+/* Force pill shape on nav elements - CRITICAL FOR PILL SHAPE */
+.glass-nav-wrapper,
+.glass-nav-wrapper * {
+  border-radius: 999px !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Wrapper Container - Creates Centered Floating Effect
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-nav-wrapper {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  justify-content: center;
+  /* Centers the pill horizontally */
+  width: 100%;
+  z-index: 50;
+  /* High z-index to stay on top */
+  pointer-events: none;
+  /* Allows clicking through empty space */
+  padding: 0 24px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.2s;
+}
+
+.animation-complete .glass-nav-wrapper {
+  opacity: 1;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Main Glass Surface - The Pill Container
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.26s ease-out;
+  isolation: auto;
+  width: min(760px, 100%);
+  /* Max width 760px, responsive fallback */
+  border-radius: 999px;
+  /* Full pill shape */
+  pointer-events: auto;
+  /* Re-enable clicks on nav itself */
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Liquid Glass Effect with SVG Filter
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-surface--svg {
+  background: hsl(var(--card) / 0.1);
+  /* Using existing card var with low opacity */
+  isolation: auto;
+
+  /* Multiple layered shadows for depth */
+  box-shadow:
+    /* Inner edge highlights */
+    0 0 2px 1px hsl(var(--border) / 0.5) inset,
+    0 0 10px 4px hsl(var(--background) / 0.1) inset,
+    /* Outer shadows for elevation */
+    0px 4px 16px rgba(17, 17, 26, 0.05),
+    0px 8px 24px rgba(17, 17, 26, 0.05),
+    0px 16px 56px rgba(17, 17, 26, 0.05),
+    /* Inner shadows for depth */
+    0px 4px 16px rgba(17, 17, 26, 0.05) inset,
+    0px 8px 24px rgba(17, 17, 26, 0.05) inset,
+    0px 16px 56px rgba(17, 17, 26, 0.05) inset;
+}
+
+/* Backdrop filter with SVG turbulence - THIS IS THE LIQUID EFFECT */
+@supports ((backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))) {
+  .glass-surface--svg {
+    backdrop-filter: url(#glass-filter) saturate(1.2);
+    -webkit-backdrop-filter: url(#glass-filter) saturate(1.2);
+  }
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not ((backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))) {
+  .glass-surface--svg {
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  }
+
+  .glass-surface--svg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    filter: url(#glass-filter);
+    pointer-events: none;
+    z-index: -1;
+    border-radius: inherit;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Content Container
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-surface__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Changed to space-between forlogo/links/toggle */
+  padding: 0.5rem 1.5rem;
+  /* Added horizontal padding */
+  border-radius: inherit;
+  position: relative;
+  isolation: auto;
+  gap: 24px;
+  z-index: 1;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Subtle Highlight Overlay
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-surface::after,
+.glass-nav::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent);
+  pointer-events: none;
+  opacity: 0.06;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   IRIDESCENT HOLOGRAPHIC OVERLAY - Rainbow Effect
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-nav__surface {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  /* Three radial gradients create the rainbow shimmer */
+  background:
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.35),
+      transparent 55%),
+    radial-gradient(circle at 70% 35%, rgba(118, 171, 255, 0.28),
+      transparent 60%),
+    radial-gradient(circle at 50% 80%, rgba(255, 170, 210, 0.2),
+      transparent 55%);
+
+  mix-blend-mode: screen;
+  /* CRITICAL for holographic effect */
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Vertical Dividers
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-nav__divider {
+  width: 1px;
+  height: 28px;
+  background: hsl(var(--foreground) / 0.15);
+  /* Adapted to theme */
+  border-radius: 999px;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Navigation Links
+   ─────────────────────────────────────────────────────────────────────── */
+.glass-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.glass-nav__links a {
+  transition: all 0.2s ease;
+  opacity: 0.8;
+}
+
+.glass-nav__links a:hover {
+  opacity: 1;
+  text-shadow: 0 0 12px hsl(var(--primary) / 0.5);
+}
+
+.glass-nav__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.glass-nav__icon:hover {
+  transform: scale(1.1);
+}
+
+.glass-nav__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: hsl(var(--foreground));
+}
+
+.glass-nav__toggle:hover {
+  transform: scale(1.1) rotate(15deg);
 }

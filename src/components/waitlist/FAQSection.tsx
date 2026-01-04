@@ -11,6 +11,10 @@ const faqs = [
     answer: "Yes. ClearPolicy provides neutral summaries with visible citations and transparent methods. We don't endorse candidates or positions—we explain what policies would do, who they affect, and why they matter.",
   },
   {
+    question: "Why don't I just ask ChatGPT or Gemini?",
+    answer: "ChatGPT and Gemini are great at explaining things, but they don't provide verifiable citations—and when they do cite sources, those citations can be incorrect or hallucinated. ClearPolicy is purpose-built for civic information: every claim links to a real source document you can check, we focus specifically on local ballot measures for your ZIP code, and we're designed for transparency with features like reading-level toggles and a visible source meter. Think of it as ChatGPT's explanations, but with the trust and verification you need for important voting decisions.",
+  },
+  {
     question: "Where do you get your information?",
     answer: "We pull from public legislative sources, official government documents, and authoritative datasets. Every claim links to its source so you can verify and read more.",
   },

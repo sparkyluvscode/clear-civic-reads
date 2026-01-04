@@ -1,57 +1,72 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZESW3WS8FV"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-ZESW3WS8FV');
-    </script>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ClearPolicy — Policy clarity with sources you can check</title>
-    <meta name="description" content="Understand bills and ballot measures in minutes. ClearPolicy gives plain-English summaries with citations you can verify. Join the waitlist for early access." />
-    <meta name="author" content="ClearPolicy" />
-    <meta name="keywords" content="ballot measure explanation, bill summary, voter guide with sources, non-partisan civic info, policy explanation" />
 
-    <meta property="og:title" content="ClearPolicy" />
-    <meta property="og:description" content="Plain-English, cited explanations of ballot measures." />
-    <meta property="og:url" content="https://clearpolicy.org" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://clearpolicy.org/clearpolicy-logo.png" />
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZESW3WS8FV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-ZESW3WS8FV');
+  </script>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClearPolicy — Policy clarity with sources you can check</title>
+  <meta name="description"
+    content="Understand bills and ballot measures in minutes. ClearPolicy gives plain-English summaries with citations you can verify. Join the waitlist for early access." />
+  <meta name="author" content="ClearPolicy" />
+  <meta name="keywords"
+    content="ballot measure explanation, bill summary, voter guide with sources, non-partisan civic info, policy explanation" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ClearPolicy" />
-    <meta name="twitter:description" content="Plain-English, cited explanations of ballot measures." />
-    <meta name="twitter:image" content="https://clearpolicy.org/clearpolicy-logo.png" />
-    
-    <link rel="canonical" href="https://clearpolicy.org" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Single Page Apps for GitHub Pages -->
-    <script type="text/javascript">
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
-    </script>
-  </head>
+  <meta property="og:title" content="ClearPolicy" />
+  <meta property="og:description" content="Plain-English, cited explanations of ballot measures." />
+  <meta property="og:url" content="https://clearpolicy.org" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://clearpolicy.org/clearpolicy-logo.png" />
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ClearPolicy" />
+  <meta name="twitter:description" content="Plain-English, cited explanations of ballot measures." />
+  <meta name="twitter:image" content="https://clearpolicy.org/clearpolicy-logo.png" />
+
+  <link rel="canonical" href="https://clearpolicy.org" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Single Page Apps for GitHub Pages -->
+  <script type="text/javascript">
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+</head>
+
+<body>
+  <!-- SVG Filter for Liquid Glass Effect -->
+  <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+    <defs>
+      <filter id="glass-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" />
+        <feGaussianBlur stdDeviation="1.5" />
+      </filter>
+    </defs>
+  </svg>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
