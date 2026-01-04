@@ -590,15 +590,15 @@
    Liquid Glass Effect with SVG Filter
    ─────────────────────────────────────────────────────────────────────── */
 .glass-surface--svg {
-  background: hsl(var(--card) / 0.1);
+  background: hsl(var(--card) / 0.4);
   /* Using existing card var with low opacity */
   isolation: auto;
 
-  /* Multiple layered shadows for depth */
+  /* Multiple layered shadows for depth - BRIGHTER per feedback */
   box-shadow:
-    /* Inner edge highlights */
-    0 0 2px 1px hsl(var(--border) / 0.5) inset,
-    0 0 10px 4px hsl(var(--background) / 0.1) inset,
+    /* BRIGHTER inner glow */
+    0 0 2px 1px rgba(255, 255, 255, 0.5) inset,
+    0 0 10px 4px rgba(255, 255, 255, 0.25) inset,
     /* Outer shadows for elevation */
     0px 4px 16px rgba(17, 17, 26, 0.05),
     0px 8px 24px rgba(17, 17, 26, 0.05),
@@ -612,8 +612,8 @@
 /* Backdrop filter with SVG turbulence - THIS IS THE LIQUID EFFECT */
 @supports ((backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))) {
   .glass-surface--svg {
-    backdrop-filter: url(#glass-filter) saturate(1.2);
-    -webkit-backdrop-filter: url(#glass-filter) saturate(1.2);
+    backdrop-filter: url(#glass-filter) saturate(1.2) blur(0px);
+    -webkit-backdrop-filter: url(#glass-filter) saturate(1.2) blur(0px);
   }
 }
 
@@ -676,19 +676,15 @@
   inset: 0;
   border-radius: inherit;
 
-  /* Three radial gradients create the rainbow shimmer */
-  background:
-    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.35),
-      transparent 55%),
-    radial-gradient(circle at 70% 35%, rgba(118, 171, 255, 0.28),
-      transparent 60%),
-    radial-gradient(circle at 50% 80%, rgba(255, 170, 210, 0.2),
-      transparent 55%);
-
+  /* CRITICAL RAINBOW OVERLAY - UPDATED */
+  background: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.35), transparent 55%),
+    radial-gradient(circle at 70% 35%, rgba(118, 171, 255, 0.28), transparent 60%),
+    radial-gradient(circle at 50% 80%, rgba(255, 170, 210, 0.2), transparent 55%);
   mix-blend-mode: screen;
   /* CRITICAL for holographic effect */
   pointer-events: none;
   opacity: 0.45;
+  z-index: 1;
 }
 
 /* ───────────────────────────────────────────────────────────────────────
