@@ -578,9 +578,9 @@
   overflow: hidden;
   transition: opacity 0.26s ease-out;
   isolation: auto;
-  width: min(760px, 100%);
-  /* Max width 760px, responsive fallback */
-  border-radius: 999px;
+  /* Fixed width logic changed to max-width for animation */
+  width: 100%;
+  max-width: 760px;
   /* Full pill shape */
   pointer-events: auto;
   /* Re-enable clicks on nav itself */
@@ -746,6 +746,53 @@
 
 .glass-nav__toggle:hover {
   transform: scale(1.1) rotate(15deg);
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Collapsing Navigation Logic
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* Smooth transitions for the glass surface to animate width/padding */
+.glass-surface {
+  transition: max-width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+    width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+    padding 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+    gap 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+    opacity 0.3s ease-out;
+}
+
+/* Collapsed state for the main wrapper */
+.glass-nav-wrapper--collapsed .glass-surface {
+  /* Shrink to fit the remaining content (Logo + Actions) */
+  /* Approx 270px provides enough space for Logo (32) + Gap (24) + Toggle (36) + Check (80) + Padding */
+  max-width: 270px;
+}
+
+.glass-nav-wrapper--collapsed .glass-surface__content {
+  gap: 8px;
+  /* Tighter gap */
+}
+
+/* Hide links and dividers when collapsed */
+/* We need to animate width and opacity for the "liquid" feel */
+.glass-nav__links,
+.glass-nav__divider {
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease,
+    padding 0.4s ease,
+    margin 0.4s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.glass-nav-wrapper--collapsed .glass-nav__links,
+.glass-nav-wrapper--collapsed .glass-nav__divider {
+  width: 0;
+  max-width: 0;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
 }
 
 /* ───────────────────────────────────────────────────────────────────────

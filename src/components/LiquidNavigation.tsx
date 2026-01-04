@@ -9,13 +9,30 @@ export default function LiquidNavigation() {
     const { theme, toggleTheme } = useTheme();
     const location = useLocation();
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         // Trigger animation after mount
         setIsLoaded(true);
         document.body.classList.add("animation-complete");
+
+        // Scroll listener for collapsing nav
+        const handleScroll = () => {
+            // Trigger collapse when scrolling 1% into the second page
+            const threshold = window.innerHeight * 1.01;
+
+            if (window.scrollY > threshold) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
         return () => {
             document.body.classList.remove("animation-complete");
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
@@ -26,7 +43,7 @@ export default function LiquidNavigation() {
     };
 
     return (
-        <div className={`glass-nav-wrapper ${isLoaded ? "opacity-100" : "opacity-0"}`}>
+        <div className={`glass-nav-wrapper ${isLoaded ? "opacity-100" : "opacity-0"} ${isScrolled ? "glass-nav-wrapper--collapsed" : ""}`}>
             <header className="glass-surface glass-surface--svg">
                 <div className="glass-surface__content">
 

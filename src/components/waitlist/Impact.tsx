@@ -15,7 +15,7 @@ const testimonials = Object.values(testimonialImages);
 export default function Impact() {
   const plugin = useRef(
     AutoScroll({
-      speed: 1.9, // Increased by ~5% from 1.8
+      speed: 2.1, // Increased by ~10% from 1.9
       stopOnInteraction: false,
       stopOnMouseEnter: true
     }),
@@ -49,7 +49,7 @@ export default function Impact() {
                 <span>Congressional Recognition</span>
               </div>
               <p className="text-white font-bold text-2xl md:text-3xl drop-shadow-md mb-2">
-                "Congressman Kiley Approved!"
+                "We need tools like this!" - Congressman Kevin Kiley
               </p>
               <p className="text-white/80 text-base md:text-lg">
                 Demoed at the Congressional Reception

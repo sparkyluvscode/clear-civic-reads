@@ -23,7 +23,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
           loop
           muted
           playsInline
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-[0.45] dark:opacity-[0.40] blur-[1px] scale-125"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-[0.50] dark:opacity-[0.45] blur-[1px] scale-125"
         />
         {/* Gradient overlay to blend video into background */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />

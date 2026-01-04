@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { Search, CheckCircle2, FileText, ExternalLink } from "lucide-react";
+import { Search, CheckCircle2, FileText, ExternalLink, Lock } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const demoExamples = [
   {
@@ -28,19 +29,20 @@ const demoExamples = [
 
 const typingSequence = ["Prop 47", "Measure A"];
 
+type DemoState = 'idle' | 'searching' | 'found' | 'paywall' | 'invalid';
+
 export default function InteractiveDemo() {
   const [inputValue, setInputValue] = useState("");
-  const [showDemo, setShowDemo] = useState(false);
+  const [demoState, setDemoState] = useState<DemoState>('idle');
   const [currentDemo, setCurrentDemo] = useState(0);
-  const [isTyping, setIsTyping] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  
+
   // Typing animation state
   const [animatedText, setAnimatedText] = useState("");
   const [isAnimating, setIsAnimating] = useState(true);
   const animationRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Typing animation effect
+  // Typing animation effect (Unchanged logic for placeholder typing)
   useEffect(() => {
     if (isFocused || inputValue) {
       setIsAnimating(false);
@@ -58,12 +60,10 @@ export default function InteractiveDemo() {
       const targetText = typingSequence[sequenceIndex];
 
       if (!isDeleting) {
-        // Typing
         currentText = targetText.slice(0, charIndex + 1);
         charIndex++;
 
         if (charIndex === targetText.length) {
-          // Pause at end of word
           animationRef.current = setTimeout(() => {
             isDeleting = true;
             animate();
@@ -72,14 +72,12 @@ export default function InteractiveDemo() {
           return;
         }
       } else {
-        // Deleting
         currentText = targetText.slice(0, charIndex - 1);
         charIndex--;
 
         if (charIndex === 0) {
           isDeleting = false;
           sequenceIndex = (sequenceIndex + 1) % typingSequence.length;
-          // Pause before typing next word
           animationRef.current = setTimeout(animate, 500);
           setAnimatedText("");
           return;
@@ -98,21 +96,66 @@ export default function InteractiveDemo() {
     };
   }, [isFocused, inputValue]);
 
+  // Search Logic Effect
   useEffect(() => {
-    if (inputValue.toLowerCase().includes("prop") || inputValue.toLowerCase().includes("measure")) {
-      setIsTyping(true);
-      const timer = setTimeout(() => {
-        setShowDemo(true);
-        setIsTyping(false);
-        setCurrentDemo(inputValue.toLowerCase().includes("47") ? 0 : 1);
-      }, 600);
-      return () => clearTimeout(timer);
-    } else {
-      setShowDemo(false);
+    const query = inputValue.toLowerCase().trim();
+    if (!query) {
+      setDemoState('idle');
+      return;
     }
+
+    // Debounce search
+    const timer = setTimeout(() => {
+      // 1. Check for specific valid demos first
+      if (query.includes("prop") && query.includes("47")) {
+        setDemoState('searching');
+        setTimeout(() => {
+          setCurrentDemo(0);
+          setDemoState('found');
+        }, 600);
+        return;
+      }
+      if (query.includes("measure") && query.includes("a")) {
+        setDemoState('searching');
+        setTimeout(() => {
+          setCurrentDemo(1);
+          setDemoState('found');
+        }, 600);
+        return;
+      }
+
+      // 2. Check for "semi-valid" inputs (keywords)
+      // Keywords: Prop, Proposition, Measure, Bill, Act
+      const validKeywords = ["prop", "proposition", "measure", "bill", "act"];
+      const hasKeyword = validKeywords.some(keyword => query.includes(keyword));
+
+      if (hasKeyword && query.length > 3) {
+        setDemoState('searching');
+        setTimeout(() => {
+          setDemoState('paywall');
+        }, 600);
+        return;
+      }
+
+      // 3. Invalid input (if long enough to be a real attempt)
+      if (query.length > 2) {
+        setDemoState('invalid');
+      } else {
+        setDemoState('idle'); // Just typing...
+      }
+
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [inputValue]);
 
   const demo = demoExamples[currentDemo];
+
+  const scrollToForm = () => {
+    document.getElementById("waitlist-form")?.scrollIntoView({
+      behavior: "smooth"
+    });
+  };
 
   return (
     <section className="py-20 px-4 sm:px-6">
@@ -126,7 +169,7 @@ export default function InteractiveDemo() {
           </p>
         </div>
 
-        {/* Search Input with typing animation */}
+        {/* Search Input */}
         <div className="mb-8">
           <div className="glass rounded-2xl p-1 hover:shadow-lg transition-shadow">
             <div className="relative">
@@ -140,7 +183,7 @@ export default function InteractiveDemo() {
                 onBlur={() => setIsFocused(false)}
                 className="w-full pl-12 pr-4 py-4 rounded-xl bg-background/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
               />
-              {/* Animated placeholder */}
+              {/* Animated placeholder logic */}
               {!inputValue && !isFocused && (
                 <div className="absolute left-12 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
                   {animatedText}
@@ -156,80 +199,164 @@ export default function InteractiveDemo() {
           </div>
         </div>
 
-        {/* Demo Preview */}
-        {(showDemo || isTyping) && (
-          <div className="frosted-panel rounded-3xl p-6 sm:p-8 animate-scale-in">
-            {isTyping ? (
-              <div className="text-center py-8">
-                <div className="inline-flex items-center gap-2 text-muted-foreground">
-                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.15s' }} />
-                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
-                  <span className="ml-2">Searching...</span>
+        {/* Dynamic Content Area */}
+        <div className="min-h-[200px]">
+
+          {/* SEARCHING STATE */}
+          {demoState === 'searching' && (
+            <div className="frosted-panel rounded-3xl p-8 animate-scale-in text-center py-12">
+              <div className="inline-flex items-center gap-2 text-muted-foreground">
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.15s' }} />
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
+                <span className="ml-2">Searching...</span>
+              </div>
+            </div>
+          )}
+
+          {/* INVALID STATE */}
+          {demoState === 'invalid' && (
+            <div className="text-center py-8 animate-fade-in">
+              <p className="text-muted-foreground bg-muted/30 inline-block px-4 py-2 rounded-lg">
+                Please enter a valid Proposition, Measure, or Bill number.
+              </p>
+            </div>
+          )}
+
+          {/* FOUND STATE (Full Demo) */}
+          {demoState === 'found' && (
+            <div className="frosted-panel rounded-3xl p-6 sm:p-8 animate-scale-in">
+              {/* Title */}
+              <div className="flex items-start gap-4 mb-6">
+                <div className="p-2.5 rounded-xl bg-primary/10 text-primary pulse-glow">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    {demo.title}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {demo.summary}
+                  </p>
                 </div>
               </div>
-            ) : (
-              <div>
-                {/* Title */}
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary pulse-glow">
-                    <FileText className="w-5 h-5" />
-                  </div>
+
+              {/* Impact */}
+              <div className="glass rounded-xl p-5 mb-6">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">
-                      {demo.title}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {demo.summary}
+                    <h4 className="font-medium text-foreground mb-1">Key Impact</h4>
+                    <p className="text-muted-foreground text-sm">
+                      {demo.impact}
                     </p>
                   </div>
                 </div>
+              </div>
 
-                {/* Impact */}
+              {/* Sources */}
+              <div>
+                <h4 className="font-medium text-foreground mb-3 flex items-center gap-2">
+                  <ExternalLink className="w-4 h-4" />
+                  Verified Sources
+                </h4>
+                <div className="grid sm:grid-cols-3 gap-3">
+                  {demo.sources.map((source, idx) => (
+                    <div key={idx} className="card-interactive p-3 cursor-pointer">
+                      <div className="text-sm font-medium text-foreground mb-0.5">
+                        {source.title}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        {source.org}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* PAYWALL STATE (Blurred) */}
+          {demoState === 'paywall' && (
+            <div className="frosted-panel rounded-3xl p-6 sm:p-8 animate-scale-in relative overflow-hidden text-left">
+              {/* Visible Title Section (Unblurred) */}
+              <div className="flex items-start gap-4 mb-6 relative z-10">
+                <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div>
+                  {/* We mirror the input as the title */}
+                  <h3 className="text-xl font-semibold text-foreground mb-2 capitalize">
+                    {inputValue}
+                  </h3>
+                  <p className="text-muted-foreground blur-[2px] select-none">
+                    Requires misdemeanor sentence instead of felony for certain drug possession offenses and most thefts under $950
+                  </p>
+                </div>
+              </div>
+
+              {/* Blurred Body Content */}
+              <div className="blur-sm select-none pointer-events-none opacity-50">
                 <div className="glass rounded-xl p-5 mb-6">
                   <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5" />
                     <div>
                       <h4 className="font-medium text-foreground mb-1">Key Impact</h4>
                       <p className="text-muted-foreground text-sm">
-                        {demo.impact}
+                        Estimated 40,000 fewer felony convictions annually. $150-250M annual savings to state corrections.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Sources */}
                 <div>
                   <h4 className="font-medium text-foreground mb-3 flex items-center gap-2">
                     <ExternalLink className="w-4 h-4" />
                     Verified Sources
                   </h4>
                   <div className="grid sm:grid-cols-3 gap-3">
-                    {demo.sources.map((source, idx) => (
-                      <div 
-                        key={idx}
-                        className="card-interactive p-3 cursor-pointer"
-                      >
-                        <div className="text-sm font-medium text-foreground mb-0.5">
-                          {source.title}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {source.org}
-                        </div>
-                      </div>
-                    ))}
+                    <div className="card-interactive p-3">
+                      <div className="text-sm font-medium text-foreground mb-0.5">Official Text</div>
+                      <div className="text-xs text-muted-foreground">CA Secretary of State</div>
+                    </div>
+                    <div className="card-interactive p-3">
+                      <div className="text-sm font-medium text-foreground mb-0.5">Fiscal Analysis</div>
+                      <div className="text-xs text-muted-foreground">Legislative Analyst's Office</div>
+                    </div>
+                    <div className="card-interactive p-3">
+                      <div className="text-sm font-medium text-foreground mb-0.5">Implementation Data</div>
+                      <div className="text-xs text-muted-foreground">CA Dept. of Corrections</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
-        )}
 
-        {!showDemo && !isTyping && (
-          <p className="text-center text-sm text-muted-foreground">
-            Watch the typing animation above, or click to search yourself
-          </p>
-        )}
+              {/* Overlay */}
+              <div className="absolute inset-0 top-24 z-20 flex flex-col items-center justify-center">
+                <div className="text-center p-6 bg-card/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl max-w-sm mx-4 transform transition-all animate-fade-in-up">
+                  <div className="mx-auto w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+                    <Lock className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2">Unlock Full Analysis</h3>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    Unlock full analysis by joining the waitlist.
+                  </p>
+                  <Button onClick={scrollToForm} size="lg" className="w-full text-base font-semibold shadow-lg hover:shadow-primary/25">
+                    Join Waitlist for Access
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* IDLE STATE */}
+          {demoState === 'idle' && (
+            <p className="text-center text-sm text-muted-foreground pt-8">
+              Watch the typing animation above, or click to search yourself
+            </p>
+          )}
+
+        </div>
       </div>
     </section>
   );
