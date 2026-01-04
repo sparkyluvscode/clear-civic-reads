@@ -48,8 +48,20 @@ export default function LiquidNavigation() {
 
                     {/* Navigation Links */}
                     <nav className="glass-nav__links hidden sm:flex" aria-label="Site sections">
-                        <Link to="/about">About</Link>
-                        {/* Add more links here later if needed */}
+                        <a
+                            href="#impact"
+                            onClick={(e) => { e.preventDefault(); document.getElementById('impact')?.scrollIntoView({ behavior: 'smooth' }); }}
+                            className="cursor-pointer"
+                        >
+                            Impact
+                        </a>
+                        <a
+                            href="#demo"
+                            onClick={(e) => { e.preventDefault(); document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' }); }}
+                            className="cursor-pointer"
+                        >
+                            Demo
+                        </a>
                     </nav>
 
                     {/* Divider (Mobile only hides the links but keeping divider structure consistent) */}

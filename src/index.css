@@ -387,15 +387,16 @@
   background: hsl(var(--card) / 0.4);
   isolation: auto;
 
-  /* Multiple layered shadows for depth */
+  /* Multiple layered shadows for depth - REPLACED per feedback */
   box-shadow:
-    /* Inner edge highlights */
-    0 0 2px 1px rgba(255, 255, 255, 0.4) inset,
-    0 0 10px 4px rgba(255, 255, 255, 0.1) inset,
-    /* Outer shadows for elevation */
+    0 0 2px 1px rgba(255, 255, 255, 0.35) inset,
+    0 0 10px 4px rgba(255, 255, 255, 0.15) inset,
     0px 4px 16px rgba(17, 17, 26, 0.05),
     0px 8px 24px rgba(17, 17, 26, 0.05),
-    0px 16px 56px rgba(17, 17, 26, 0.05);
+    0px 16px 56px rgba(17, 17, 26, 0.05),
+    0px 4px 16px rgba(17, 17, 26, 0.05) inset,
+    0px 8px 24px rgba(17, 17, 26, 0.05) inset,
+    0px 16px 56px rgba(17, 17, 26, 0.05) inset;
 }
 
 .dark .glass-surface--svg {
@@ -475,19 +476,19 @@
   inset: 0;
   border-radius: inherit;
 
-  /* Three radial gradients create the rainbow shimmer */
+  /* CRITICAL RAINBOW OVERLAY */
   background:
-    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.25),
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.35),
       transparent 55%),
-    radial-gradient(circle at 70% 35%, rgba(118, 171, 255, 0.15),
+    radial-gradient(circle at 70% 35%, rgba(118, 171, 255, 0.28),
       transparent 60%),
-    radial-gradient(circle at 50% 80%, rgba(255, 170, 210, 0.15),
+    radial-gradient(circle at 50% 80%, rgba(255, 170, 210, 0.2),
       transparent 55%);
-
   mix-blend-mode: screen;
-  /* CRITICAL for holographic effect */
+  /* THIS IS CRITICAL */
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.45;
+  z-index: 1;
 }
 
 .dark .glass-nav__surface {
@@ -523,7 +524,10 @@
 }
 
 .glass-nav__links a:hover {
-  color: hsl(var(--primary));
+  color: #5db7de;
+  /* Bright blue from spec */
+  text-shadow: 0 0 8px rgba(93, 183, 222, 0.65),
+    0 0 18px rgba(0, 0, 0, 0.35);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════

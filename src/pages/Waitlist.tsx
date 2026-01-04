@@ -44,7 +44,10 @@ export default function Waitlist() {
         <Hero onJoinClick={scrollToForm} />
 
         {/* Impact Section */}
-        <Impact />
+        {/* Impact Section */}
+        <div id="impact">
+          <Impact />
+        </div>
 
         {/* Liquid glass transition effect on scroll */}
         <LiquidTransition />

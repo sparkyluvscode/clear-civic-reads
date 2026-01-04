@@ -15,7 +15,7 @@ const testimonials = Object.values(testimonialImages);
 export default function Impact() {
   const plugin = useRef(
     AutoScroll({
-      speed: 1.45,
+      speed: 1.55, // Increased speed by ~5%
       stopOnInteraction: false,
       stopOnMouseEnter: false,
     })
@@ -59,10 +59,10 @@ export default function Impact() {
         </div>
       </div>
 
-      {/* Section 2: Testimonials Carousel (Full Width 95%) */}
-      <div className="w-[95%] mx-auto">
+      {/* Section 2: Testimonials Carousel (Full Page Width) */}
+      <div className="w-full">
         <div className="text-center mb-10">
-          <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400 inline-block">
+          <h3 className="text-2xl font-bold text-foreground inline-block">
             What the Community is Saying
           </h3>
         </div>
@@ -79,7 +79,7 @@ export default function Impact() {
           <CarouselContent className="-ml-0 select-none">
             {testimonials.map((imgUrl, index) => (
               <CarouselItem key={index} className="pl-6 md:pl-8 basis-auto">
-                <div className="h-[140px] flex items-center justify-center">
+                <div className="h-[120px] flex items-center justify-center">
                   <img
                     src={imgUrl}
                     alt={`Testimonial ${index + 1}`}
