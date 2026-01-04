@@ -35,29 +35,35 @@ export default function HowItWorks() {
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <div 
-                key={index} 
-                className="glass-card p-8 text-center"
+              <div
+                key={index}
+                className="glass-card--liquid p-8 text-center"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Icon with step number */}
-                <div className="relative inline-block mb-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary pulse-glow">
-                    <Icon className="w-7 h-7" />
+                {/* Content wrapper for z-index */}
+                <div className="relative z-10">
+                  {/* Icon with step number */}
+                  <div className="relative inline-block mb-6">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary pulse-glow">
+                      <Icon className="w-7 h-7" />
+                    </div>
+                    {/* Step number - positioned top-right */}
+                    <div className="absolute -top-2 -right-2 flex items-center justify-center w-7 h-7 rounded-full bg-muted text-muted-foreground text-sm font-semibold shadow-md">
+                      {index + 1}
+                    </div>
                   </div>
-                  {/* Step number - positioned top-right */}
-                  <div className="absolute -top-2 -right-2 flex items-center justify-center w-7 h-7 rounded-full bg-muted text-muted-foreground text-sm font-semibold shadow-md">
-                    {index + 1}
-                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {step.description}
+                  </p>
                 </div>
-                
-                {/* Content */}
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {step.description}
-                </p>
+
+                {/* Iridescent Overlay */}
+                <div className="glass-card__surface"></div>
               </div>
             );
           })}

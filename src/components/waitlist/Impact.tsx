@@ -15,10 +15,10 @@ const testimonials = Object.values(testimonialImages);
 export default function Impact() {
   const plugin = useRef(
     AutoScroll({
-      speed: 1.55, // Increased speed by ~5%
+      speed: 1.9, // Increased by ~5% from 1.8
       stopOnInteraction: false,
-      stopOnMouseEnter: false,
-    })
+      stopOnMouseEnter: true
+    }),
   );
 
   return (
@@ -41,7 +41,7 @@ export default function Impact() {
             <img
               src={kileyPhoto}
               alt="Pranil with Congressman Kevin Kiley"
-              className="w-full h-auto object-cover transform transition duration-700 hover:scale-105"
+              className="w-full h-auto object-cover transform transition duration-700 hover:scale-[1.02]"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-8 pt-24 text-center">
               <div className="inline-flex items-center gap-2 bg-primary/90 text-primary-foreground px-4 py-1.5 rounded-full text-sm font-bold mb-3 shadow-lg backdrop-blur-sm">
