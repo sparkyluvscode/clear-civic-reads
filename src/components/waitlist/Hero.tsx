@@ -36,7 +36,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <div className="flex items-center gap-2 mb-6 animate-fade-in group w-fit">
               <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
-              <span className="text-foreground font-semibold tracking-wide text-sm sm:text-base">1,000+ people joined the waitlist!</span>
+              <span className="text-foreground font-semibold tracking-wide text-sm sm:text-base">100+ people joined the waitlist!</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6 animate-fade-in text-glow">
