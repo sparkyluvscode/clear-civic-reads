@@ -20,37 +20,35 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 px-4 sm:px-6">
+    <section className="py-12 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <p className="section-label mb-3">Product</p>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4 tracking-tight">
             How it works
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-[16px] text-muted-foreground max-w-2xl mx-auto leading-[1.7]">
             Three simple steps to understand any policy, backed by sources you can check.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-10 md:gap-12">
+        <div className="grid md:grid-cols-3 gap-4">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
               <div
                 key={index}
-                className="text-center"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="glass-card p-6 text-center"
               >
-                <div className="relative z-10">
-                  <div className="inline-flex items-center justify-center mb-5">
-                    <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground text-base leading-relaxed">
-                    {step.description}
-                  </p>
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary/8 mb-4">
+                  <Icon className="w-5 h-5 text-primary" strokeWidth={1.8} />
                 </div>
+                <h3 className="text-[15px] font-semibold text-foreground mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {step.description}
+                </p>
               </div>
             );
           })}

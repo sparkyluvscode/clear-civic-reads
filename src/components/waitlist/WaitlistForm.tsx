@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, CheckCircle2, Copy, Check, ArrowRight } from "lucide-react";
@@ -79,21 +78,24 @@ export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
     setTimeout(() => setCopied(false), 2000);
     toast({
       title: "Link copied!",
-      description: "Share ClearPolicy with others who care about clear civic information.",
+      description: "Share ClearPolicy with others.",
     });
   };
 
   if (isSuccess && variant === "inline") {
     return (
       <div className="flex items-center gap-3 animate-fade-in">
-        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-primary/10 border border-primary/20">
-          <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-          <span className="text-foreground font-medium text-sm sm:text-base">You're on the list!</span>
+        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[hsl(var(--cp-green)/0.08)] border border-[hsl(var(--cp-green)/0.15)]">
+          <CheckCircle2 className="h-4 w-4 text-[hsl(var(--cp-green))] flex-shrink-0" />
+          <span className="text-foreground font-medium text-sm">You're on the list!</span>
         </div>
-        <Button onClick={handleCopyLink} variant="outline" size="sm" className="gap-1.5 rounded-xl">
+        <button
+          onClick={handleCopyLink}
+          className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl border border-[hsl(var(--border))] text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
           {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
           {copied ? "Copied" : "Share"}
-        </Button>
+        </button>
       </div>
     );
   }
@@ -101,28 +103,22 @@ export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
   if (isSuccess) {
     return (
       <div className="text-center space-y-6 animate-fade-in">
-        <div className="w-20 h-20 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
-          <CheckCircle2 className="h-10 w-10 text-primary" />
+        <div className="w-16 h-16 mx-auto bg-[hsl(var(--cp-green)/0.08)] rounded-full flex items-center justify-center">
+          <CheckCircle2 className="h-8 w-8 text-[hsl(var(--cp-green))]" />
         </div>
         <div>
-          <h3 className="text-2xl font-bold text-foreground mb-2">You're on the list!</h3>
-          <p className="text-muted-foreground">
+          <h3 className="font-heading text-xl font-bold text-foreground mb-2">You're on the list!</h3>
+          <p className="text-muted-foreground text-[15px]">
             We'll notify you when ClearPolicy launches.
           </p>
         </div>
-        <Button onClick={handleCopyLink} variant="outline" className="gap-2">
-          {copied ? (
-            <>
-              <Check className="h-4 w-4" />
-              Copied!
-            </>
-          ) : (
-            <>
-              <Copy className="h-4 w-4" />
-              Copy waitlist link
-            </>
-          )}
-        </Button>
+        <button
+          onClick={handleCopyLink}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[hsl(var(--border))] text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+          {copied ? "Copied!" : "Copy waitlist link"}
+        </button>
       </div>
     );
   }
@@ -137,14 +133,14 @@ export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => { setEmail(e.target.value); setError(""); }}
-              className={`h-12 sm:h-13 rounded-xl bg-background/60 backdrop-blur-sm border-border/50 text-base pl-4 pr-4 placeholder:text-muted-foreground/60 focus:border-primary/50 focus:ring-2 focus:ring-primary/25 shadow-[0_0_12px_hsl(var(--primary)/0.08)] hover:shadow-[0_0_16px_hsl(var(--primary)/0.12)] focus:shadow-[0_0_16px_hsl(var(--primary)/0.15)] transition-shadow ${error ? "border-destructive" : ""}`}
+              className={`h-12 rounded-xl bg-[hsl(var(--card)/0.9)] backdrop-blur-sm border-[hsl(var(--border))] text-[15px] pl-4 pr-4 placeholder:text-muted-foreground/50 focus:border-primary/40 focus:ring-2 focus:ring-primary/15 transition-all ${error ? "border-destructive" : ""}`}
               required
             />
           </div>
-          <Button
+          <button
             type="submit"
             disabled={isSubmitting}
-            className="h-12 sm:h-13 px-6 rounded-xl font-semibold text-base btn-glow shimmer gap-2"
+            className="btn-cp h-12 px-6 rounded-xl font-semibold text-[15px] inline-flex items-center justify-center gap-2 disabled:opacity-50"
           >
             {isSubmitting ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -154,7 +150,7 @@ export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
                 <ArrowRight className="w-4 h-4" />
               </>
             )}
-          </Button>
+          </button>
         </div>
         {error && (
           <p className="text-sm text-destructive mt-2">{error}</p>
@@ -171,7 +167,7 @@ export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
           placeholder="your.email@example.com"
           value={email}
           onChange={(e) => { setEmail(e.target.value); setError(""); }}
-          className={`h-14 text-base ${error ? "border-destructive" : ""}`}
+          className={`h-14 text-[15px] rounded-xl ${error ? "border-destructive" : ""}`}
           required
         />
         {error && (
@@ -179,11 +175,10 @@ export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
         )}
       </div>
 
-      <Button
+      <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full h-14 text-base font-semibold"
-        size="lg"
+        className="btn-cp w-full h-14 rounded-xl font-semibold text-[15px] inline-flex items-center justify-center gap-2 disabled:opacity-50"
       >
         {isSubmitting ? (
           <>
@@ -193,7 +188,7 @@ export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
         ) : (
           "Join the Waitlist"
         )}
-      </Button>
+      </button>
 
       <p className="text-xs text-center text-muted-foreground">
         No spam. Unsubscribe anytime.

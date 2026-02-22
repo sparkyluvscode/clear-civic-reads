@@ -5,53 +5,49 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { Star } from "lucide-react";
 import kileyPhoto from "@/assets/kiley.jpg";
 
-// Dynamically import all testimonial images
 const testimonialImages = import.meta.glob('@/assets/testimonials/*.png', { eager: true, as: 'url' });
 const testimonials = Object.values(testimonialImages);
 
 export default function Impact() {
   const plugin = useRef(
     AutoScroll({
-      speed: 2.1, // Increased by ~10% from 1.9
+      speed: 2.1,
       stopOnInteraction: false,
       stopOnMouseEnter: true
     }),
   );
 
   return (
-    <section className="py-24 relative overflow-hidden bg-background">
-      {/* Content Container (Standard Width) */}
-      <div className="max-w-7xl mx-auto px-4 mb-20">
+    <section className="py-24 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 mb-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 text-glow">
+          <p className="section-label mb-3">Impact</p>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-5 tracking-tight">
             Making a Real Impact
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[16px] text-muted-foreground max-w-2xl mx-auto leading-[1.7]">
             From verified voters to elected officials, ClearPolicy is already changing the conversation.
           </p>
         </div>
 
-        {/* Section 1: Kiley Photo (Centered) */}
-        <div className="relative group animate-fade-in max-w-3xl mx-auto w-full">
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-accent/30 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-          <div className="relative rounded-2xl overflow-hidden glass shadow-xl border border-white/10">
+        {/* Kiley Photo */}
+        <div className="relative animate-fade-in max-w-3xl mx-auto w-full">
+          <div className="relative rounded-2xl overflow-hidden border border-[hsl(var(--border))] shadow-lg">
             <img
               src={kileyPhoto}
               alt="Pranil with Congressman Kiley"
-              className="w-full h-auto object-cover transform transition duration-700 hover:scale-[1.02]"
+              className="w-full h-auto object-cover"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-8 pt-24 text-center">
-              <div className="inline-flex items-center gap-2 bg-primary/90 text-primary-foreground px-4 py-1.5 rounded-full text-sm font-bold mb-3 shadow-lg backdrop-blur-sm">
-                <Star className="w-4 h-4 fill-current" />
-                <span>Congressional Recognition</span>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-8 pt-24 text-center">
+              <div className="inline-flex items-center gap-2 bg-[hsl(var(--cp-gold))] text-white px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                Congressional Recognition
               </div>
-              <p className="text-white font-bold text-2xl md:text-3xl drop-shadow-md mb-2">
-                "We need tools like this!" - Congressman Kiley
+              <p className="text-white font-heading font-bold text-xl md:text-2xl mb-1">
+                "We need tools like this!" — Congressman Kiley
               </p>
-              <p className="text-white/80 text-base md:text-lg">
+              <p className="text-white/70 text-sm">
                 Demoed at the Congressional Reception
               </p>
             </div>
@@ -59,17 +55,18 @@ export default function Impact() {
         </div>
       </div>
 
-      {/* Section 2: Testimonials Carousel (Full Page Width) */}
+      {/* Testimonials Carousel */}
       <div className="w-full">
-        <div className="text-center mb-10">
-          <h3 className="text-2xl font-bold text-foreground inline-block">
+        <div className="text-center mb-8">
+          <p className="section-label mb-3">Community</p>
+          <h3 className="font-heading text-xl font-bold text-foreground">
             What the Community is Saying
           </h3>
         </div>
 
         <Carousel
           plugins={[plugin.current]}
-          className="w-full pointer-events-none" // Disable interaction as it's a passive ticker
+          className="w-full pointer-events-none"
           opts={{
             align: "start",
             loop: true,
@@ -83,7 +80,7 @@ export default function Impact() {
                   <img
                     src={imgUrl}
                     alt={`Testimonial ${index + 1}`}
-                    className="h-full w-auto object-contain rounded-xl border border-white/5 shadow-lg bg-black/20"
+                    className="h-full w-auto object-contain rounded-xl border border-[hsl(var(--border))] shadow-sm"
                   />
                 </div>
               </CarouselItem>
