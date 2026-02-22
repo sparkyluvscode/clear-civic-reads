@@ -23,7 +23,7 @@ export default function HowItWorks() {
     <section className="py-20 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-glow">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             How it works
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -31,39 +31,26 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-10 md:gap-12">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
               <div
                 key={index}
-                className="glass-card--liquid p-8 text-center"
+                className="text-center"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Content wrapper for z-index */}
                 <div className="relative z-10">
-                  {/* Icon with step number */}
-                  <div className="relative inline-block mb-6">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary pulse-glow">
-                      <Icon className="w-7 h-7" />
-                    </div>
-                    {/* Step number - positioned top-right */}
-                    <div className="absolute -top-2 -right-2 flex items-center justify-center w-7 h-7 rounded-full bg-muted text-muted-foreground text-sm font-semibold shadow-md">
-                      {index + 1}
-                    </div>
+                  <div className="inline-flex items-center justify-center mb-5">
+                    <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
                   </div>
-
-                  {/* Content */}
                   <h3 className="text-xl font-semibold text-foreground mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground text-base leading-relaxed">
                     {step.description}
                   </p>
                 </div>
-
-                {/* Iridescent Overlay */}
-                <div className="glass-card__surface"></div>
               </div>
             );
           })}

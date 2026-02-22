@@ -1,101 +1,67 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, CheckCircle2, Copy, Check } from "lucide-react";
+import { Loader2, CheckCircle2, Copy, Check, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
-export default function WaitlistForm() {
+interface WaitlistFormProps {
+  variant?: "inline" | "full";
+}
+
+export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-    zip: "",
-    role: "",
-    useCase: "",
-    consent: false,
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const validateZip = (zip: string) => {
-    return /^\d{5}(-\d{4})?$/.test(zip);
-  };
-
-  const validate = () => {
-    const newErrors: Record<string, string> = {};
-
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
-
-    if (formData.zip && !validateZip(formData.zip)) {
-      newErrors.zip = "Please enter a valid ZIP code (e.g., 12345 or 12345-6789)";
-    }
-
-    if (!formData.consent) {
-      newErrors.consent = "You must agree to be contacted";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validate()) {
+    if (!email) {
+      setError("Email is required");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address");
       return;
     }
 
+    setError("");
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase
+      const { error: dbError } = await supabase
         .from('waitlist_signups')
         .insert({
-          email: formData.email.toLowerCase(),
-          zip: formData.zip || null,
-          role: formData.role || null,
-          use_case: formData.useCase || null,
-          source: "waitlist_landing_v1",
+          email: email.toLowerCase(),
+          source: "waitlist_landing_v2",
           user_agent: navigator.userAgent,
           referer: document.referrer || null,
         })
         .select()
         .single();
 
-      if (error) {
-        if (error.code === '23505') {
+      if (dbError) {
+        if (dbError.code === '23505') {
           throw new Error('This email is already on the waitlist!');
         }
-        throw new Error(error.message || 'Failed to submit signup');
+        throw new Error(dbError.message || 'Failed to submit signup');
       }
 
       setIsSuccess(true);
       toast({
         title: "You're on the list!",
-        description: "Check your email for confirmation. We'll notify you when ClearPolicy launches.",
+        description: "We'll notify you when ClearPolicy launches.",
       });
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Please try again later.";
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Please try again later.";
       toast({
         title: "Submission failed",
         description: errorMessage,
@@ -117,6 +83,21 @@ export default function WaitlistForm() {
     });
   };
 
+  if (isSuccess && variant === "inline") {
+    return (
+      <div className="flex items-center gap-3 animate-fade-in">
+        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-primary/10 border border-primary/20">
+          <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+          <span className="text-foreground font-medium text-sm sm:text-base">You're on the list!</span>
+        </div>
+        <Button onClick={handleCopyLink} variant="outline" size="sm" className="gap-1.5 rounded-xl">
+          {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? "Copied" : "Share"}
+        </Button>
+      </div>
+    );
+  }
+
   if (isSuccess) {
     return (
       <div className="text-center space-y-6 animate-fade-in">
@@ -126,7 +107,7 @@ export default function WaitlistForm() {
         <div>
           <h3 className="text-2xl font-bold text-foreground mb-2">You're on the list!</h3>
           <p className="text-muted-foreground">
-            Check your email for confirmation. We'll notify you when ClearPolicy launches in your area.
+            We'll notify you when ClearPolicy launches.
           </p>
         </div>
         <Button onClick={handleCopyLink} variant="outline" className="gap-2">
@@ -146,98 +127,56 @@ export default function WaitlistForm() {
     );
   }
 
+  if (variant === "inline") {
+    return (
+      <form onSubmit={handleSubmit} className="w-full max-w-md">
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="relative flex-1">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value); setError(""); }}
+              className={`h-12 sm:h-13 rounded-xl bg-background/60 backdrop-blur-sm border-border/50 text-base pl-4 pr-4 placeholder:text-muted-foreground/60 focus:border-primary/50 focus:ring-2 focus:ring-primary/25 shadow-[0_0_12px_hsl(var(--primary)/0.08)] hover:shadow-[0_0_16px_hsl(var(--primary)/0.12)] focus:shadow-[0_0_16px_hsl(var(--primary)/0.15)] transition-shadow ${error ? "border-destructive" : ""}`}
+              required
+            />
+          </div>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="h-12 sm:h-13 px-6 rounded-xl font-semibold text-base btn-glow shimmer gap-2"
+          >
+            {isSubmitting ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <>
+                Join Waitlist
+                <ArrowRight className="w-4 h-4" />
+              </>
+            )}
+          </Button>
+        </div>
+        {error && (
+          <p className="text-sm text-destructive mt-2">{error}</p>
+        )}
+      </form>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="space-y-2">
-        <Label htmlFor="email" className="text-sm font-medium">
-          Email address <span className="text-destructive">*</span>
-        </Label>
         <Input
-          id="email"
           type="email"
           placeholder="your.email@example.com"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className={errors.email ? "border-destructive" : ""}
+          value={email}
+          onChange={(e) => { setEmail(e.target.value); setError(""); }}
+          className={`h-14 text-base ${error ? "border-destructive" : ""}`}
           required
         />
-        {errors.email && (
-          <p className="text-sm text-destructive">{errors.email}</p>
+        {error && (
+          <p className="text-sm text-destructive">{error}</p>
         )}
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="zip" className="text-sm font-medium">
-          ZIP code (helps us prioritize your area)
-        </Label>
-        <Input
-          id="zip"
-          type="text"
-          placeholder="12345"
-          value={formData.zip}
-          onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-          className={errors.zip ? "border-destructive" : ""}
-          maxLength={10}
-        />
-        {errors.zip && (
-          <p className="text-sm text-destructive">{errors.zip}</p>
-        )}
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="role" className="text-sm font-medium">
-          I am a...
-        </Label>
-        <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })}>
-          <SelectTrigger id="role">
-            <SelectValue placeholder="Select your role" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="student">Student</SelectItem>
-            <SelectItem value="voter">Voter</SelectItem>
-            <SelectItem value="journalist">Journalist / Creator</SelectItem>
-            <SelectItem value="nonprofit">Nonprofit / Advocate</SelectItem>
-            <SelectItem value="official">Public Official / Staff</SelectItem>
-            <SelectItem value="other">Other</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="useCase" className="text-sm font-medium">
-          What would you use ClearPolicy for? (optional)
-        </Label>
-        <Textarea
-          id="useCase"
-          placeholder="E.g., 'Understanding ballot measures before voting' or 'Research for articles'"
-          value={formData.useCase}
-          onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
-          className="min-h-[80px] resize-none"
-          maxLength={500}
-        />
-        <p className="text-xs text-muted-foreground">
-          {formData.useCase.length}/500 characters
-        </p>
-      </div>
-
-      <div className="flex items-start space-x-2">
-        <Checkbox
-          id="consent"
-          checked={formData.consent}
-          onCheckedChange={(checked) =>
-            setFormData({ ...formData, consent: checked as boolean })
-          }
-          className={errors.consent ? "border-destructive" : ""}
-        />
-        <div className="space-y-1 leading-none">
-          <Label htmlFor="consent" className="text-sm font-normal cursor-pointer">
-            I agree to be contacted about early access and product feedback.{" "}
-            <span className="text-destructive">*</span>
-          </Label>
-          {errors.consent && (
-            <p className="text-sm text-destructive">{errors.consent}</p>
-          )}
-        </div>
       </div>
 
       <Button
@@ -252,10 +191,10 @@ export default function WaitlistForm() {
             Joining...
           </>
         ) : (
-          "Join the waitlist"
+          "Join the Waitlist"
         )}
       </Button>
-      
+
       <p className="text-xs text-center text-muted-foreground">
         No spam. Unsubscribe anytime.
       </p>
