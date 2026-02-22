@@ -37,12 +37,6 @@ export default function LiquidNavigation() {
 
                 <nav className="cp-header__nav hidden sm:flex" aria-label="Site sections">
                     <a
-                        href="#impact"
-                        onClick={(e) => { e.preventDefault(); document.getElementById('impact')?.scrollIntoView({ behavior: 'smooth' }); }}
-                    >
-                        Impact
-                    </a>
-                    <a
                         href="#demo"
                         onClick={(e) => { e.preventDefault(); document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' }); }}
                     >
