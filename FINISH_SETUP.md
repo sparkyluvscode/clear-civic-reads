@@ -20,20 +20,20 @@ I've confirmed your Supabase project exists and set everything up. You just need
    **https://supabase.com/dashboard/project/ltauqjonpcjjdvbvupae/settings/api**
 
 2. Scroll down to find:
-   - **anon public** key (copy this)
+   - **anon public** key (starts with `eyJ...`; copy this for `VITE_SUPABASE_ANON_KEY`)
    - **service_role** key (click "Reveal" then copy)
 
 3. Create a file called `.env.local` in the project root with this content:
 
 ```
 VITE_SUPABASE_URL=https://ltauqjonpcjjdvbvupae.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=<paste-your-anon-key-here>
+VITE_SUPABASE_ANON_KEY=<paste-your-anon-public-key-here>
 SUPABASE_URL=https://ltauqjonpcjjdvbvupae.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=<paste-your-service-role-key-here>
 RESEND_API_KEY=<your-resend-key-if-you-have-one>
 ```
 
-Replace the `<paste-...>` parts with your actual keys.
+**Important:** Use the **anon public** key (starts with `eyJ...`), not the publishable key. If you get "Invalid API key", copy the anon key from the **Legacy API Keys** tab in the Supabase dashboard.
 
 ---
 
