@@ -3,10 +3,35 @@ import { Search, CheckCircle2, FileText, ExternalLink, Lock } from "lucide-react
 
 const demoExamples = [
   {
+    query: "Prop 36",
+    pattern: /\b(prop|proposition)\s*36\b/,
+    title: "Proposition 36: Drug and Theft Crime Penalties (2024)",
+    summary: "Increases penalties for repeat shoplifting and fentanyl/meth possession, allows felony charges for serial theft, and creates treatment-mandated felonies for drug offenses.",
+    impact: "Passed with 68% approval. Partially reverses Prop 47 by letting prosecutors aggregate thefts to reach felony thresholds and charge repeat shoplifters with felonies.",
+    sources: [
+      { title: "Official Text", org: "CA Attorney General" },
+      { title: "Fiscal Analysis", org: "Legislative Analyst's Office" },
+      { title: "Enforcement Data", org: "CA Policy Lab" }
+    ]
+  },
+  {
+    query: "Prop 50",
+    pattern: /\b(prop|proposition)\s*50\b/,
+    title: "Proposition 50: Congressional Redistricting Maps (2025)",
+    summary: "Authorized the state legislature to temporarily redraw California's congressional district maps in response to partisan redistricting in other states, replacing Citizens Redistricting Commission maps through 2030.",
+    impact: "Passed with 64% approval. One-time cost of ~$200K for the state plus up to a few million statewide for counties to update election materials.",
+    sources: [
+      { title: "Official Text", org: "CA Secretary of State" },
+      { title: "Redistricting Analysis", org: "UC Berkeley IGS" },
+      { title: "Fiscal Impact", org: "Legislative Analyst's Office" }
+    ]
+  },
+  {
     query: "Prop 47",
-    title: "Proposition 47: Criminal Sentences. Misdemeanor Penalties",
-    summary: "Requires misdemeanor sentence instead of felony for certain drug possession offenses and most thefts under $950",
-    impact: "Estimated 40,000 fewer felony convictions annually. $150-250M annual savings to state corrections.",
+    pattern: /\b(prop|proposition)\s*47\b/,
+    title: "Proposition 47: Criminal Sentences. Misdemeanor Penalties (2014)",
+    summary: "Requires misdemeanor sentence instead of felony for certain drug possession offenses and most thefts under $950.",
+    impact: "Estimated 40,000 fewer felony convictions annually. $150–250M annual savings to state corrections.",
     sources: [
       { title: "Official Text", org: "CA Secretary of State" },
       { title: "Fiscal Analysis", org: "Legislative Analyst's Office" },
@@ -14,10 +39,35 @@ const demoExamples = [
     ]
   },
   {
+    query: "Prop 33",
+    pattern: /\b(prop|proposition)\s*33\b/,
+    title: "Proposition 33: Expand Local Rent Control (2024)",
+    summary: "Would have repealed the Costa-Hawkins Act and allowed cities to impose rent control on single-family homes, post-1995 apartments, and new tenancies.",
+    impact: "Defeated with 60% voting no. Third consecutive failure of a rent-control expansion measure (after 2018 and 2020).",
+    sources: [
+      { title: "Official Text", org: "CA Secretary of State" },
+      { title: "Housing Impact Study", org: "Legislative Analyst's Office" },
+      { title: "Campaign Finance", org: "CA Fair Political Practices Commission" }
+    ]
+  },
+  {
+    query: "Prop 32",
+    pattern: /\b(prop|proposition)\s*32\b/,
+    title: "Proposition 32: $18 Minimum Wage Initiative (2024)",
+    summary: "Would have raised California's minimum wage from $16/hr to $18/hr, phased in by employer size — $17 immediately for large employers, $18 by January 2025.",
+    impact: "Defeated by the narrowest margin of any 2024 proposition (50.7% no). California's minimum wage remains $16/hr, already the highest statewide rate in the U.S.",
+    sources: [
+      { title: "Official Text", org: "CA Secretary of State" },
+      { title: "Economic Analysis", org: "Legislative Analyst's Office" },
+      { title: "Wage Data", org: "UC Berkeley Labor Center" }
+    ]
+  },
+  {
     query: "Measure A",
+    pattern: /\bmeasure\s+a\b/,
     title: "Measure A: Affordable Housing Bond",
-    summary: "Authorizes $500M bond for affordable housing construction and preservation in the city",
-    impact: "Estimated 3,500 new affordable units over 10 years. Property tax increase of $12-18 per $100k of assessed value.",
+    summary: "Authorizes $500M bond for affordable housing construction and preservation in the city.",
+    impact: "Estimated 3,500 new affordable units over 10 years. Property tax increase of $12–18 per $100k of assessed value.",
     sources: [
       { title: "Ballot Language", org: "City Attorney" },
       { title: "Housing Impact Study", org: "Housing Authority" },
@@ -26,7 +76,7 @@ const demoExamples = [
   }
 ];
 
-const typingSequence = ["Prop 47", "Measure A"];
+const typingSequence = ["Prop 36", "Prop 50", "Measure A"];
 
 type DemoState = 'idle' | 'searching' | 'found' | 'paywall' | 'invalid';
 
@@ -98,18 +148,11 @@ export default function InteractiveDemo() {
     }
 
     const timer = setTimeout(() => {
-      if (query.includes("prop") && query.includes("47")) {
+      const matchIndex = demoExamples.findIndex(ex => ex.pattern.test(query));
+      if (matchIndex !== -1) {
         setDemoState('searching');
         setTimeout(() => {
-          setCurrentDemo(0);
-          setDemoState('found');
-        }, 600);
-        return;
-      }
-      if (query.includes("measure") && query.includes("a")) {
-        setDemoState('searching');
-        setTimeout(() => {
-          setCurrentDemo(1);
+          setCurrentDemo(matchIndex);
           setDemoState('found');
         }, 600);
         return;
@@ -179,7 +222,7 @@ export default function InteractiveDemo() {
               )}
               {!inputValue && isFocused && (
                 <div className="absolute left-12 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground/50 text-[15px]">
-                  Type "Prop 47" or "Measure A"...
+                  Try "Prop 36", "Prop 50", or "Measure A"...
                 </div>
               )}
             </div>
