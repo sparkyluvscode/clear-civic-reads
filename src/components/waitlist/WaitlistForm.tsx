@@ -49,7 +49,8 @@ export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
 
       if (dbError) {
         if (dbError.code === '23505') {
-          throw new Error('This email is already on the waitlist!');
+          setError('This email is already on the waitlist!');
+          return;
         }
         throw new Error(dbError.message || 'Failed to submit signup');
       }
@@ -61,6 +62,7 @@ export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
       });
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "Please try again later.";
+      setError(errorMessage);
       toast({
         title: "Submission failed",
         description: errorMessage,
