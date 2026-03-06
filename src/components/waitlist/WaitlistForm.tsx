@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, CheckCircle2, Copy, Check, ArrowRight } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+
+const SIGNUP_ENDPOINT = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/waitlist-signup`;
 
 interface WaitlistFormProps {
   variant?: "inline" | "full";
@@ -36,23 +37,29 @@ export default function WaitlistForm({ variant = "full" }: WaitlistFormProps) {
     setIsSubmitting(true);
 
     try {
-      const { error: dbError } = await supabase
-        .from('waitlist_signups')
-        .insert({
+      const res = await fetch(SIGNUP_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           email: email.toLowerCase(),
           source: "waitlist_landing_v2",
           user_agent: navigator.userAgent,
           referer: document.referrer || null,
-        })
-        .select()
-        .single();
+        }),
+      });
 
-      if (dbError) {
-        if (dbError.code === '23505') {
-          setError('This email is already on the waitlist!');
+      const data = await res.json();
+
+      if (!res.ok) {
+        if (res.status === 409) {
+          setError("This email is already on the waitlist!");
           return;
         }
-        throw new Error(dbError.message || 'Failed to submit signup');
+        if (res.status === 429) {
+          setError("Too many attempts. Please try again later.");
+          return;
+        }
+        throw new Error(data.error || "Failed to submit signup");
       }
 
       setIsSuccess(true);
